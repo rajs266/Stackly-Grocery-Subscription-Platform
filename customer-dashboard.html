@@ -1,19 +1,31 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Portal — Stackly Dashboard</title>
+  <title>Customer Portal Ã¢â‚¬â€ Stackly Dashboard</title>
   
-  <link rel="shortcut icon" href="assets/top-logo.webp" type="image/webp">
+  <link rel="icon" href="assets/top-logo.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script></head>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
+  <!-- Preloader -->
+  <div id="global-preloader">
+    <div class="loader-box">
+      <div class="loader-box-face front"></div>
+      <div class="loader-box-face back"></div>
+      <div class="loader-box-face right"></div>
+      <div class="loader-box-face left"></div>
+      <div class="loader-box-face top"></div>
+      <div class="loader-box-face bottom"></div>
+    </div>
+    <div class="loader-text">STACKLY</div>
+  </div>
 
   <canvas id="three-canvas-bg"></canvas>
   <div class="floating-leaves-container"></div>
@@ -27,25 +39,25 @@
 
       <!-- Mobile Right Controls -->
       <div class="d-flex align-items-center gap-3 ms-auto me-2 d-lg-none">
-        <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative hover-lift" onclick="window.location.href='404.html'">
+        <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative">
           <i class="fa-solid fa-bell text-dark"></i>
           <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
         </button>
       </div>
 
-      <button class="navbar-toggler border-0 p-2" type="button" onclick="toggleSidebar()">
+      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardNav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="dashboardNav">
         <div class="ms-auto d-flex align-items-center gap-3 mt-3 mt-lg-0">
           
-          <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative hover-lift" onclick="window.location.href='404.html'">
+          <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative d-none d-lg-block hover-lift">
             <i class="fa-solid fa-bell text-dark px-1"></i>
             <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
           </button>
           
-          <a href="#" class="btn btn-outline-danger fw-bold rounded-pill px-4 hover-lift ms-lg-3" onclick="confirmLogout(); return false;">
+          <a href="signin.html" class="btn btn-outline-danger fw-bold rounded-pill px-4 hover-lift ms-lg-3">
             <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout
           </a>
         </div>
@@ -56,14 +68,11 @@
   <!-- Dashboard Container Layout -->
   <div class="dashboard-wrapper">
     <!-- Dashboard Sidebar -->
-    <div class="sidebar-overlay d-lg-none" onclick="toggleSidebar()"></div>
     <div class="dashboard-sidebar">
-      <button class="sidebar-close-btn d-lg-none" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
       <div class="p-3 text-center bg-emerald-50 rounded-4 mb-4 shadow-sm border border-success border-opacity-10 overflow-hidden">
         <img src="assets/client_david.webp" alt="User Profile" class="rounded-circle mb-2 shadow-sm border border-2 border-white" style="width: 70px; height: 70px; object-fit: cover;">
         <h6 class="fw-bold mb-0 text-truncate" id="dashProfileNameSidebar">Ramesh Kumar</h6>
         <div class="text-muted fw-bold mt-1" id="dashProfileSidebarEmail" style="font-size: 0.65rem !important; line-height: 1.4; word-break: break-all; white-space: normal; opacity: 0.85; max-width: 100%;">ramesh@okaxis.com</div>
-        <div class="mt-3 text-center"><span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill border border-success fw-bold text-uppercase shadow-sm" style="font-size:0.7rem;"><i class="fa-solid fa-user me-1"></i>Customer Portal</span></div>
       </div>
 
       <div class="dash-nav-list">
@@ -83,7 +92,7 @@
         <a href="#" class="dash-nav-item" onclick="switchDashTab('settings', this)">
           <i class="fa-solid fa-gear"></i> Account Settings
         </a>
-        <a href="#" class="dash-nav-item text-danger" onclick="confirmLogout(); return false;">
+        <a href="#" class="dash-nav-item text-danger" onclick="window.location.href='signin.html'">
           <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
         </a>
       </div>
@@ -93,7 +102,7 @@
     <div class="dashboard-content">
       <!-- TAB 1: OVERVIEW -->
       <div class="dash-tab-content" id="tab-overview">
-        <h4 class="fw-bold mb-4">Welcome Back to Farm Freshness! 🌿</h4>
+        <h4 class="fw-bold mb-4">Welcome Back to Farm Freshness! ??</h4>
         <div class="row g-4 mb-4">
           <div class="col-md-4">
             <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 position-relative overflow-hidden shadow-sm">
@@ -167,7 +176,7 @@
         <div class="card-3d p-4 rounded-4 bg-success text-white border-0 glass-card-hover position-relative overflow-hidden" style="background: linear-gradient(135deg, #16a34a, #14532d);"><i class="fa-solid fa-apple-whole position-absolute end-0 top-0 fa-5x opacity-25 p-3"></i><h5 class="fw-bold">Zero-Waste Cooking Masterclass</h5><p class="mb-3 opacity-75">Learn how to use every part of your organic veggies this weekend online.</p><button class="btn btn-light rounded-pill btn-sm fw-bold icon-pulse-hover text-success px-4" onclick="window.location.href='404.html'"><i class="fa-solid fa-video me-2"></i> Join Free Session</button></div>
                 <!-- Section 6: Recipe -->
         <h5 class="fw-bold mb-3 mt-5">Healthy Recipe of the Week</h5>
-        <div class="card-3d p-0 rounded-4 bg-white border-0 glass-card-hover overflow-hidden d-flex flex-column flex-md-row"><div class="d-none d-md-block" style="flex: 0 0 250px;"><img src="assets/carrots.webp" class="w-100 h-100" style="object-fit:cover; min-height: 200px;"></div><div class="d-md-none w-100"><img src="assets/carrots.webp" class="w-100" style="height: 200px; object-fit:cover;"></div><div class="p-4 d-flex flex-column justify-content-center w-100"><div class="d-flex gap-2 mb-2"><span class="badge bg-success-subtle text-success rounded-pill">15 Mins</span><span class="badge bg-warning-subtle text-warning rounded-pill">Vegan</span></div><h5 class="fw-bold mb-2">Carrot & Greens Stir-fry</h5><p class="small text-muted mb-3">A quick, healthy breakfast using fresh ingredients directly from your grocery box.</p><button class="btn btn-outline-success btn-sm rounded-pill fw-bold align-self-start icon-pulse-hover px-4" onclick="window.location.href='404.html'">Read Full Recipe <i class="fa-solid fa-arrow-right ms-1"></i></button></div></div>
+        <div class="card-3d p-0 rounded-4 bg-white border-0 glass-card-hover overflow-hidden d-flex flex-column flex-md-row"><img src="assets/carrots.webp" style="width:250px; object-fit:cover;"><div class="p-4 d-flex flex-column justify-content-center w-100"><div class="d-flex gap-2 mb-2"><span class="badge bg-success-subtle text-success rounded-pill">15 Mins</span><span class="badge bg-warning-subtle text-warning rounded-pill">Vegan</span></div><h5 class="fw-bold mb-2">Carrot & Greens Stir-fry</h5><p class="small text-muted mb-3">A quick, healthy breakfast using fresh ingredients directly from your grocery box.</p><button class="btn btn-outline-success btn-sm rounded-pill fw-bold align-self-start icon-pulse-hover px-4" onclick="window.location.href='404.html'">Read Full Recipe <i class="fa-solid fa-arrow-right ms-1"></i></button></div></div>
       </div>
       <!-- TAB 2: SUBSCRIPTIONS -->
       <div class="dash-tab-content d-none" id="tab-subscriptions">
@@ -178,15 +187,15 @@
             <img src="assets/bell_peppers.webp" alt="Box" class="rounded-3 shadow-sm" style="width: 100px; height: 100px; object-fit: cover;">
             <div class="flex-grow-1">
               <h5 class="fw-bold mb-1">Family Organic Veggie Box</h5>
-              <p class="text-muted small mb-2"><i class="fa-solid fa-leaf text-success me-1"></i> 100% Organic • 5-6 kg Assorted</p>
+              <p class="text-muted small mb-2"><i class="fa-solid fa-leaf text-success me-1"></i> 100% Organic � 5-6 kg Assorted</p>
               <div class="progress mt-3" style="height: 6px;">
                 <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 85%"></div>
               </div>
               <small class="text-success fw-bold mt-1 d-block">Packing in progress at Salem Hub...</small>
             </div>
             <div class="text-md-end border-start-md ps-md-4">
-              <h4 class="fw-extrabold text-dark mb-1">₹699 <span class="fs-6 text-muted fw-normal">/ week</span></h4>
-              <button class="btn btn-outline-success btn-sm fw-bold rounded-pill mt-2" onclick="window.location.href='404.html'">Edit Next Box</button>
+              <h4 class="fw-extrabold text-dark mb-1">?699 <span class="fs-6 text-muted fw-normal">/ week</span></h4>
+              <button class="btn btn-outline-success btn-sm fw-bold rounded-pill mt-2" data-bs-toggle="modal" data-bs-target="#swapItemsModal">Edit Next Box</button>
             </div>
           </div>
         </div>
@@ -220,8 +229,8 @@
         </div>
                 <h5 class="fw-bold mb-3 mt-5">Top Up Your Grocery Box</h5>
         <div class="row g-3">
-          <div class="col-md-6"><div class="card-3d p-3 rounded-4 bg-white border-0 glass-card-hover d-flex flex-row align-items-center gap-3"><img src="assets/honey.webp" class="rounded-3 shadow-sm" style="width:70px;height:70px;object-fit:cover;"><div><h6 class="fw-bold mb-1">Pure Wild Honey</h6><p class="small text-muted mb-0">500g Glass Jar</p><span class="badge bg-success-subtle text-success fw-bold">+ ₹250</span></div><button class="btn btn-sm btn-dark ms-auto rounded-circle icon-pulse-hover" style="width:35px;height:35px;" onclick="window.location.href='404.html'"><i class="fa-solid fa-plus text-white"></i></button></div></div>
-          <div class="col-md-6"><div class="card-3d p-3 rounded-4 bg-white border-0 glass-card-hover d-flex flex-row align-items-center gap-3"><img src="assets/eggs.webp" class="rounded-3 shadow-sm" style="width:70px;height:70px;object-fit:cover;"><div><h6 class="fw-bold mb-1">Native Country Eggs</h6><p class="small text-muted mb-0">Pack of 6</p><span class="badge bg-success-subtle text-success fw-bold">+ ₹90</span></div><button class="btn btn-sm btn-dark ms-auto rounded-circle icon-pulse-hover" style="width:35px;height:35px;" onclick="window.location.href='404.html'"><i class="fa-solid fa-plus text-white"></i></button></div></div>
+          <div class="col-md-6"><div class="card-3d p-3 rounded-4 bg-white border-0 glass-card-hover d-flex flex-row align-items-center gap-3"><img src="assets/honey.webp" class="rounded-3 shadow-sm" style="width:70px;height:70px;object-fit:cover;"><div><h6 class="fw-bold mb-1">Pure Wild Honey</h6><p class="small text-muted mb-0">500g Glass Jar</p><span class="badge bg-success-subtle text-success fw-bold">+ ?250</span></div><button class="btn btn-sm btn-dark ms-auto rounded-circle icon-pulse-hover" style="width:35px;height:35px;" onclick="window.location.href='404.html'"><i class="fa-solid fa-plus text-white"></i></button></div></div>
+          <div class="col-md-6"><div class="card-3d p-3 rounded-4 bg-white border-0 glass-card-hover d-flex flex-row align-items-center gap-3"><img src="assets/eggs.webp" class="rounded-3 shadow-sm" style="width:70px;height:70px;object-fit:cover;"><div><h6 class="fw-bold mb-1">Native Country Eggs</h6><p class="small text-muted mb-0">Pack of 6</p><span class="badge bg-success-subtle text-success fw-bold">+ ?90</span></div><button class="btn btn-sm btn-dark ms-auto rounded-circle icon-pulse-hover" style="width:35px;height:35px;" onclick="window.location.href='404.html'"><i class="fa-solid fa-plus text-white"></i></button></div></div>
         </div>
                         <h5 class="fw-bold mb-3 mt-5">Your Stackly Journey</h5>
         <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover position-relative overflow-hidden">
@@ -230,7 +239,7 @@
              <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill shadow-sm"><i class="fa-solid fa-star me-1"></i> 350 Points</span>
           </div>
           <div class="position-relative m-4">
-            <div class="progress" style="height: 6px; position: absolute; top: 22.5px; left: 0; right: 0; transform: translateY(-50%); z-index: 1;">
+            <div class="progress" style="height: 6px; position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); z-index: 1;">
               <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 50%"></div>
             </div>
             <div class="d-flex justify-content-between position-relative" style="z-index: 2;">
@@ -266,7 +275,7 @@
             <div class="card-3d p-4 rounded-4 text-white h-100 glass-card-hover position-relative overflow-hidden" style="background: linear-gradient(135deg, #16a34a, #14532d);">
               <div class="position-absolute top-0 end-0 opacity-25 p-3"><i class="fa-solid fa-wallet fa-4x"></i></div>
               <p class="mb-1 text-white-75 fw-medium">Available Balance</p>
-              <h2 class="display-4 fw-extrabold mb-4">₹1,450</h2>
+              <h2 class="display-4 fw-extrabold mb-4">?1,450</h2>
               <button class="btn btn-light fw-bold px-4 rounded-pill icon-pulse-hover text-success shadow-sm" onclick="window.location.href='404.html'">
                 <i class="fa-solid fa-plus me-2"></i>Top Up Wallet
               </button>
@@ -280,22 +289,22 @@
                   <div class="bg-success bg-opacity-10 p-2 rounded-circle text-success"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
                   <div><h6 class="mb-0 fw-bold small">Top Up via UPI</h6><small class="text-muted" style="font-size:0.75rem">Sep 01, 10:30 AM</small></div>
                 </div>
-                <div class="text-success fw-bold">+ ₹500</div>
+                <div class="text-success fw-bold">+ ?500</div>
               </div>
               <div class="d-flex justify-content-between align-items-center p-2 rounded-3 hover-bg-light transition-all">
                 <div class="d-flex align-items-center gap-3">
                   <div class="bg-danger bg-opacity-10 p-2 rounded-circle text-danger"><i class="fa-solid fa-box-open"></i></div>
                   <div><h6 class="mb-0 fw-bold small">Weekly Box Deduction</h6><small class="text-muted" style="font-size:0.75rem">Aug 28, 06:00 AM</small></div>
                 </div>
-                <div class="text-danger fw-bold">- ₹350</div>
+                <div class="text-danger fw-bold">- ?350</div>
               </div>
             </div>
           </div>
         </div>
         <h5 class="fw-bold mb-3 mt-5">Special Cashback Offers</h5>
-        <div class="card-3d p-4 rounded-4 bg-warning bg-opacity-10 border border-warning border-opacity-25 glass-card-hover d-flex align-items-center gap-3"><i class="fa-solid fa-gift fa-3x text-warning pulse-animation"></i><div><h6 class="fw-bold mb-1">Top up ₹5,000, Get ₹500 Extra</h6><p class="small text-muted mb-0">Valid until end of month. Use code: FRESH500</p></div></div>
+        <div class="card-3d p-4 rounded-4 bg-warning bg-opacity-10 border border-warning border-opacity-25 glass-card-hover d-flex align-items-center gap-3"><i class="fa-solid fa-gift fa-3x text-warning pulse-animation"></i><div><h6 class="fw-bold mb-1">Top up ?5,000, Get ?500 Extra</h6><p class="small text-muted mb-0">Valid until end of month. Use code: FRESH500</p></div></div>
         <h5 class="fw-bold mb-3 mt-5">Referral Earnings</h5>
-        <div class="row g-4"><div class="col-md-6"><div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover text-center"><h3 class="text-success fw-extrabold">₹1,200</h3><p class="small fw-bold text-muted">Earned so far</p></div></div><div class="col-md-6"><div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover text-center"><h3 class="text-primary fw-extrabold">8</h3><p class="small fw-bold text-muted">Friends Referred</p></div></div></div>
+        <div class="row g-4"><div class="col-md-6"><div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover text-center"><h3 class="text-success fw-extrabold">?1,200</h3><p class="small fw-bold text-muted">Earned so far</p></div></div><div class="col-md-6"><div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover text-center"><h3 class="text-primary fw-extrabold">8</h3><p class="small fw-bold text-muted">Friends Referred</p></div></div></div>
       </div>
             <!-- TAB 4: FARM VISIT -->
       <div class="dash-tab-content d-none" id="tab-farm-visit">
@@ -308,7 +317,7 @@
               <h3 class="fw-bold mb-3">Tailor Your Weekly Box</h3>
               <p class="text-muted mb-4" style="line-height:1.7;">Don't want spinach this week? Swap items easily before our delivery partners pack your box. Enjoy the flexibility of choosing exactly the fresh groceries your family needs.</p>
               <div class="d-flex gap-3 flex-wrap">
-                <button class="btn btn-success rounded-pill px-4 py-2 fw-bold shadow icon-pulse-hover" onclick="window.location.href='404.html'"><i class="fa-solid fa-boxes-packing me-2"></i> Customize Now</button>
+                <button class="btn btn-success rounded-pill px-4 py-2 fw-bold shadow icon-pulse-hover" data-bs-toggle="modal" data-bs-target="#swapItemsModal"><i class="fa-solid fa-boxes-packing me-2"></i> Customize Now</button>
               </div>
             </div>
           </div>
@@ -360,7 +369,7 @@
           </div>
                     <div class="col-md-12">
             <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover">
-              <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-4 gap-3">
+              <div class="d-flex align-items-center justify-content-between mb-4">
                 <div class="d-flex align-items-center gap-3">
                   <div class="bg-success bg-opacity-10 p-3 rounded-circle text-success"><i class="fa-solid fa-location-dot fs-4"></i></div>
                   <h5 class="fw-bold mb-0">Delivery Address Management</h5>
@@ -368,7 +377,7 @@
                 <button class="btn btn-outline-dark btn-sm rounded-pill fw-bold px-4 icon-pulse-hover" onclick="window.location.href='404.html'"><i class="fa-solid fa-plus me-1"></i> Add New Address</button>
               </div>
               <div class="p-3 border border-2 border-success border-opacity-50 rounded-4 bg-success-subtle position-relative shadow-sm transition-all hover-lift">
-                <span class="badge bg-success d-inline-block mb-2 px-3 py-1 rounded-pill"><i class="fa-solid fa-house-chimney me-1"></i> PRIMARY HOME</span>
+                <span class="badge bg-success position-absolute top-0 end-0 mt-3 me-3 px-3 py-1 rounded-pill"><i class="fa-solid fa-house-chimney me-1"></i> PRIMARY HOME</span>
                 <h6 class="fw-bold text-dark fs-5 mb-1">MMR Complex, Chinna Thirupathi</h6>
                 <p class="text-muted fw-medium mb-3 w-75">Near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</p>
                 <div class="d-flex gap-2">
@@ -434,8 +443,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/three-bg.js"></script>
-  <script src="js/main.js"></script>
+  <script src="main.js"></script>
   <script>
     function switchDashTab(tabName, linkEl) {
       document.querySelectorAll('.dash-nav-item').forEach(el => el.classList.remove('active'));
@@ -443,10 +451,6 @@
 
       document.querySelectorAll('.dash-tab-content').forEach(c => c.classList.add('d-none'));
       document.getElementById(`tab-${tabName}`).classList.remove('d-none');
-      if (window.innerWidth < 992) {
-        document.querySelector('.dashboard-sidebar').classList.remove('show-sidebar');
-        document.querySelector('.sidebar-overlay').classList.remove('show');
-      }
     }
   </script>
   <script>
@@ -463,51 +467,8 @@
       }
     });
   </script>
-  <script>
-    function confirmLogout() {
-      Swal.fire({
-        title: 'Logout of Stackly?',
-        text: 'Are you sure you want to end your session?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#dc3545',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Yes, log out',
-        cancelButtonText: 'Cancel',
-        backdrop: 'rgba(0,0,0,0.85)'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = 'signin.html';
-        }
-      });
-    }
-  </script>
-  <script>
-    function toggleSidebar() {
-      document.querySelector('.dashboard-sidebar').classList.toggle('show-sidebar');
-      document.querySelector('.sidebar-overlay').classList.toggle('show');
-    }
-  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
