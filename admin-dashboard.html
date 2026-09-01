@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Stackly Operations Control</title>
+  
+  <link rel="shortcut icon" href="assets/top-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- ApexCharts for Admin Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script></head>
+<body>
+
+  <canvas id="three-canvas-bg"></canvas>
+  <div class="floating-leaves-container"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2 border-bottom">
+    <div class="container-fluid px-lg-5">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <!-- Mobile Right Controls -->
+      <div class="d-flex align-items-center gap-3 ms-auto me-2 d-lg-none">
+        <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative hover-lift" onclick="window.location.href='404.html'">
+          <i class="fa-solid fa-bell text-dark"></i>
+          <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+        </button>
+      </div>
+
+      <button class="navbar-toggler border-0 p-2" type="button" onclick="toggleSidebar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="dashboardNav">
+        <div class="ms-auto d-flex align-items-center gap-3 mt-3 mt-lg-0">
+          
+          <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative hover-lift" onclick="window.location.href='404.html'">
+            <i class="fa-solid fa-bell text-dark px-1"></i>
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+          </button>
+          
+          <a href="#" class="btn btn-outline-danger fw-bold rounded-pill px-4 hover-lift ms-lg-3" onclick="confirmLogout(); return false;">
+            <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Layout -->
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar-overlay d-lg-none" onclick="toggleSidebar()"></div>
+    <div class="dashboard-sidebar">
+      <button class="sidebar-close-btn d-lg-none" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="p-3 text-center bg-emerald-50 rounded-4 mb-4 shadow-sm border border-success border-opacity-10 overflow-hidden">
+        <img src="assets/team_arjun.webp" alt="Admin" class="rounded-circle mb-2 shadow-sm border border-2 border-white" style="width: 70px; height: 70px; object-fit: cover;">
+        <h6 class="fw-bold mb-0 text-truncate" id="adminDashProfileNameSidebar">Arjun Kumar</h6>
+        <div class="text-muted fw-bold mt-1" id="adminDashProfileSidebarEmail" style="font-size: 0.65rem !important; line-height: 1.4; word-break: break-all; white-space: normal; opacity: 0.85; max-width: 100%;">admin@stackly.com</div>
+        <div class="mt-3 text-center"><span class="badge bg-dark-subtle text-dark px-3 py-1 rounded-pill border border-dark fw-bold text-uppercase shadow-sm" style="font-size:0.7rem;"><i class="fa-solid fa-shield-halved me-1"></i>Admin Portal</span></div>
+      </div>
+
+      <div class="dash-nav-list">
+        <a href="#" class="dash-nav-item active" onclick="switchAdminTab('overview', this)">
+          <i class="fa-solid fa-chart-line"></i> Operations Overview
+        </a>
+        <a href="#" class="dash-nav-item" onclick="switchAdminTab('deliveries', this)">
+          <i class="fa-solid fa-truck-ramp-box"></i> Delivery Dispatch Queue
+        </a>
+        <a href="#" class="dash-nav-item" onclick="switchAdminTab('inventory', this)">
+          <i class="fa-solid fa-warehouse"></i> Inventory & Farms
+        </a>
+        <a href="#" class="dash-nav-item" onclick="switchAdminTab('subscribers', this)">
+          <i class="fa-solid fa-users"></i> Subscriber Manager
+        </a>
+        <div class="dash-nav-divider my-2 border-top border-light-subtle"></div>
+        <a href="#" class="dash-nav-item" onclick="switchAdminTab('settings', this)">
+          <i class="fa-solid fa-gear"></i> Portal Settings
+        </a>
+        <a href="#" class="dash-nav-item text-danger" onclick="confirmLogout(); return false;">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        </a>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="dashboard-content">
+      
+      <!-- TAB 1: OVERVIEW -->
+      <div class="dash-tab-content" id="admin-tab-overview">
+        <h4 class="fw-bold mb-4">Operations Control Center</h4>
+        <div class="row g-4 mb-4">
+                      <div class="col-md-3">
+              <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="text-muted small fw-bold mb-0">Active Subscribers</p>
+                  <div class="bg-primary bg-opacity-10 p-2 rounded-3"><i class="fa-solid fa-users text-primary fs-5"></i></div>
+                </div>
+                <h3 class="fw-extrabold mb-1 text-primary">1,405</h3>
+                <p class="small text-success mb-0 fw-bold"><i class="fa-solid fa-arrow-trend-up"></i> +12% this week</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="text-muted small fw-bold mb-0">Today's Deliveries</p>
+                  <div class="bg-success bg-opacity-10 p-2 rounded-3"><i class="fa-solid fa-truck-fast text-success fs-5"></i></div>
+                </div>
+                <h3 class="fw-extrabold mb-1 text-success">420</h3>
+                <p class="small text-muted mb-0 fw-bold">85% completed</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="text-muted small fw-bold mb-0">Total Harvest Vol</p>
+                  <div class="bg-warning bg-opacity-10 p-2 rounded-3"><i class="fa-solid fa-leaf text-warning fs-5"></i></div>
+                </div>
+                <h3 class="fw-extrabold mb-1 text-warning">2.4 Tons</h3>
+                <p class="small text-muted mb-0 fw-bold">Across 3 Salem Zones</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="text-muted small fw-bold mb-0">Weekly Revenue</p>
+                  <div class="bg-danger bg-opacity-10 p-2 rounded-3"><i class="fa-solid fa-indian-rupee-sign text-danger fs-5"></i></div>
+                </div>
+                <h3 class="fw-extrabold mb-1 text-danger">&#8377;2.8L</h3>
+                <p class="small text-success mb-0 fw-bold"><i class="fa-solid fa-arrow-trend-up"></i> +4% growth</p>
+              </div>
+            </div>
+        </div>
+        <h5 class="fw-bold mb-3 mt-5">Business Intelligence & Trends</h5>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm position-relative overflow-hidden">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h6 class="fw-bold text-dark mb-0">Monthly Revenue Growth</h6>
+                <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2 fw-bold">+24% vs Last Month</span>
+              </div>
+              <!-- Simulated Chart Area -->
+              <div class="d-flex align-items-end gap-2 mt-4" style="height: 180px;">
+                <div class="bg-success rounded-top w-100 position-relative hover-lift" style="height: 30%;"><span class="position-absolute top-0 start-50 translate-middle-x mt-n4 small fw-bold text-muted">W1</span></div>
+                <div class="bg-success rounded-top w-100 position-relative hover-lift opacity-75" style="height: 50%;"><span class="position-absolute top-0 start-50 translate-middle-x mt-n4 small fw-bold text-muted">W2</span></div>
+                <div class="bg-success rounded-top w-100 position-relative hover-lift opacity-50" style="height: 65%;"><span class="position-absolute top-0 start-50 translate-middle-x mt-n4 small fw-bold text-muted">W3</span></div>
+                <div class="bg-success rounded-top w-100 position-relative hover-lift opacity-75" style="height: 100%;"><span class="position-absolute top-0 start-50 translate-middle-x mt-n4 small fw-bold text-success">W4 (Peak)</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card-3d p-4 rounded-4 bg-dark text-white border-0 glass-card-hover h-100 shadow-sm">
+              <h6 class="fw-bold mb-4 text-white">System Health Status</h6>
+              <div class="d-flex align-items-center justify-content-between border-bottom border-secondary pb-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="bg-success bg-opacity-25 p-2 rounded-circle"><i class="fa-solid fa-server text-success"></i></div>
+                  <span class="fw-bold">API Servers</span>
+                </div>
+                <span class="badge bg-success rounded-pill">100% Online</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between border-bottom border-secondary pb-3 mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="bg-success bg-opacity-25 p-2 rounded-circle"><i class="fa-solid fa-database text-success"></i></div>
+                  <span class="fw-bold">DB Cluster</span>
+                </div>
+                <span class="badge bg-success rounded-pill">Synced</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="bg-warning bg-opacity-25 p-2 rounded-circle"><i class="fa-solid fa-shield-halved text-warning"></i></div>
+                  <span class="fw-bold">Firewall Logs</span>
+                </div>
+                <span class="badge bg-warning text-dark rounded-pill">3 Alerts</span>
+              </div>
+              <button class="btn btn-outline-light w-100 rounded-pill mt-4 fw-bold" onclick="window.location.href='404.html'">Run Diagnostics</button>
+            </div>
+          </div>
+        </div>
+        <h5 class="fw-bold mb-3 mt-5">Recent Customer Feedback</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm">
+              <div class="d-flex gap-3 mb-3">
+                <img src="assets/client_david.webp" class="rounded-circle" style="width:45px; height:45px; object-fit:cover;">
+                <div><h6 class="fw-bold mb-0">Karthik R.</h6><div class="text-warning small"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div>
+              </div>
+              <p class="small text-muted mb-0 fst-italic">"The exotic mushrooms were incredibly fresh this week! Stackly's delivery is always on point."</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm">
+              <div class="d-flex gap-3 mb-3">
+                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:45px; height:45px;">S</div>
+                <div><h6 class="fw-bold mb-0">Sneha P.</h6><div class="text-warning small"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div></div>
+              </div>
+              <p class="small text-muted mb-0 fst-italic">"Loved the A2 milk packaging. Delivery was a bit late due to rain, but driver kept me updated!"</p>
+            </div>
+          </div>
+        </div>
+        <h5 class="fw-bold mb-3 mt-5">Top Performing Farms (Quality & Volume)</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover shadow-sm position-relative overflow-hidden h-100">
+              <div class="position-absolute top-0 end-0 p-3"><i class="fa-solid fa-medal fa-2x text-warning"></i></div>
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <img src="assets/farm_1.webp" class="rounded-circle shadow-sm" style="width: 50px; height: 50px; object-fit: cover;" onerror="this.src='assets/carrots.webp'">
+                <div><h6 class="fw-bold mb-0">GreenValley Organics</h6><span class="badge bg-warning text-dark mt-1">Rank #1</span></div>
+              </div>
+              <div class="row g-2 text-center">
+                <div class="col-6"><div class="bg-light rounded-3 p-2"><p class="small text-muted mb-0">Quality Score</p><h6 class="fw-bold text-success mb-0">99.2%</h6></div></div>
+                <div class="col-6"><div class="bg-light rounded-3 p-2"><p class="small text-muted mb-0">Vol Delivered</p><h6 class="fw-bold text-dark mb-0">1.4 Tons</h6></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover shadow-sm position-relative overflow-hidden h-100">
+              <div class="position-absolute top-0 end-0 p-3"><i class="fa-solid fa-medal fa-2x text-secondary"></i></div>
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <img src="assets/farm_2.webp" class="rounded-circle shadow-sm" style="width: 50px; height: 50px; object-fit: cover;" onerror="this.src='assets/carrots.webp'">
+                <div><h6 class="fw-bold mb-0">Attur Fresh Co.</h6><span class="badge bg-secondary mt-1">Rank #2</span></div>
+              </div>
+              <div class="row g-2 text-center">
+                <div class="col-6"><div class="bg-light rounded-3 p-2"><p class="small text-muted mb-0">Quality Score</p><h6 class="fw-bold text-success mb-0">96.5%</h6></div></div>
+                <div class="col-6"><div class="bg-light rounded-3 p-2"><p class="small text-muted mb-0">Vol Delivered</p><h6 class="fw-bold text-dark mb-0">980 Kg</h6></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+        <h5 class="fw-bold mb-3 mt-5">Farm-to-Door Supply Chain</h5>
+        <div class="card-3d rounded-4 border-0 glass-card-hover overflow-hidden position-relative shadow-sm" style="height: 280px; max-height: 40vh;">
+          <img src="assets/logistics_supply_chain.jpg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; opacity: 0.8; filter: brightness(0.6);">
+          <div class="position-relative z-1 p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white">
+            <span class="badge bg-success mb-3 align-self-start px-3 py-2 rounded-pill fw-bold shadow"><i class="fa-solid fa-seedling me-2"></i>Live Operations</span>
+            <h3 class="fw-extrabold text-white">Stackly Logistics Network</h3>
+            <p class="mb-4 fw-medium text-white opacity-75" style="max-width: 500px;">Monitor real-time farm collections, packing center operations, and final mile delivery routing across Tamil Nadu.</p>
+            <button class="btn btn-light text-success fw-bold rounded-pill px-4 align-self-start icon-pulse-hover shadow" onclick="window.location.href='404.html'">View Logistics Map <i class="fa-solid fa-map-location-dot ms-2"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: DELIVERIES QUEUE -->
+      <div class="dash-tab-content d-none" id="admin-tab-deliveries">
+        <h4 class="fw-bold mb-4">Live Dispatch Queue</h4>
+        <div class="row g-4 mb-4">
+          <div class="col-md-8">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="fw-bold mb-0">Zone 1: Chinna Thirupathi (Active)</h6>
+                <span class="badge bg-success pulse-animation">Dispatched</span>
+              </div>
+              <div class="progress mb-2" style="height: 8px;">
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+              </div>
+              <small class="text-muted fw-bold">Driver: Muthu (TN 30 AA 1234) • 32/45 Drops Completed</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-3d p-4 rounded-4 bg-warning bg-opacity-10 border border-warning border-opacity-25 glass-card-hover h-100 d-flex flex-column justify-content-center text-center">
+              <h1 class="display-5 fw-extrabold text-warning mb-0">03</h1>
+              <p class="text-warning fw-bold small mb-0">Drivers Waiting in Queue</p>
+            </div>
+          </div>
+        </div>
+        <h5 class="fw-bold mb-3 mt-5">Active Drivers on Duty</h5>
+        <div class="row g-3">
+          <div class="col-md-4"><div class="card-3d p-3 rounded-4 bg-white border-0 glass-card-hover text-center"><img src="assets/team_suresh.webp" class="rounded-circle mb-2" style="width:50px;height:50px;object-fit:cover;"><h6 class="fw-bold mb-0">Muthu K.</h6><p class="small text-success fw-bold mb-0">Zone 1</p></div></div>
+          <div class="col-md-4"><div class="card-3d p-3 rounded-4 bg-white border-0 glass-card-hover text-center"><img src="assets/team_vignesh.webp" class="rounded-circle mb-2" style="width:50px;height:50px;object-fit:cover;"><h6 class="fw-bold mb-0">Suresh P.</h6><p class="small text-success fw-bold mb-0">Zone 2</p></div></div>
+        </div>
+        
+        <h5 class="fw-bold mb-3 mt-5">Active Delivery Routes</h5>
+        <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm">
+          <div class="table-responsive">
+            <table class="table table-borderless table-hover mb-0 align-middle">
+              <thead class="bg-light text-muted small fw-bold">
+                <tr>
+                  <th class="ps-4 py-3">Route / Area</th>
+                  <th class="py-3">Driver assigned</th>
+                  <th class="py-3">Progress</th>
+                  <th class="py-3">Status</th>
+                  <th class="pe-4 py-3 text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-bottom">
+                  <td class="ps-4 py-3">
+                    <h6 class="fw-bold mb-0">Zone 1: Alagapuram</h6>
+                    <small class="text-muted">32 Stops</small>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:35px; height:35px;">M</div>
+                      <span class="fw-bold text-dark">Muthu K.</span>
+                    </div>
+                  </td>
+                  <td style="width: 25%;">
+                    <div class="d-flex justify-content-between mb-1"><small class="fw-bold text-success">85%</small><small class="text-muted">27/32</small></div>
+                    <div class="progress" style="height: 6px;"><div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 85%"></div></div>
+                  </td>
+                  <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">On Time</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold" onclick="window.location.href='404.html'">Track</button></td>
+                </tr>
+                <tr class="border-bottom">
+                  <td class="ps-4 py-3">
+                    <h6 class="fw-bold mb-0">Zone 2: Hasthampatti</h6>
+                    <small class="text-muted">45 Stops</small>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:35px; height:35px;">S</div>
+                      <span class="fw-bold text-dark">Suresh P.</span>
+                    </div>
+                  </td>
+                  <td style="width: 25%;">
+                    <div class="d-flex justify-content-between mb-1"><small class="fw-bold text-warning">40%</small><small class="text-muted">18/45</small></div>
+                    <div class="progress" style="height: 6px;"><div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 40%"></div></div>
+                  </td>
+                  <td><span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3">Delayed (Traffic)</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold" onclick="window.location.href='404.html'">Track</button></td>
+                </tr>
+                <tr>
+                  <td class="ps-4 py-3">
+                    <h6 class="fw-bold mb-0">Zone 3: Suramangalam</h6>
+                    <small class="text-muted">28 Stops</small>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:35px; height:35px;">R</div>
+                      <span class="fw-bold text-dark">Ramesh V.</span>
+                    </div>
+                  </td>
+                  <td style="width: 25%;">
+                    <div class="d-flex justify-content-between mb-1"><small class="fw-bold text-info">10%</small><small class="text-muted">3/28</small></div>
+                    <div class="progress" style="height: 6px;"><div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 10%"></div></div>
+                  </td>
+                  <td><span class="badge bg-info bg-opacity-10 text-info rounded-pill px-3">Just Started</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold" onclick="window.location.href='404.html'">Track</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h5 class="fw-bold mb-3 mt-5">Delivery Heatmap Zones</h5>
+        <div class="card-3d p-4 rounded-4 bg-dark text-white border-0 glass-card-hover position-relative overflow-hidden shadow-sm">
+          <i class="fa-solid fa-map-location-dot position-absolute top-50 start-50 translate-middle fa-5x opacity-10 text-white"></i>
+          <div class="position-relative z-1 d-flex flex-column gap-3">
+            <div class="d-flex justify-content-between border-bottom border-secondary pb-2">
+              <span class="fw-bold"><i class="fa-solid fa-fire text-danger me-2"></i> Zone 1 (Alagapuram)</span>
+              <span class="badge bg-danger rounded-pill px-3">High Density</span>
+            </div>
+            <div class="d-flex justify-content-between border-bottom border-secondary pb-2">
+              <span class="fw-bold"><i class="fa-solid fa-droplet text-info me-2"></i> Zone 4 (Hasthampatti)</span>
+              <span class="badge bg-info text-dark rounded-pill px-3">Medium Density</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-white" style="color: #ffffff !important;"><i class="fa-solid fa-snowflake me-2"></i> Zone 7 (Kandhampatti)</span>
+              <span class="badge bg-secondary rounded-pill px-3">Low Density</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: INVENTORY & FARMS -->
+      <div class="dash-tab-content d-none" id="admin-tab-inventory">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4 class="fw-bold mb-0">Farm Inventory Hub</h4>
+          <button class="btn btn-success btn-sm icon-pulse-hover rounded-pill px-4 fw-bold shadow-sm" onclick="window.location.href='404.html'"><i class="fa-solid fa-plus me-1"></i> Add Stock Item</button>
+        </div>
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 border-start border-4 border-success position-relative overflow-hidden">
+              <i class="fa-solid fa-carrot position-absolute bottom-0 end-0 opacity-10 fa-5x translate-middle-y me-n3"></i>
+              <p class="text-muted small fw-bold mb-1">Veggies Stock</p>
+              <h3 class="fw-extrabold mb-0">1,240 kg</h3>
+              <span class="badge bg-success-subtle text-success mt-2">Optimal</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 border-start border-4 border-warning position-relative overflow-hidden">
+              <i class="fa-solid fa-cow position-absolute bottom-0 end-0 opacity-10 fa-5x translate-middle-y me-n3"></i>
+              <p class="text-muted small fw-bold mb-1">Dairy Stock (A2 Milk)</p>
+              <h3 class="fw-extrabold mb-0">450 Litres</h3>
+              <span class="badge bg-warning-subtle text-warning mt-2">Reorder Alert</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 border-start border-4 border-danger position-relative overflow-hidden">
+              <i class="fa-solid fa-seedling position-absolute bottom-0 end-0 opacity-10 fa-5x translate-middle-y me-n3"></i>
+              <p class="text-muted small fw-bold mb-1">Exotic Mushrooms</p>
+              <h3 class="fw-extrabold mb-0">25 Packs</h3>
+              <span class="badge bg-danger-subtle text-danger mt-2">Critical Low</span>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="fw-bold mb-3 mt-5">Live Stock Ledger</h5>
+        <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm">
+          <div class="table-responsive">
+            <table class="table table-borderless table-hover mb-0 align-middle">
+              <thead class="bg-light text-muted small fw-bold">
+                <tr>
+                  <th class="ps-4 py-3">Product Name</th>
+                  <th class="py-3">Category</th>
+                  <th class="py-3">Available Stock</th>
+                  <th class="py-3">Status</th>
+                  <th class="pe-4 py-3 text-end">Quick Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-bottom">
+                  <td class="ps-4 py-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <img src="assets/tomatoes.webp" class="rounded-3 shadow-sm" style="width: 40px; height: 40px; object-fit: cover;" onerror="this.src='assets/carrots.webp'">
+                      <h6 class="fw-bold text-dark mb-0">Organic Tomatoes</h6>
+                    </div>
+                  </td>
+                  <td><span class="text-muted fw-bold small">Vegetables</span></td>
+                  <td><p class="fw-bold text-dark mb-0">450 kg</p></td>
+                  <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Optimal</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-primary rounded-pill fw-bold px-3" onclick="window.location.href='404.html'">Update</button></td>
+                </tr>
+                <tr class="border-bottom">
+                  <td class="ps-4 py-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <img src="assets/milk.webp" class="rounded-3 shadow-sm" style="width: 40px; height: 40px; object-fit: cover;" onerror="this.src='assets/carrots.webp'">
+                      <h6 class="fw-bold text-dark mb-0">Farm Fresh A2 Milk</h6>
+                    </div>
+                  </td>
+                  <td><span class="text-muted fw-bold small">Dairy</span></td>
+                  <td><p class="fw-bold text-dark mb-0">45 Litres</p></td>
+                  <td><span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 pulse-animation">Low Stock</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-warning rounded-pill fw-bold px-3 text-dark" onclick="window.location.href='404.html'">Restock</button></td>
+                </tr>
+                <tr>
+                  <td class="ps-4 py-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <img src="assets/spinach.webp" class="rounded-3 shadow-sm" style="width: 40px; height: 40px; object-fit: cover;" onerror="this.src='assets/carrots.webp'">
+                      <h6 class="fw-bold text-dark mb-0">Fresh Spinach</h6>
+                    </div>
+                  </td>
+                  <td><span class="text-muted fw-bold small">Greens</span></td>
+                  <td><p class="fw-bold text-dark mb-0">0 kg</p></td>
+                  <td><span class="badge bg-danger bg-opacity-10 text-danger rounded-pill px-3">Out of Stock</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-danger rounded-pill fw-bold px-3 text-white" onclick="window.location.href='404.html'">Urgent Alert</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h5 class="fw-bold mb-3 mt-5">Incoming Shipments</h5>
+        <div class="card-3d p-0 rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm">
+          <div class="p-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 border-start border-4 border-info">
+            <div class="d-flex align-items-center gap-3">
+              <div class="bg-info bg-opacity-10 p-3 rounded-circle text-info"><i class="fa-solid fa-truck-moving"></i></div>
+              <div><h6 class="fw-bold mb-1">Attur Organic Fruits Hub</h6><p class="small text-muted mb-0">Expected: Today, 4:00 PM</p></div>
+            </div>
+            <span class="badge bg-info text-white rounded-pill px-3 py-2 fw-bold shadow-sm">300 kg Load</span>
+          </div>
+          <div class="p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 border-start border-4 border-warning">
+            <div class="d-flex align-items-center gap-3">
+              <div class="bg-warning bg-opacity-10 p-3 rounded-circle text-warning"><i class="fa-solid fa-box-open"></i></div>
+              <div><h6 class="fw-bold mb-1">Salem Dairy Partners</h6><p class="small text-muted mb-0">Expected: Tomorrow, 6:00 AM</p></div>
+            </div>
+            <span class="badge bg-warning text-dark rounded-pill px-3 py-2 fw-bold shadow-sm">150 Litres A2 Milk</span>
+          </div>
+        </div>
+        <h5 class="fw-bold mb-3 mt-5">Wastage / Spoilage Log</h5>
+        <div class="card-3d p-4 rounded-4 border-0 glass-card-hover position-relative overflow-hidden shadow-sm" style="background: linear-gradient(135deg, #fef2f2, #fee2e2);">
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3 position-relative z-1">
+            <h6 class="text-danger fw-bold mb-0"><i class="fa-solid fa-triangle-exclamation me-2"></i> Critical Spoilage Alert</h6>
+            <button class="btn btn-sm btn-danger rounded-pill fw-bold shadow-sm hover-lift" onclick="window.location.href='404.html'">Review Batch</button>
+          </div>
+          <div class="d-flex flex-column flex-md-row align-items-start align-items-center gap-3 bg-white p-3 rounded-3 shadow-sm position-relative z-1 border border-danger border-opacity-25">
+            <img src="assets/carrots.webp" style="width:50px; height:50px; object-fit:cover;" class="rounded-circle">
+            <div class="flex-grow-1">
+              <h6 class="fw-bold mb-0 text-dark">Tomatoes (Overripe)</h6>
+              <p class="small text-danger fw-bold mb-0">12 kg loss detected in QA Check #402</p>
+            </div>
+            <button class="btn btn-sm btn-light border border-danger text-danger rounded-circle d-flex align-items-center justify-content-center shadow-sm hover-lift" style="width: 38px; height: 38px; flex-shrink: 0;" onclick="window.location.href='404.html'" aria-label="Delete spoilage alert">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- TAB 4: SUBSCRIBERS -->
+      <div class="dash-tab-content d-none" id="admin-tab-subscribers">
+        <h4 class="fw-bold mb-4">Subscriber Management</h4>
+        <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover mb-4">
+          <div class="row align-items-center text-center g-0">
+            <div class="col-4 border-end px-2">
+              <h2 class="fw-extrabold text-dark mb-0 fs-3 fs-md-2">1,405</h2>
+              <small class="text-muted fw-bold d-block">Total Users</small>
+            </div>
+            <div class="col-4 border-end px-2">
+              <h2 class="fw-extrabold text-success mb-0 fs-3 fs-md-2">1,250</h2>
+              <small class="text-muted fw-bold d-block lh-sm">Active Subs</small>
+            </div>
+            <div class="col-4 px-2">
+              <h2 class="fw-extrabold text-warning mb-0 fs-3 fs-md-2">45</h2>
+              <small class="text-muted fw-bold d-block lh-sm">Paused</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3 mt-5">
+          <h5 class="fw-bold mb-0">Subscriber Directory</h5>
+          <div class="d-flex gap-2">
+            <input type="text" class="form-control rounded-pill px-4" placeholder="Search names, emails..." style="max-width: 250px;">
+            <button class="btn btn-success rounded-pill px-4 fw-bold shadow-sm" onclick="window.location.href='404.html'"><i class="fa-solid fa-filter"></i> Filter</button>
+          </div>
+        </div>
+        <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm mb-4">
+          <div class="table-responsive">
+            <table class="table table-borderless table-hover mb-0 align-middle">
+              <thead class="bg-light text-muted small fw-bold">
+                <tr>
+                  <th class="ps-4 py-3">Subscriber</th>
+                  <th class="py-3">Current Plan</th>
+                  <th class="py-3">Next Box</th>
+                  <th class="py-3">Status</th>
+                  <th class="pe-4 py-3 text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-bottom">
+                  <td class="ps-4 py-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <img src="assets/client_david.webp" class="rounded-circle shadow-sm" style="width: 40px; height: 40px; object-fit: cover;" onerror="this.src='assets/carrots.webp'">
+                      <div><h6 class="fw-bold text-dark mb-0">Karthik R.</h6><small class="text-muted">karthik@example.com</small></div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-bold text-dark mb-0">Family Organic Box</p>
+                    <small class="text-muted">Weekly (Thu)</small>
+                  </td>
+                  <td><p class="fw-bold text-dark mb-0">Oct 12</p></td>
+                  <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Active</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold px-3" onclick="window.location.href='404.html'">Manage</button></td>
+                </tr>
+                <tr class="border-bottom">
+                  <td class="ps-4 py-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 40px; height: 40px;">S</div>
+                      <div><h6 class="fw-bold text-dark mb-0">Sneha P.</h6><small class="text-muted">sneha@example.com</small></div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-bold text-dark mb-0">Custom A2 Milk</p>
+                    <small class="text-muted">Daily (Morning)</small>
+                  </td>
+                  <td><p class="fw-bold text-dark mb-0">Oct 09 (Tomorrow)</p></td>
+                  <td><span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">Active</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold px-3" onclick="window.location.href='404.html'">Manage</button></td>
+                </tr>
+                <tr>
+                  <td class="ps-4 py-3">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="bg-secondary bg-opacity-10 text-secondary rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 40px; height: 40px;">V</div>
+                      <div><h6 class="fw-bold text-dark mb-0">Vikram S.</h6><small class="text-muted">vikram@example.com</small></div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="fw-bold text-dark mb-0">Fruit Essentials</p>
+                    <small class="text-muted">Bi-weekly (Mon)</small>
+                  </td>
+                  <td><p class="fw-bold text-muted mb-0">-</p></td>
+                  <td><span class="badge bg-warning bg-opacity-10 text-warning rounded-pill px-3">Paused</span></td>
+                  <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold px-3" onclick="window.location.href='404.html'">Manage</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h5 class="fw-bold mb-3 mt-5">New Signups Today</h5>
+        <div class="card-3d p-0 rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item p-4 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 hover-lift cursor-pointer" onclick="window.location.href='404.html'">
+              <div class="d-flex align-items-center gap-3">
+                <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width:45px; height:45px;">A</div>
+                <div><h6 class="fw-bold mb-0">Anitha R.</h6><p class="small text-muted mb-0">anitha@example.com</p></div>
+              </div>
+              <span class="badge bg-success px-3 py-1 rounded-pill pulse-animation">Just Now</span>
+            </li>
+            <li class="list-group-item p-4 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 hover-lift cursor-pointer border-top" onclick="window.location.href='404.html'">
+              <div class="d-flex align-items-center gap-3">
+                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width:45px; height:45px;">K</div>
+                <div><h6 class="fw-bold mb-0">Karthik M.</h6><p class="small text-muted mb-0">karthik@example.com</p></div>
+              </div>
+              <span class="badge bg-secondary px-3 py-1 rounded-pill">2 hrs ago</span>
+            </li>
+          </ul>
+        </div>
+        <h5 class="fw-bold mb-3 mt-5">Churn Risk Accounts</h5>
+        <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover border-start border-4 border-danger shadow-sm">
+          <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="bg-danger bg-opacity-10 p-3 rounded-circle"><i class="fa-solid fa-heart-crack fa-xl text-danger pulse-animation"></i></div>
+              <div><h6 class="fw-bold text-dark mb-1">23 Accounts At Risk</h6><p class="small text-muted mb-0">Users skipped deliveries > 3 consecutive weeks.</p></div>
+            </div>
+            <button class="btn btn-danger rounded-pill fw-bold px-4 shadow-sm hover-lift align-self-start align-self-md-center" onclick="window.location.href='404.html'"><i class="fa-solid fa-gift me-2"></i>Send Offer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: SETTINGS -->
+      <div class="dash-tab-content d-none" id="admin-tab-settings">
+        <h4 class="fw-bold mb-4">Portal Settings & Configurations</h4>
+        <div class="row g-4">
+          <!-- Role Management -->
+          <div class="col-lg-8">
+            <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm">
+              <div class="px-4 pt-4 pb-2">
+                <h5 class="fw-bold mb-0">Team Access &amp; Roles</h5>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-borderless table-hover mb-0 align-middle">
+                  <thead class="bg-light text-muted small fw-bold">
+                    <tr>
+                      <th class="ps-4 py-3">Administrator</th>
+                      <th class="py-3">Role</th>
+                      <th class="py-3">Last Active</th>
+                      <th class="pe-4 py-3 text-end">Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-bottom">
+                      <td class="ps-4 py-3">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:40px; height:40px;">S</div>
+                          <h6 class="fw-bold text-dark mb-0">Super Admin (You)</h6>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-dark rounded-pill px-3">Owner</span></td>
+                      <td><small class="text-success fw-bold">Online Now</small></td>
+                      <td class="pe-4 text-end"><button class="btn btn-sm btn-light rounded-pill fw-bold px-3" disabled>Locked</button></td>
+                    </tr>
+                    <tr>
+                      <td class="ps-4 py-3">
+                        <div class="d-flex align-items-center gap-3">
+                          <div class="bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:40px; height:40px;">R</div>
+                          <h6 class="fw-bold text-dark mb-0">Ravi Logistics</h6>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-info text-dark rounded-pill px-3">Dispatch Manager</span></td>
+                      <td><small class="text-muted fw-bold">2 hrs ago</small></td>
+                      <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-danger rounded-pill fw-bold px-3" onclick="window.location.href='404.html'">Revoke</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="p-3 border-top bg-light text-center">
+                <button class="btn btn-sm btn-success rounded-pill fw-bold px-4 shadow-sm" onclick="window.location.href='404.html'"><i class="fa-solid fa-user-plus me-1"></i> Invite Member</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Preferences -->
+          <div class="col-lg-4">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover shadow-sm">
+              <h5 class="fw-bold mb-4">System Preferences</h5>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div><h6 class="fw-bold mb-0">Maintenance Mode</h6><small class="text-muted">Pause customer app</small></div>
+                <div class="form-check form-switch"><input class="form-check-input fs-4" type="checkbox" role="switch"></div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div><h6 class="fw-bold mb-0">SMS Alerts</h6><small class="text-muted">Send dispatch texts</small></div>
+                <div class="form-check form-switch"><input class="form-check-input fs-4" type="checkbox" role="switch" checked></div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div><h6 class="fw-bold mb-0">Auto-Reorder</h6><small class="text-muted">Farm inventory threshold</small></div>
+                <div class="form-check form-switch"><input class="form-check-input fs-4" type="checkbox" role="switch" checked></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function switchAdminTab(tabName, linkEl) {
+      if (!linkEl) return;
+
+      document.querySelectorAll('.dash-nav-item').forEach(el => el.classList.remove('active'));
+      linkEl.classList.add('active');
+
+      const targetTab = document.getElementById(`admin-tab-${tabName}`);
+      if (!targetTab) return;
+
+      document.querySelectorAll('.dash-tab-content').forEach(c => c.classList.add('d-none'));
+      targetTab.classList.remove('d-none');
+
+      if (window.innerWidth < 992) {
+        const sidebar = document.querySelector('.dashboard-sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        if (sidebar) sidebar.classList.remove('show-sidebar');
+        if (overlay) overlay.classList.remove('show');
+      }
+    }
+
+    // Initialize ApexCharts
+    document.addEventListener('DOMContentLoaded', () => {
+      // Area Chart
+      const revOptions = {
+        series: [{ name: 'MRR Revenue (₹)', data: [22, 28, 34, 40, 42, 48.5] }],
+        chart: { type: 'area', height: 280, toolbar: { show: false } },
+        colors: ['#16a34a'],
+        xaxis: { categories: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'] }
+      };
+      new ApexCharts(document.querySelector("#chart-revenue"), revOptions).render();
+
+      // Pie Chart
+      const pieOptions = {
+        series: [45, 25, 20, 10],
+        chart: { type: 'donut', height: 280 },
+        labels: ['Family Harvest', 'Essential Veggie', 'Daily A2 Milk', 'Gourmet Kit'],
+        colors: ['#16a34a', '#f97316', '#0284c7', '#8b5cf6']
+      };
+      new ApexCharts(document.querySelector("#chart-pie"), pieOptions).render();
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const savedName = localStorage.getItem('stacklyUserName');
+      if (savedName) {
+        if(document.getElementById('adminDashProfileNameSidebar')) document.getElementById('adminDashProfileNameSidebar').innerText = savedName;
+      }
+      const savedEmail = localStorage.getItem('stacklyUserEmail');
+      if (savedEmail) {
+        if(document.getElementById('adminDashProfileSidebarEmail')) document.getElementById('adminDashProfileSidebarEmail').innerText = savedEmail;
+      }
+    });
+  </script>
+  <script>
+    function confirmLogout() {
+      Swal.fire({
+        title: 'Logout of Stackly?',
+        text: 'Are you sure you want to end your session?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, log out',
+        cancelButtonText: 'Cancel',
+        backdrop: 'rgba(0,0,0,0.85)'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'signin.html';
+        }
+      });
+    }
+  </script>
+  <script>
+    function toggleSidebar() {
+      document.querySelector('.dashboard-sidebar').classList.toggle('show-sidebar');
+      document.querySelector('.sidebar-overlay').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

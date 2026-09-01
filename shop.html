@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organic Farm Produce Shop — Stackly Salem</title>
+  
+  <link rel="shortcut icon" href="assets/top-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  <canvas id="glow-cursor-canvas"></canvas>
+  <canvas id="three-canvas-bg"></canvas>
+  <div class="floating-leaves-container"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span><i class="fa-solid fa-truck-fast me-2"></i> Free Doorstep Express Delivery in Salem on all Weekly Subscriptions!</span>
+      <div class="d-none d-md-flex align-items-center gap-3">
+        <a href="contact.html"><i class="fa-solid fa-location-dot me-1"></i> Salem HQ</a>
+        <span>|</span>
+        <a href="get-started.html">Subscribe & Save 20%</a>
+      </div>
+    </div>
+  </div>
+  <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
+        <div class="btn-cart-wrapper">
+          <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+            <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+          </button>
+          <span class="badge-cart-count">0</span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="stacklyNav">
+        <div class="mobile-menu-header d-lg-none">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <img src="assets/logo.webp" alt="Stackly Logo" style="height: 38px;">
+          </a>
+          <button type="button" class="mobile-menu-close-btn" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="pill-nav-container mx-auto my-2 my-lg-0">
+          <div class="pill-nav-indicator"></div>
+          <ul class="pill-nav-list align-items-center">
+            <li><a class="pill-nav-link" href="index.html">Home</a></li>
+            <li><a class="pill-nav-link" href="about.html">About</a></li>
+            <li><a class="pill-nav-link" href="plans.html">Plans</a></li>
+            <li><a class="pill-nav-link active" href="shop.html">Shop</a></li>
+            <li><a class="pill-nav-link" href="blog.html">Blog</a></li>
+            <li><a class="pill-nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ms-lg-2 mobile-menu-footer-actions">
+          <div class="btn-cart-wrapper d-none d-lg-block">
+            <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+              <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+            </button>
+            <span class="badge-cart-count">0</span>
+          </div>
+
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-bounce-right icon-wobble-hover btn-sm text-white w-100 w-lg-auto justify-content-center">
+            <span>Get Started</span> <i class="fa-solid fa-bolt text-warning"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO SECTION WITH FULL-WIDTH BACKGROUND IMAGE -->
+  <section class="page-hero-fullbg" style="background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1600&q=80');">
+    <div class="page-hero-overlay"></div>
+    <div class="container page-hero-content">
+      <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-3">
+        <i class="fa-solid fa-store me-1"></i> SALEM ORGANIC FARM MARKET
+      </span>
+      <h1 class="display-4 fw-extrabold mb-3 text-white">Fresh Produce & Subscription Add-Ons</h1>
+      <p class="lead max-w-2xl mx-auto mb-4 text-white-50">
+        Shop 100% organic farm vegetables, native A2 dairy, cold-pressed oils, and artisanal staples harvested fresh daily from local Salem growers.
+      </p>
+            <div class="hero-cta-group d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
+        <a href="#market-catalog" class="btn btn-get-started-shimmer text-white px-4 py-2.5 rounded-pill fw-bold">
+          <span>Browse 12 Products</span> <i class="fa-solid fa-arrow-down ms-1"></i>
+        </a>
+        <a href="#flash-sale" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-bold">
+          <span>Flash Deals</span> <i class="fa-solid fa-bolt text-warning ms-1"></i>
+        </a>
+      </div>
+    </div>
+    <div class="hero-wave-bottom">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;">
+        <path d="M0,32L80,42.7C160,53,320,75,480,80C640,85,800,75,960,64C1120,53,1280,43,1360,37.3L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SECTION 1: CATEGORY FILTER PILLS & LIVE SEARCH BAR -->
+  <section class="section-compact bg-white" id="market-catalog">
+    <div class="container py-3">
+      <!-- SECTION 1: SINGLE-LINE SEARCH & CATEGORY FILTER TOOLBAR -->
+      <div class="shop-toolbar-card p-2.5 p-md-3 bg-light rounded-pill border shadow-sm mb-4">
+        <div class="d-flex align-items-center justify-content-between gap-3 flex-nowrap">
+          <!-- Search Bar -->
+          <div class="shop-search-wrapper flex-grow-1" style="min-width: 220px; max-width: 420px;">
+            <div class="input-group bg-white rounded-pill overflow-hidden border shadow-sm">
+              <span class="input-group-text bg-white border-0 ps-3 text-success"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" id="shop-search-input" class="form-control border-0 bg-white shadow-none ps-2 py-2" placeholder="Search veggies, A2 milk, ghee, honey...">
+              <button class="btn border-0 bg-transparent text-muted pe-3 d-none" type="button" id="clear-search-btn" aria-label="Clear search">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Single-Line Category Filter Buttons -->
+          <div class="shop-filter-pills-container d-flex align-items-center gap-2 overflow-x-auto flex-nowrap py-1 flex-shrink-0" style="scrollbar-width: none; -ms-overflow-style: none;">
+            <button class="shop-filter-btn btn btn-success rounded-pill px-3 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm text-nowrap" data-filter="all">
+              <i class="fa-solid fa-layer-group small"></i> <span>All Harvest</span> <span class="badge bg-white text-success rounded-pill ms-1" id="count-all">12</span>
+            </button>
+            <button class="shop-filter-btn btn btn-outline-success rounded-pill px-3 py-2 fw-bold d-inline-flex align-items-center gap-2 text-nowrap" data-filter="vegetables">
+              <i class="fa-solid fa-carrot small"></i> <span>Vegetables</span> <span class="badge bg-success-subtle text-success rounded-pill ms-1" id="count-veg">6</span>
+            </button>
+            <button class="shop-filter-btn btn btn-outline-success rounded-pill px-3 py-2 fw-bold d-inline-flex align-items-center gap-2 text-nowrap" data-filter="dairy">
+              <i class="fa-solid fa-bottle-water small"></i> <span>A2 Dairy</span> <span class="badge bg-success-subtle text-success rounded-pill ms-1" id="count-dairy">3</span>
+            </button>
+            <button class="shop-filter-btn btn btn-outline-success rounded-pill px-3 py-2 fw-bold d-inline-flex align-items-center gap-2 text-nowrap" data-filter="staples">
+              <i class="fa-solid fa-jar small"></i> <span>Staples & Oils</span> <span class="badge bg-success-subtle text-success rounded-pill ms-1" id="count-staples">3</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: 12 PRODUCE PRODUCTS GRID -->
+      <div class="row g-4 mb-4" id="shop-products-grid">
+        <!-- Product Item 1: Tomatoes -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Native Heirloom Tomatoes" data-tags="tomatoes veg vegetable red farm harvest chinna thirupathi pesticide-free 1kg">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/tomatoes.webp" alt="Native Heirloom Tomatoes" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">CHINNA THIRUPATHI FARM</span>
+              <h6 class="fw-bold text-dark mb-1">Native Heirloom Tomatoes</h6>
+              <p class="small text-muted mb-2">100% Pesticide-Free (1 kg)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹40 <small class="text-muted text-decoration-line-through fs-6">₹60</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Native Heirloom Tomatoes', 40, 'assets/tomatoes.webp', '1 kg')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 2: Milk -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="dairy" data-title="Native A2 Country Milk" data-tags="milk dairy a2 cow glass bottle native fresh salem morning 1l">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/milk.webp" alt="Native A2 Country Milk" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">A2 DAIRY FARM</span>
+              <h6 class="fw-bold text-dark mb-1">Native A2 Country Milk</h6>
+              <p class="small text-muted mb-2">Eco Glass Bottle Drop (1 Liter)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹45 <small class="text-muted text-decoration-line-through fs-6">₹55</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Native A2 Country Milk', 45, 'assets/milk.webp', '1 Liter Bottle')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 3: Ghee -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="dairy staples" data-title="A2 Country Cow Ghee" data-tags="ghee bilona churned a2 cow dairy staples traditional butter glass jar 500g">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/ghee.webp" alt="A2 Country Cow Ghee" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">BILONA CHURNED</span>
+              <h6 class="fw-bold text-dark mb-1">A2 Country Cow Ghee</h6>
+              <p class="small text-muted mb-2">Traditional Glass Jar (500g)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹380 <small class="text-muted text-decoration-line-through fs-6">₹450</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('A2 Country Cow Ghee', 380, 'assets/ghee.webp', '500g Glass Jar')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 4: Honey -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="staples" data-title="Yercaud Raw Wild Honey" data-tags="honey wild raw yercaud foothills unfiltered pure forest apiary 500g">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/honey.webp" alt="Yercaud Raw Wild Honey" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">YERCAUD FOOTHILLS</span>
+              <h6 class="fw-bold text-dark mb-1">Yercaud Raw Wild Honey</h6>
+              <p class="small text-muted mb-2">Pure Unfiltered Honey (500g)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹290 <small class="text-muted text-decoration-line-through fs-6">₹340</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Yercaud Raw Wild Honey', 290, 'assets/honey.webp', '500g Glass Jar')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 5: Spinach -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Organic Farm Spinach" data-tags="spinach greens leafy omalur agro farm fresh plucked keerai vegetable 250g">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/spinach.webp" alt="Organic Farm Spinach" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">OMALUR AGRO FARM</span>
+              <h6 class="fw-bold text-dark mb-1">Organic Farm Spinach</h6>
+              <p class="small text-muted mb-2">Fresh Plucked Bunch (250g)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹25 <small class="text-muted text-decoration-line-through fs-6">₹35</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Organic Farm Spinach', 25, 'assets/spinach.webp', '250g Bunch')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 6: Bell Peppers -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Organic Bell Peppers" data-tags="bell peppers capsicum yellow red mix yercaud foothills organic veggies 500g">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/bell_peppers.webp" alt="Organic Bell Peppers" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">YERCAUD FOOTHILLS</span>
+              <h6 class="fw-bold text-dark mb-1">Organic Bell Peppers</h6>
+              <p class="small text-muted mb-2">Yellow & Red Mix (500g)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹70 <small class="text-muted text-decoration-line-through fs-6">₹95</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Organic Bell Peppers', 70, 'assets/bell_peppers.webp', '500g Pack')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 7: Sesame Oil -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="staples" data-title="Cold-Pressed Sesame Oil" data-tags="sesame oil marachekku wood pressed oil gingelly nallennai traditional staples 1l">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/sesame_oil.webp" alt="Cold-Pressed Sesame Oil" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">WOOD PRESSED OIL</span>
+              <h6 class="fw-bold text-dark mb-1">Cold-Pressed Sesame Oil</h6>
+              <p class="small text-muted mb-2">Traditional Marachekku (1 Liter)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹260 <small class="text-muted text-decoration-line-through fs-6">₹310</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Cold-Pressed Sesame Oil', 260, 'assets/sesame_oil.webp', '1 Liter Bottle')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 8: Carrots -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Soil-Plucked Farm Carrots" data-tags="carrots vegetable veg orange fresh soil plucked santhiyur farm 1kg">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/carrots.webp" alt="Soil-Plucked Farm Carrots" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">SANTHIYUR FARM</span>
+              <h6 class="fw-bold text-dark mb-1">Soil-Plucked Farm Carrots</h6>
+              <p class="small text-muted mb-2">Organic Fresh Carrots (1 kg)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹55 <small class="text-muted text-decoration-line-through fs-6">₹75</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Soil-Plucked Farm Carrots', 55, 'assets/carrots.webp', '1 kg')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 9: Shallots -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Native Salem Shallots" data-tags="shallots small onions chinna vengayam veg vegetable salem harvest organic 1kg">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/shallots.webp" alt="Native Salem Shallots" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">SALEM HARVEST</span>
+              <h6 class="fw-bold text-dark mb-1">Native Salem Shallots</h6>
+              <p class="small text-muted mb-2">Organic Small Onions (1 kg)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹65 <small class="text-muted text-decoration-line-through fs-6">₹85</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Native Salem Shallots', 65, 'assets/shallots.webp', '1 kg')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 10: Cucumber -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Organic Farm Cucumber" data-tags="cucumber vellarikkai salad crisp garden mettur green agro vegetable 1kg">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/cucumber.webp" alt="Organic Farm Cucumber" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">METTUR GREEN AGRO</span>
+              <h6 class="fw-bold text-dark mb-1">Organic Farm Cucumber</h6>
+              <p class="small text-muted mb-2">Crisp Garden Cucumbers (1 kg)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹35 <small class="text-muted text-decoration-line-through fs-6">₹50</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Organic Farm Cucumber', 35, 'assets/cucumber.webp', '1 kg')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 11: Rice -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="staples" data-title="Seeraga Samba Rice" data-tags="seeraga samba rice grain unpolished organic traditional staples biryani rice 5kg">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/rice.webp" alt="Seeraga Samba Rice" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">TRADITIONAL GRAINS</span>
+              <h6 class="fw-bold text-dark mb-1">Seeraga Samba Rice</h6>
+              <p class="small text-muted mb-2">Unpolished Organic Grain (5 kg)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹490 <small class="text-muted text-decoration-line-through fs-6">₹580</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Seeraga Samba Rice', 490, 'assets/rice.webp', '5 kg Pack')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+        <!-- Product Item 12: Eggs -->
+        <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="dairy" data-title="Country Free-Range Eggs" data-tags="eggs country eggs nattu kozhi mutta hen free range organic dairy 6pcs">
+          <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
+            <div class="zoom-img-container rounded-3 mb-2">
+              <img src="assets/eggs.webp" alt="Country Free-Range Eggs" class="img-fluid rounded-3" style="height: 160px; object-fit: cover; width: 100%;">
+            </div>
+            <div>
+              <span class="badge bg-success-subtle text-success fw-bold mb-1">FREE RANGE DAIRY</span>
+              <h6 class="fw-bold text-dark mb-1">Country Free-Range Eggs</h6>
+              <p class="small text-muted mb-2">Organic Country Hen Eggs (6 pcs)</p>
+              <h5 class="fw-extrabold text-success mb-3">₹60 <small class="text-muted text-decoration-line-through fs-6">₹75</small></h5>
+            </div>
+            <button onclick="StacklyCart.addItem('Country Free-Range Eggs', 60, 'assets/eggs.webp', '6 pcs Pack')" class="btn btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-cart-plus me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+
+        <!-- No Products Found Empty State -->
+        <div id="no-products-found" class="col-12 text-center py-5 d-none">
+          <div class="p-5 bg-light rounded-4 border max-w-md mx-auto">
+            <div class="mb-3 text-muted">
+              <i class="fa-solid fa-magnifying-glass fs-1"></i>
+            </div>
+            <h4 class="fw-bold text-dark mb-2">No Produce Found</h4>
+            <p class="text-muted small mb-4">We couldn't find any products matching your search or filter criteria. Try checking for typos or clear your filters.</p>
+            <button id="reset-filter-btn" class="btn btn-success rounded-pill fw-bold px-4 py-2">
+              <i class="fa-solid fa-rotate-left me-1"></i> Show All 12 Products
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGINATION CONTROLS (CLICKING REDIRECTS TO 404.HTML) -->
+      <nav aria-label="Catalog Page Navigation" class="mt-4 pb-2">
+        <ul class="pagination pagination-responsive justify-content-center align-items-center gap-1 gap-sm-2 mb-0">
+          <li class="page-item disabled">
+            <a class="page-link page-link-pill text-muted" href="404.html" tabindex="-1" aria-label="Previous Page">
+              <i class="fa-solid fa-chevron-left"></i>
+            </a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link page-link-pill bg-success text-white fw-bold shadow-sm" href="404.html">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link page-link-pill text-dark fw-bold" href="404.html">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link page-link-pill text-dark fw-bold" href="404.html">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link page-link-pill text-dark fw-bold" href="404.html">4</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link page-link-pill text-success fw-bold" href="404.html" aria-label="Next Page">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- SECTION 3: HARVEST FLASH SALE BANNER WITH LIVE COUNTDOWN TIMER -->
+  <section class="section-compact bg-dark text-white position-relative overflow-hidden" id="flash-sale" style="background: linear-gradient(135deg, #0f172a 0%, #14532d 100%);">
+    <div class="container py-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7 reveal-from-left">
+          <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill mb-2"><i class="fa-solid fa-bolt me-1"></i> TODAY'S FARM HARVEST SPECIAL</span>
+          <h2 class="display-6 fw-extrabold text-white mb-2">Yercaud Organic Avocado & A2 Ghee Combo (50% OFF)</h2>
+          <p class="text-white-50 mb-4">
+            Freshly plucked Yercaud avocados paired with traditional A2 cow ghee. Placed directly into your weekly morning drop basket.
+          </p>
+
+          <!-- COUNTDOWN TIMER DISPLAY -->
+          <div class="d-flex gap-2 gap-sm-3 text-center mb-4 flex-wrap">
+            <div class="bg-white bg-opacity-10 p-2.5 p-sm-3 rounded-3 border border-light border-opacity-10 flex-grow-1" style="min-width: 70px;">
+              <h3 class="fw-extrabold text-warning mb-0" id="cd-hours">22</h3>
+              <small class="text-white-50 text-uppercase" style="font-size: 0.7rem;">Hours</small>
+            </div>
+            <div class="bg-white bg-opacity-10 p-2.5 p-sm-3 rounded-3 border border-light border-opacity-10 flex-grow-1" style="min-width: 70px;">
+              <h3 class="fw-extrabold text-warning mb-0" id="cd-mins">48</h3>
+              <small class="text-white-50 text-uppercase" style="font-size: 0.7rem;">Mins</small>
+            </div>
+            <div class="bg-white bg-opacity-10 p-2.5 p-sm-3 rounded-3 border border-light border-opacity-10 flex-grow-1" style="min-width: 70px;">
+              <h3 class="fw-extrabold text-warning mb-0" id="cd-secs">35</h3>
+              <small class="text-white-50 text-uppercase" style="font-size: 0.7rem;">Secs</small>
+            </div>
+          </div>
+
+          <div class="w-100">
+            <a href="get-started.html" class="btn btn-get-started-shimmer combo-discount-btn text-white px-4 py-3 fw-bold fs-6">
+              <span>Claim Combo Discount (₹399)</span> <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-5 reveal-from-right text-center">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Farm Harvest Basket" class="img-fluid rounded-4 shadow-lg border border-light border-opacity-25" style="max-height: 280px; object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-newsletter-card mb-4">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-6">
+            <h4 class="fw-bold mb-1 text-white">Signup our newsletter to get update information, news, insight or promotions.</h4>
+            <p class="text-slate-300 small mb-0">Get exclusive subscriber promo codes & Salem farm harvest news direct to your inbox.</p>
+          </div>
+          <div class="col-lg-6">
+            <form id="newsletter-form" class="newsletter-input-group" action="404.html">
+              <input type="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
+              <button type="submit" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover text-nowrap">
+                <span>Sign Up</span> <i class="fa-solid fa-envelope ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 pb-4">
+        <div class="col-lg-4 col-md-6">
+          <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;" class="mb-3">
+          <p class="text-slate-300 small mb-3">
+            Stackly is Salem's premier organic grocery subscription platform connecting local organic farmers directly with families. Fresh, healthy, and delivered with love.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6">
+          <h6 class="fw-bold mb-3 text-white">Quick Navigation</h6>
+          <ul class="list-unstyled small d-grid gap-2">
+            <li><a href="index.html" class="text-reset text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-reset text-decoration-none">About</a></li>
+            <li><a href="plans.html" class="text-reset text-decoration-none">Plans</a></li>
+            <li><a href="shop.html" class="text-reset text-decoration-none">Shop</a></li>
+            <li><a href="blog.html" class="text-reset text-decoration-none">Blog</a></li>
+            <li><a href="contact.html" class="text-reset text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6">
+          <h6 class="fw-bold mb-3 text-white">Customer Care</h6>
+          <ul class="list-unstyled small d-grid gap-2">
+            <li><a href="404.html" class="text-reset text-decoration-none">Help Center</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Track Order</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Returns & Refund</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Terms of Service</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Legal Notice</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold mb-3 text-white">Get In Touch</h6>
+          <ul class="list-unstyled small d-grid gap-2 text-slate-300 mb-3">
+            <li class="d-flex align-items-start gap-2">
+              <i class="fa-solid fa-location-dot text-success mt-1"></i>
+              <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-envelope text-success"></i>
+              <span>support@stacklygrocery.com</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-phone text-success"></i>
+              <span>+91 98765 43210 / 0427-2345678</span>
+            </li>
+          </ul>
+          <div class="p-2.5 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-10 d-flex align-items-center justify-content-between">
+            <span class="small text-white fw-bold"><i class="fa-solid fa-clock text-warning me-1"></i> Farm Dispatch Hours:</span>
+            <span class="badge bg-success text-white fw-bold">6:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-center small text-slate-300">
+        <p class="mb-2 mb-md-0">Copyright © 2026 Stackly. All rights reserved.</p>
+        <div class="d-flex gap-3">
+          <a href="404.html" class="text-reset text-decoration-none">Term of use</a>
+          <span>•</span>
+          <a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a>
+          <span>•</span>
+          <a href="404.html" class="text-reset text-decoration-none">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-0 bg-emerald-50">
+          <h5 class="modal-title fw-bold text-success"><i class="fa-solid fa-basket-shopping me-2"></i> Your Subscription Box</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body py-2" id="cart-modal-list"></div>
+        <div class="modal-footer border-0 d-flex justify-content-between align-items-center bg-light rounded-bottom-4">
+          <div>
+            <small class="text-muted">Subtotal Price:</small>
+            <h4 class="fw-bold text-success mb-0" id="cart-modal-total">₹0</h4>
+          </div>
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover">
+            <span>Checkout Box</span> <i class="fa-solid fa-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

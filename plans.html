@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Plans — Salem Weekly Grocery Baskets | Stackly</title>
+  
+  <link rel="shortcut icon" href="assets/top-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  <canvas id="glow-cursor-canvas"></canvas>
+  <canvas id="three-canvas-bg"></canvas>
+  <div class="floating-leaves-container"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span><i class="fa-solid fa-truck-fast me-2"></i> Free Doorstep Express Delivery in Salem on all Weekly Subscriptions!</span>
+      <div class="d-none d-md-flex align-items-center gap-3">
+        <a href="contact.html"><i class="fa-solid fa-location-dot me-1"></i> Salem HQ</a>
+        <span>|</span>
+        <a href="get-started.html">Subscribe & Save 20%</a>
+      </div>
+    </div>
+  </div>
+  <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
+        <div class="btn-cart-wrapper">
+          <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+            <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+          </button>
+          <span class="badge-cart-count">0</span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="stacklyNav">
+        <div class="mobile-menu-header d-lg-none">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <img src="assets/logo.webp" alt="Stackly Logo" style="height: 38px;">
+          </a>
+          <button type="button" class="mobile-menu-close-btn" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="pill-nav-container mx-auto my-2 my-lg-0">
+          <div class="pill-nav-indicator"></div>
+          <ul class="pill-nav-list align-items-center">
+            <li><a class="pill-nav-link" href="index.html">Home</a></li>
+            <li><a class="pill-nav-link" href="about.html">About</a></li>
+            <li><a class="pill-nav-link active" href="plans.html">Plans</a></li>
+            <li><a class="pill-nav-link" href="shop.html">Shop</a></li>
+            <li><a class="pill-nav-link" href="blog.html">Blog</a></li>
+            <li><a class="pill-nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ms-lg-2 mobile-menu-footer-actions">
+          <div class="btn-cart-wrapper d-none d-lg-block">
+            <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+              <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+            </button>
+            <span class="badge-cart-count">0</span>
+          </div>
+
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-bounce-right icon-wobble-hover btn-sm text-white w-100 w-lg-auto justify-content-center">
+            <span>Get Started</span> <i class="fa-solid fa-bolt text-warning"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO SECTION WITH FULL-WIDTH BACKGROUND IMAGE -->
+  <section class="page-hero-fullbg" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1600&q=80');">
+    <div class="page-hero-overlay"></div>
+    <div class="container page-hero-content">
+      <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-3">
+        <i class="fa-solid fa-tags me-1"></i> FLEXIBLE PRICING TIERS
+      </span>
+      <h1 class="display-4 fw-extrabold mb-3 text-white">Salem Weekly Grocery Subscription Plans</h1>
+      <p class="lead max-w-2xl mx-auto mb-4 text-white-50">
+        Choose the ideal weekly organic produce box for your household. Enjoy 100% pesticide-free harvest with 1-click vacation pause & free doorstep delivery.
+      </p>
+            <div class="hero-cta-group d-flex flex-column flex-sm-row align-items-center justify-content-center gap-3">
+        <a href="#plans-grid" class="btn btn-get-started-shimmer text-white px-4 py-2.5 rounded-pill fw-bold">
+          <span>Explore Plans</span> <i class="fa-solid fa-arrow-down ms-1"></i>
+        </a>
+        <a href="#staples-addons" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-bold">
+          <span>Staples Add-Ons</span> <i class="fa-solid fa-plus ms-1"></i>
+        </a>
+      </div>
+    </div>
+    <div class="hero-wave-bottom">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;">
+        <path d="M0,32L80,42.7C160,53,320,75,480,80C640,85,800,75,960,64C1120,53,1280,43,1360,37.3L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SECTION 1: 3 SUBSCRIPTION PRICING TIERS -->
+  <section class="section-compact bg-white" id="plans-grid">
+    <div class="container py-3">
+      <div class="text-center max-w-2xl mx-auto mb-5 reveal-on-scroll">
+        <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-2 shadow-sm">WEEKLY BOX SELECTION</span>
+        <h2 class="fw-extrabold text-dark mb-2">Tailored Organic Baskets for Every Salem Family</h2>
+        <p class="text-muted small">No lock-in contracts. Swap veggies or pause your plan anytime with 1-click in your portal.</p>
+      </div>
+
+            <div class="row g-4 align-items-stretch">
+        <!-- Couples Box Tier -->
+        <div class="col-lg-4 reveal-from-left">
+          <div class="card-3d p-4 bg-white rounded-4 border border-success-subtle shadow-sm h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="zoom-img-container rounded-3 mb-3">
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Couples Organic Box" class="img-fluid rounded-3" style="height: 170px; object-fit: cover; width: 100%;">
+              </div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill">COUPLES & SMALL HOMES</span>
+                <span class="badge bg-light text-muted border">Save ₹150/wk</span>
+              </div>
+              <h3 class="fw-extrabold text-dark mb-1">Couples Organic Box</h3>
+              <p class="text-muted small mb-3">Ideal for 2-3 family members needing weekly essential vegetables & A2 milk.</p>
+              
+              <div class="d-flex align-items-baseline mb-3 p-2 bg-emerald-50 rounded-3 border border-success-subtle">
+                <span class="display-6 fw-extrabold text-success me-1">₹499</span>
+                <span class="text-muted small fw-semibold">/ week</span>
+                <small class="text-muted text-decoration-line-through ms-auto fs-6">₹649</small>
+              </div>
+
+              <ul class="list-unstyled small d-grid gap-2 mb-4">
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> <strong>6kg Organic Veggies</strong> (8 varieties)</li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> <strong>1L Native A2 Cow Milk</strong> (Glass Bottle)</li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> <strong>1 Bunch Spinach & Salad Greens</strong></li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> 7 AM Tuesday Morning Doorstep Drop</li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> 1-Click Vacation Pause Support</li>
+              </ul>
+            </div>
+
+            <a href="get-started.html" class="btn btn-outline-success rounded-pill fw-bold w-100 py-2.5">
+              <span>Subscribe Couples Box</span> <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Family Box (POPULAR TIER) -->
+        <div class="col-lg-4 reveal-on-scroll delay-100">
+          <div class="card-3d p-4 bg-dark text-white rounded-4 shadow-lg h-100 d-flex flex-column justify-content-between position-relative overflow-hidden" style="background: linear-gradient(160deg, #0f172a 0%, #14532d 100%); border: 2px solid #22c55e;">
+            
+            <!-- Clean Header Ribbon (No Overlap) -->
+            <div class="bg-warning text-dark fw-bold text-center py-1.5 px-3 rounded-3 small mb-3 shadow-sm">
+              <i class="fa-solid fa-star me-1"></i> MOST POPULAR IN SALEM
+            </div>
+
+            <div>
+              <div class="zoom-img-container rounded-3 mb-3 border border-light border-opacity-25">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Family Organic Box" class="img-fluid rounded-3" style="height: 170px; object-fit: cover; width: 100%;">
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill">FAMILY CHOICE</span>
+                <span class="badge bg-warning text-dark fw-bold">Save ₹350/wk</span>
+              </div>
+              <h3 class="fw-extrabold text-white mb-1">Family Organic Box</h3>
+              <p class="text-white-50 small mb-3">Perfect for 4-5 family members with complete kitchen vegetable staples & dairy.</p>
+              
+              <div class="d-flex align-items-baseline mb-3 p-2 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-20">
+                <span class="display-6 fw-extrabold text-warning me-1">₹899</span>
+                <span class="text-white-50 small fw-semibold">/ week</span>
+                <small class="text-white-50 text-decoration-line-through ms-auto fs-6">₹1,249</small>
+              </div>
+
+              <ul class="list-unstyled small d-grid gap-2 mb-4 text-white-80">
+                <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>12kg Organic Veggies</strong> (14 varieties)</li>
+                <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>2L Native A2 Cow Milk</strong> (Glass Bottles)</li>
+                <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>2 Bunches Leafy Greens & Microgreens</strong></li>
+                <li><i class="fa-solid fa-circle-check text-warning me-2"></i> <strong>500g Fresh Yercaud Eggs / Salad Pack</strong></li>
+                <li><i class="fa-solid fa-circle-check text-warning me-2"></i> Choice of Tuesday or Friday Morning Drop</li>
+                <li><i class="fa-solid fa-circle-check text-warning me-2"></i> Free Custom Recipe & Nutrition Kit</li>
+              </ul>
+            </div>
+
+            <a href="get-started.html" class="btn btn-get-started-shimmer text-white fw-bold w-100 py-3 fs-6">
+              <span>Subscribe Family Box</span> <i class="fa-solid fa-bolt text-warning ms-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Joint Family Box Tier -->
+        <div class="col-lg-4 reveal-from-right delay-200">
+          <div class="card-3d p-4 bg-white rounded-4 border border-success-subtle shadow-sm h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="zoom-img-container rounded-3 mb-3">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80" alt="Joint Family Box" class="img-fluid rounded-3" style="height: 170px; object-fit: cover; width: 100%;">
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill">LARGE HOMES & BANQUET</span>
+                <span class="badge bg-light text-muted border">Save ₹600/wk</span>
+              </div>
+              <h3 class="fw-extrabold text-dark mb-1">Joint Family Box</h3>
+              <p class="text-muted small mb-3">Designed for 6+ members, joint families & healthy community homes.</p>
+              
+              <div class="d-flex align-items-baseline mb-3 p-2 bg-emerald-50 rounded-3 border border-success-subtle">
+                <span class="display-6 fw-extrabold text-success me-1">₹1,399</span>
+                <span class="text-muted small fw-semibold">/ week</span>
+                <small class="text-muted text-decoration-line-through ms-auto fs-6">₹1,999</small>
+              </div>
+
+              <ul class="list-unstyled small d-grid gap-2 mb-4">
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> <strong>18kg Organic Veggies</strong> (20 varieties)</li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> <strong>3L Native A2 Cow Milk</strong> (Glass Bottles)</li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> <strong>500g Native Country Cow Ghee included</strong></li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> Bi-weekly Tuesday + Friday Morning Drops</li>
+                <li><i class="fa-solid fa-circle-check text-success me-2"></i> Dedicated Salem VIP Account Manager</li>
+              </ul>
+            </div>
+
+            <a href="get-started.html" class="btn btn-outline-success rounded-pill fw-bold w-100 py-2.5">
+              <span>Subscribe Joint Family Box</span> <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 2: DAILY STAPLES & BASKET ADD-ONS GRID -->
+  <section class="section-compact bg-emerald-50" id="staples-addons">
+    <div class="container py-3">
+      <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
+        <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill mb-2">CUSTOMIZE YOUR BOX</span>
+        <h3 class="fw-bold">Popular Weekly Subscription Add-Ons</h3>
+        <p class="text-muted small">Enhance your weekly vegetable basket with fresh Salem farm staples & cold-pressed oils.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-3 reveal-from-left">
+          <div class="card-3d p-3 bg-white text-center rounded-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <img src="assets/milk.webp" alt="A2 Milk" class="img-fluid rounded-3 mb-2" style="height: 140px; object-fit: cover; width: 100%;">
+              <h6 class="fw-bold text-dark mb-1">Native A2 Milk (1L)</h6>
+              <span class="badge bg-success-subtle text-success fw-bold mb-2">₹45 / Bottle</span>
+              <p class="small text-muted mb-3">Glass bottle drop every morning from Salem country cows.</p>
+            </div>
+            <button onclick="StacklyCart.addItem('Native A2 Milk (1L)', 45)" class="btn btn-sm btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-basket-shopping me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3 reveal-on-scroll delay-100">
+          <div class="card-3d p-3 bg-white text-center rounded-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <img src="assets/ghee.webp" alt="Country Cow Ghee" class="img-fluid rounded-3 mb-2" style="height: 140px; object-fit: cover; width: 100%;">
+              <h6 class="fw-bold text-dark mb-1">Country Cow Ghee (500g)</h6>
+              <span class="badge bg-success-subtle text-success fw-bold mb-2">₹380 / Jar</span>
+              <p class="small text-muted mb-3">Traditional Bilona churned A2 ghee with rich golden aroma.</p>
+            </div>
+            <button onclick="StacklyCart.addItem('Country Cow Ghee (500g)', 380)" class="btn btn-sm btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-basket-shopping me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3 reveal-on-scroll delay-200">
+          <div class="card-3d p-3 bg-white text-center rounded-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <img src="assets/honey.webp" alt="Yercaud Honey" class="img-fluid rounded-3 mb-2" style="height: 140px; object-fit: cover; width: 100%;">
+              <h6 class="fw-bold text-dark mb-1">Yercaud Raw Honey (500g)</h6>
+              <span class="badge bg-success-subtle text-success fw-bold mb-2">₹290 / Jar</span>
+              <p class="small text-muted mb-3">Unfiltered wild forest honey collected from Yercaud hills.</p>
+            </div>
+            <button onclick="StacklyCart.addItem('Yercaud Raw Honey (500g)', 290)" class="btn btn-sm btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-basket-shopping me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3 reveal-from-right delay-300">
+          <div class="card-3d p-3 bg-white text-center rounded-4 h-100 d-flex flex-column justify-content-between">
+            <div>
+              <img src="assets/sesame_oil.webp" alt="Cold-Pressed Oil" class="img-fluid rounded-3 mb-2" style="height: 140px; object-fit: cover; width: 100%;">
+              <h6 class="fw-bold text-dark mb-1">Chekku Groundnut Oil (1L)</h6>
+              <span class="badge bg-success-subtle text-success fw-bold mb-2">₹240 / Bottle</span>
+              <p class="small text-muted mb-3">Cold-pressed wooden mill unrefined organic groundnut oil.</p>
+            </div>
+            <button onclick="StacklyCart.addItem('Chekku Groundnut Oil (1L)', 240)" class="btn btn-sm btn-outline-success rounded-pill fw-bold w-100">
+              <i class="fa-solid fa-basket-shopping me-1"></i> Add to Basket
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW SECTION 3: SALEM SUBSCRIBER PERKS & GUARANTEES -->
+  <section class="section-compact bg-white" id="perks-guarantees">
+    <div class="container py-3">
+      <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
+        <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-2 shadow-sm">THE STACKLY GUARANTEE</span>
+        <h3 class="fw-bold">Why 10,000+ Salem Families Trust Our Plans</h3>
+        <p class="text-muted small">Hassle-free weekly grocery delivery built for modern Salem households.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-3 reveal-on-scroll delay-100">
+          <div class="guarantee-card text-center h-100">
+            <i class="fa-solid fa-calendar-check text-success fs-1 mb-3 guarantee-icon"></i>
+            <h6 class="fw-bold text-dark mb-2">1-Click Vacation Pause</h6>
+            <p class="small text-muted mb-0">Going on a trip? Pause your subscription anytime in 1-click without losing credits.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3 reveal-on-scroll delay-150">
+          <div class="guarantee-card text-center h-100">
+            <i class="fa-solid fa-bottle-droplet text-success fs-1 mb-3 guarantee-icon"></i>
+            <h6 class="fw-bold text-dark mb-2">Zero-Plastic Glass Bottles</h6>
+            <p class="small text-muted mb-0">A2 milk delivered in glass bottles. Leave empty bottles outside for return collection.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3 reveal-on-scroll delay-200">
+          <div class="guarantee-card text-center h-100">
+            <i class="fa-solid fa-arrows-rotate text-success fs-1 mb-3 guarantee-icon"></i>
+            <h6 class="fw-bold text-dark mb-2">100% Quality Replacement</h6>
+            <p class="small text-muted mb-0">Not happy with an item? Snap a photo in your dashboard for instant item replacement.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3 reveal-on-scroll delay-250">
+          <div class="guarantee-card text-center h-100">
+            <i class="fa-solid fa-truck-fast text-success fs-1 mb-3 guarantee-icon"></i>
+            <h6 class="fw-bold text-dark mb-2">Free Salem Doorstep Drop</h6>
+            <p class="small text-muted mb-0">Zero hidden shipping fees across all Fairlands, Hasthampatti & Salem city postal zones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: FREQUENTLY ASKED QUESTIONS ACCORDION -->
+  <section class="section-compact bg-emerald-50">
+    <div class="container py-3">
+      <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
+        <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill mb-2">GOT QUESTIONS?</span>
+        <h3 class="fw-bold">Frequently Asked Subscription Questions</h3>
+        <p class="text-muted small">Everything you need to know about starting your Salem organic subscription box.</p>
+      </div>
+
+      <div class="accordion max-w-2xl mx-auto" id="plansAccordion">
+        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              How does the weekly Salem doorstep delivery work?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#plansAccordion">
+            <div class="accordion-body text-slate-700 small">
+              Our delivery team dispatches fresh harvest from Chinna Thirupathi at 6:00 AM. Your weekly organic basket is delivered directly to your doorstep between 6:30 AM and 7:30 AM every Tuesday or Friday morning depending on your chosen delivery slot.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              Can I pause my weekly subscription while traveling outside Salem?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#plansAccordion">
+            <div class="accordion-body text-slate-700 small">
+              Yes! You can pause your subscription with 1-click in your customer dashboard before 6:00 PM on the day prior to delivery. Your unused subscription balance rolls over to the next active week.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              How do I return the A2 Milk glass bottles?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#plansAccordion">
+            <div class="accordion-body text-slate-700 small">
+              Rinse the empty glass bottles and place them outside your door in your Stackly cotton basket before 6:30 AM on delivery day. Our delivery executive will exchange empty bottles for fresh filled bottles.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border-0 mb-0 rounded-3 shadow-sm overflow-hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+              What payment methods are supported?
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#plansAccordion">
+            <div class="accordion-body text-slate-700 small">
+              We support Google Pay, PhonePe, Paytm UPI auto-debit, recurring credit cards, and Cash on Delivery for Salem morning drops.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-newsletter-card mb-4">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-6">
+            <h4 class="fw-bold mb-1 text-white">Signup our newsletter to get update information, news, insight or promotions.</h4>
+            <p class="text-slate-300 small mb-0">Get exclusive subscriber promo codes & Salem farm harvest news direct to your inbox.</p>
+          </div>
+          <div class="col-lg-6">
+            <form id="newsletter-form" class="newsletter-input-group" action="404.html">
+              <input type="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
+              <button type="submit" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover text-nowrap">
+                <span>Sign Up</span> <i class="fa-solid fa-envelope ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 pb-4">
+        <div class="col-lg-4 col-md-6">
+          <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;" class="mb-3">
+          <p class="text-slate-300 small mb-3">
+            Stackly is Salem's premier organic grocery subscription platform connecting local organic farmers directly with families. Fresh, healthy, and delivered with love.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6">
+          <h6 class="fw-bold mb-3 text-white">Quick Navigation</h6>
+          <ul class="list-unstyled small d-grid gap-2">
+            <li><a href="index.html" class="text-reset text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-reset text-decoration-none">About</a></li>
+            <li><a href="plans.html" class="text-reset text-decoration-none">Plans</a></li>
+            <li><a href="shop.html" class="text-reset text-decoration-none">Shop</a></li>
+            <li><a href="blog.html" class="text-reset text-decoration-none">Blog</a></li>
+            <li><a href="contact.html" class="text-reset text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6">
+          <h6 class="fw-bold mb-3 text-white">Customer Care</h6>
+          <ul class="list-unstyled small d-grid gap-2">
+            <li><a href="404.html" class="text-reset text-decoration-none">Help Center</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Track Order</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Returns & Refund</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Terms of Service</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Legal Notice</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold mb-3 text-white">Get In Touch</h6>
+          <ul class="list-unstyled small d-grid gap-2 text-slate-300 mb-3">
+            <li class="d-flex align-items-start gap-2">
+              <i class="fa-solid fa-location-dot text-success mt-1"></i>
+              <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-envelope text-success"></i>
+              <span>support@stacklygrocery.com</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-phone text-success"></i>
+              <span>+91 98765 43210 / 0427-2345678</span>
+            </li>
+          </ul>
+          <div class="p-2.5 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-10 d-flex align-items-center justify-content-between">
+            <span class="small text-white fw-bold"><i class="fa-solid fa-clock text-warning me-1"></i> Farm Dispatch Hours:</span>
+            <span class="badge bg-success text-white fw-bold">6:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-center small text-slate-300">
+        <p class="mb-2 mb-md-0">Copyright © 2026 Stackly. All rights reserved.</p>
+        <div class="d-flex gap-3">
+          <a href="404.html" class="text-reset text-decoration-none">Term of use</a>
+          <span>•</span>
+          <a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a>
+          <span>•</span>
+          <a href="404.html" class="text-reset text-decoration-none">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-0 bg-emerald-50">
+          <h5 class="modal-title fw-bold text-success"><i class="fa-solid fa-basket-shopping me-2"></i> Your Subscription Box</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body py-2" id="cart-modal-list"></div>
+        <div class="modal-footer border-0 d-flex justify-content-between align-items-center bg-light rounded-bottom-4">
+          <div>
+            <small class="text-muted">Subtotal Price:</small>
+            <h4 class="fw-bold text-success mb-0" id="cart-modal-total">₹0</h4>
+          </div>
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover">
+            <span>Checkout Box</span> <i class="fa-solid fa-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

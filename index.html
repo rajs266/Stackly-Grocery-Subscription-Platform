@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly — Organic Grocery Subscription Platform (Salem)</title>
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/top-logo.webp" type="image/webp">
+  
+  <!-- Google Fonts: Space Grotesk + Outfit (Headings) + Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  <canvas id="glow-cursor-canvas"></canvas>
+  <canvas id="three-canvas-bg"></canvas>
+  <div class="floating-leaves-container"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span><i class="fa-solid fa-truck-fast me-2"></i> Free Doorstep Express Delivery in Salem on all Weekly Subscriptions!</span>
+      <div class="d-none d-md-flex align-items-center gap-3">
+        <a href="contact.html"><i class="fa-solid fa-location-dot me-1"></i> Salem HQ</a>
+        <span>|</span>
+        <a href="get-started.html">Subscribe & Save 20%</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+    <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <!-- Mobile Right Controls (Cart Button & Hamburger Toggle) -->
+      <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
+        <div class="btn-cart-wrapper">
+          <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+            <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+          </button>
+          <span class="badge-cart-count">0</span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="stacklyNav">
+        <!-- Mobile Full Screen Menu Header Bar -->
+        <div class="mobile-menu-header d-lg-none">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <img src="assets/logo.webp" alt="Stackly Logo" style="height: 38px;">
+          </a>
+          <button type="button" class="mobile-menu-close-btn" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="pill-nav-container mx-auto my-2 my-lg-0">
+          <div class="pill-nav-indicator"></div>
+          <ul class="pill-nav-list align-items-center">
+            <li><a class="pill-nav-link active" href="index.html">Home</a></li>
+            <li><a class="pill-nav-link" href="about.html">About</a></li>
+            <li><a class="pill-nav-link" href="plans.html">Plans</a></li>
+            <li><a class="pill-nav-link" href="shop.html">Shop</a></li>
+            <li><a class="pill-nav-link" href="blog.html">Blog</a></li>
+            <li><a class="pill-nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ms-lg-2 mobile-menu-footer-actions">
+          <div class="btn-cart-wrapper d-none d-lg-block">
+            <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+              <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+            </button>
+            <span class="badge-cart-count">0</span>
+          </div>
+
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-bounce-right icon-wobble-hover btn-sm text-white w-100 w-lg-auto justify-content-center">
+            <span>Get Started</span> <i class="fa-solid fa-bolt text-warning"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- REDUCED HERO BANNER (WITHOUT INTERNAL DIVIDING LINE) -->
+  <section class="hero-section-fullbg">
+    <div class="container position-relative" style="z-index: 3;">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="badge bg-success text-white fw-bold px-3 py-2 rounded-pill mb-3 shadow-sm" style="font-size: 0.92rem;">
+          <i class="fa-solid fa-leaf me-1 text-warning"></i> Salem's #1 Grocery Subscription Platform
+        </span>
+        <h1 class="hero-title mb-3">
+          Save Money & Get Fresh Farm Foodstuffs <span class="hero-highlight">Delivered Weekly.</span>
+        </h1>
+        <p class="lead mb-4">
+          Customizable organic vegetable boxes, daily farm-fresh A2 milk, and seasonal fruits delivered automatically to your doorstep in Salem with zero hassle.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover fs-6 px-4 py-3">
+            <span>Build Your Box</span> <i class="fa-solid fa-box-open me-1"></i>
+          </a>
+          <a href="plans.html" class="btn btn-light text-dark fw-bold border-0 rounded-pill px-4 py-3 shadow-sm btn-bounce-right">
+            View Plans & Pricing
+          </a>
+        </div>
+
+        <!-- STATS BAR (NO HORIZONTAL LINE) -->
+        <div class="d-flex align-items-center justify-content-center gap-4 gap-md-5 pt-3 text-white">
+          <div>
+            <h4 class="fw-extrabold text-warning mb-0 fs-3">10,000+</h4>
+            <small class="text-white-80 fw-bold">Salem Subscribers</small>
+          </div>
+          <div class="vr bg-white opacity-50" style="height: 35px;"></div>
+          <div>
+            <h4 class="fw-extrabold text-warning mb-0 fs-3">100%</h4>
+            <small class="text-white-80 fw-bold">Organic Harvest</small>
+          </div>
+          <div class="vr bg-white opacity-50" style="height: 35px;"></div>
+          <div>
+            <h4 class="fw-extrabold text-warning mb-0 fs-3">4.9 ★</h4>
+            <small class="text-white-80 fw-bold">Customer Rating</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SINGLE CLEAN SVG WAVE BOTTOM DIVIDER -->
+    <div class="hero-wave-bottom">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,64C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" fill="#fafdfb"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- REDESIGNED ABOUT STACKLY SECTION (FINE-GRAINED INNER CONTENT SCROLL ENTRANCE) -->
+  <section class="section-compact bg-white border-bottom">
+    <div class="container py-3">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 reveal-from-left">
+          <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-2 shadow-sm">
+            <i class="fa-solid fa-seedling me-1"></i> OUR SALEM STORY
+          </span>
+          <h2 class="fw-extrabold mb-3 display-6">Salem's Direct Farm-to-Table Organic Pioneer</h2>
+          <p class="text-slate-700 lead mb-3" style="font-size: 1.05rem;">
+            Founded at <strong>MMR Complex, Chinna Thirupathi in Salem</strong>, Stackly connects local organic farmers directly with Salem families. We eliminate middleman delays to bring you food harvested at 5 AM straight to your doorstep before breakfast.
+          </p>
+
+          <!-- 3 Pillar Highlights Grid -->
+          <div class="row g-3 my-2">
+            <div class="col-12 reveal-on-scroll delay-100">
+              <div class="d-flex align-items-center gap-3 p-3 bg-emerald-50 rounded-4 border border-success-subtle">
+                <div class="bg-success text-white rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                  <i class="fa-solid fa-sun fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-0 text-dark">5 AM Soil Harvest Guarantee</h6>
+                  <small class="text-muted">Picked fresh every morning from Chinna Thirupathi farms.</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 reveal-on-scroll delay-200">
+              <div class="d-flex align-items-center gap-3 p-3 bg-amber-50 rounded-4 border border-amber-200">
+                <div class="bg-warning text-dark rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                  <i class="fa-solid fa-bottle-droplet fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-0 text-dark">Salem Native A2 Cow Milk Drops</h6>
+                  <small class="text-muted">100% pure raw milk delivered daily in returnable glass bottles.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-3 mt-4 reveal-on-scroll delay-300">
+            <a href="about.html" class="btn btn-primary-stackly btn-grow-shadow btn-bounce-right icon-wobble-hover">
+              <span>Read Our Full Story</span> <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+            <a href="contact.html" class="btn btn-outline-stackly btn-bounce-right">
+              Visit Salem HQ
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Dual Visual Image Stack (Slides in from Right) -->
+        <div class="col-lg-6 reveal-from-right">
+          <div class="about-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80" alt="Salem Organic Harvest Farm" class="about-img-main">
+
+            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Pure Salem A2 Milk Drop" class="about-img-overlay">
+
+            <div class="about-floating-badge">
+              <i class="fa-solid fa-award text-success fs-4"></i>
+              <div>
+                <strong class="d-block text-dark fw-bold" style="font-size: 0.85rem;">100% Organic Certified</strong>
+                <small class="text-muted" style="font-size: 0.72rem;">Chinna Thirupathi Farm #42</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Advantages Bar (Fine-Grained Item Animations) -->
+  <section class="py-3 bg-white border-bottom">
+    <div class="container">
+      <div class="row g-3 text-center">
+        <div class="col-6 col-md-3 reveal-from-left">
+          <div class="d-flex align-items-center justify-content-center gap-2">
+            <i class="fa-solid fa-shield-halved fs-3 text-success"></i>
+            <div class="text-start">
+              <h6 class="fw-bold mb-0 small">100% Organic Quality</h6>
+              <small class="text-muted" style="font-size: 0.75rem;">Direct from Salem Farms</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal-on-scroll delay-100">
+          <div class="d-flex align-items-center justify-content-center gap-2">
+            <i class="fa-solid fa-arrows-rotate fs-3 text-success"></i>
+            <div class="text-start">
+              <h6 class="fw-bold mb-0 small">Flexible Subscriptions</h6>
+              <small class="text-muted" style="font-size: 0.75rem;">Pause or swap anytime</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal-on-scroll delay-200">
+          <div class="d-flex align-items-center justify-content-center gap-2">
+            <i class="fa-solid fa-hand-holding-dollar fs-3 text-success"></i>
+            <div class="text-start">
+              <h6 class="fw-bold mb-0 small">Guaranteed Savings</h6>
+              <small class="text-muted" style="font-size: 0.75rem;">Up to 25% off market rates</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal-from-right delay-300">
+          <div class="d-flex align-items-center justify-content-center gap-2">
+            <i class="fa-solid fa-leaf fs-3 text-success"></i>
+            <div class="text-start">
+              <h6 class="fw-bold mb-0 small">Eco-Packaging</h6>
+              <small class="text-muted" style="font-size: 0.75rem;">Zero plastic totes</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESTORED ORIGINAL CLEAN FRESHNESS COMPARISON SECTION (INDIVIDUAL FLIP CARD SCROLL ENTRANCES) -->
+  <section class="section-compact">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
+        <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill mb-2">FRESHNESS COMPARISON</span>
+        <h3 class="fw-bold">Supermarket vs. Stackly Harvest</h3>
+        <p class="text-muted small">Compare farm-fresh harvested produce directly against store-bought chemical crops.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4 reveal-from-left">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <i class="fa-solid fa-store fa-2x text-success mb-2"></i>
+                <h6 class="fw-bold mb-1 text-dark">Supermarket Veggies</h6>
+                <span class="badge bg-secondary mb-2">7-Day Cold Storage</span>
+                <p class="small text-muted mb-0">Harvested weeks ago & waxed for shelf life.</p>
+              </div>
+              <div class="flip-card-back">
+                <i class="fa-solid fa-sun fa-2x text-warning mb-2"></i>
+                <h6 class="fw-bold mb-1 text-white">Stackly Farm Harvest</h6>
+                <span class="badge bg-warning text-dark mb-2">4-Hour Fresh</span>
+                <p class="small text-white mb-0">Harvested at 5 AM & delivered by 8 AM!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 reveal-on-scroll delay-150">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <i class="fa-solid fa-box-open fa-2x text-success mb-2"></i>
+                <h6 class="fw-bold mb-1 text-dark">Packet Skimmed Milk</h6>
+                <span class="badge bg-secondary mb-2">Processed & Powdered</span>
+                <p class="small text-muted mb-0">Stored in plastic packets for days.</p>
+              </div>
+              <div class="flip-card-back">
+                <i class="fa-solid fa-cow fa-2x text-warning mb-2"></i>
+                <h6 class="fw-bold mb-1 text-white">Salem Native A2 Milk</h6>
+                <span class="badge bg-warning text-dark mb-2">100% Pure & Raw</span>
+                <p class="small text-white mb-0">Unadulterated native milk in glass bottles!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 reveal-from-right delay-300">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <i class="fa-solid fa-trash-can fa-2x text-success mb-2"></i>
+                <h6 class="fw-bold mb-1 text-dark">Single-Use Plastics</h6>
+                <span class="badge bg-secondary mb-2">15+ Plastic Bags / Wk</span>
+                <p class="small text-muted mb-0">Creates heavy household plastic waste.</p>
+              </div>
+              <div class="flip-card-back">
+                <i class="fa-solid fa-recycle fa-2x text-warning mb-2"></i>
+                <h6 class="fw-bold mb-1 text-white">Zero-Plastic Eco Totes</h6>
+                <span class="badge bg-warning text-dark mb-2">Returnable Bags</span>
+                <p class="small text-white mb-0">Packed in sanitized jute bags, collected on drop!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARVEST GALLERY SECTION (FINE-GRAINED COLLAGE ITEM SCROLL ENTRANCES) -->
+  <section class="section-compact">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-3 reveal-on-scroll">
+        <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill mb-2">FRESH HARVEST</span>
+        <h3 class="fw-bold">Hand-Picked Farm Fresh Produce</h3>
+        <p class="text-muted small">Daily harvested organic vegetables, fruits, and dairy from Chinna Thirupathi and Yercaud Foothill farms.</p>
+      </div>
+
+      <div class="collage-grid">
+        <div class="collage-card collage-item-1 reveal-from-left">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Salem Organic Veggie Basket">
+          <div class="collage-card-overlay">
+            <span class="badge bg-success w-max-content mb-1 text-white fw-bold"><i class="fa-solid fa-carrot me-1"></i> TOP SUBSCRIBED</span>
+            <h5 class="fw-bold text-white mb-0">Weekly Organic Veggie Box</h5>
+            <small class="text-white fw-semibold">12 Organic Varieties • Harvested 5 AM Daily</small>
+          </div>
+        </div>
+
+        <div class="collage-card collage-item-2 reveal-from-right">
+          <img src="assets/milk.webp" alt="Pure Salem A2 Milk">
+          <div class="collage-card-overlay">
+            <h5 class="fw-bold text-white mb-0">Native Salem A2 Milk</h5>
+            <small class="text-white fw-semibold">Chinna Muniyappan Kovil Farm</small>
+          </div>
+        </div>
+
+        <div class="collage-card collage-item-3 reveal-from-left delay-100">
+          <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80" alt="Exotic Fruit Basket">
+          <div class="collage-card-overlay">
+            <h6 class="fw-bold text-white mb-0">Exotic Fruit Basket</h6>
+            <small class="text-white fw-semibold">Naturally Ripened</small>
+          </div>
+        </div>
+
+        <div class="collage-card collage-item-4 reveal-on-scroll delay-200">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Artisanal Sourdough">
+          <div class="collage-card-overlay">
+            <h6 class="fw-bold text-white mb-0">Artisanal Bakery</h6>
+            <small class="text-white fw-semibold">Sourdough & Whole Wheat</small>
+          </div>
+        </div>
+
+        <div class="collage-card collage-item-5 reveal-from-right delay-300">
+          <img src="assets/honey.webp" alt="Raw Wild Honey">
+          <div class="collage-card-overlay">
+            <h6 class="fw-bold text-white mb-0">Yercaud Wild Honey</h6>
+            <small class="text-white fw-semibold">100% Raw Apiary Honey</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REACT BITS <CIRCULARGALLERY /> PRODUCE SHOWCASE SECTION -->
+  <section class="section-compact">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-3 reveal-on-scroll">
+        <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill mb-2">SEASONAL SELECTION</span>
+        <h3 class="fw-bold">Salem Farm Organic Produce Basket</h3>
+        <p class="text-muted small">Explore our wide range of daily farm fresh organic produce delivered directly to your doorstep.</p>
+      </div>
+
+      <div class="circular-gallery-wrapper reveal-on-scroll delay-150">
+        <div id="circular-gallery" style="width: 100%; height: 100%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEAL PREP SIMULATOR (FINE-GRAINED LEFT & RIGHT CARD SCROLL ENTRANCES) -->
+  <section class="section-compact bg-emerald-50">
+    <div class="container">
+      <div class="row align-items-stretch g-4">
+        <!-- Left Simulator Card (Slides from Left) -->
+        <div class="col-lg-5 reveal-from-left">
+          <div class="card-3d p-4 bg-white meal-prep-card-equal">
+            <div>
+              <span class="badge bg-success text-white fw-bold px-3 py-1 rounded-pill mb-2">MEAL PREP SIMULATOR</span>
+              <h3 class="fw-bold mb-3 text-dark">Cook Healthy Meals with Custom Subscription Boxes</h3>
+              <p class="text-slate-700 small mb-4 fw-medium">
+                Select a recipe below to automatically load all exact organic ingredients directly into your custom Stackly subscription basket!
+              </p>
+              
+              <div class="list-group gap-2 border-0">
+                <div class="list-group-item list-group-item-action border-0 rounded-3 p-3 shadow-sm active bg-success text-white">
+                  <div class="d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-bowl-food fs-3"></i>
+                    <div>
+                      <h6 class="mb-0 fw-bold">Salem Farm Super Salad</h6>
+                      <small class="opacity-90 fw-semibold">Cherry Tomatoes, Spinach, Avocados & Microgreens</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item list-group-item-action border-0 rounded-3 p-3 shadow-sm bg-light">
+                  <div class="d-flex align-items-center gap-3 text-dark">
+                    <i class="fa-solid fa-blender fs-3 text-success"></i>
+                    <div>
+                      <h6 class="mb-0 fw-bold text-dark">Immunity Green Detox Juice</h6>
+                      <small class="text-slate-600 fw-semibold">Amla, Mint, Cucumbers, Ginger & Green Apples</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item list-group-item-action border-0 rounded-3 p-3 shadow-sm bg-light">
+                  <div class="d-flex align-items-center gap-3 text-dark">
+                    <i class="fa-solid fa-mug-hot fs-3 text-warning"></i>
+                    <div>
+                      <h6 class="mb-0 fw-bold text-dark">Traditional Salem Golden Milk</h6>
+                      <small class="text-slate-600 fw-semibold">Pure Native A2 Milk, Raw Turmeric & Wild Honey</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between">
+              <span class="text-success fw-bold small"><i class="fa-solid fa-bolt me-1"></i> Instant Recipe Load Engine</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Recipe Box Ingredients Card (Slides from Right) -->
+        <div class="col-lg-7 reveal-from-right">
+          <div class="card-3d p-4 bg-white meal-prep-card-equal">
+            <div>
+              <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+                <div>
+                  <h5 class="fw-bold mb-0 text-dark">Included Recipe Box Ingredients</h5>
+                  <small class="text-slate-600 fw-semibold">4 Fresh Items • Portion size for 4 persons</small>
+                </div>
+                <span class="badge bg-success text-white fw-bold px-3 py-2 fs-6">₹340 / Box</span>
+              </div>
+
+              <!-- INGREDIENT SMALL CARDS WITH CLICKABLE REDIRECTS & HOVER EFFECTS -->
+              <div class="row g-3 mb-3">
+                <div class="col-6 col-sm-3 reveal-on-scroll delay-100">
+                  <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
+                    <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=300&q=80" alt="Organic Tomatoes" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Organic Tomatoes</h6>
+                    <span class="badge bg-white text-dark border fw-bold mt-1">500g • ₹35</span>
+                  </a>
+                </div>
+                <div class="col-6 col-sm-3 reveal-on-scroll delay-150">
+                  <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
+                    <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=300&q=80" alt="Fresh Spinach" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Fresh Spinach</h6>
+                    <span class="badge bg-white text-dark border fw-bold mt-1">1 Bunch • ₹25</span>
+                  </a>
+                </div>
+                <div class="col-6 col-sm-3 reveal-on-scroll delay-200">
+                  <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
+                    <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=300&q=80" alt="Farm Avocados" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Farm Avocados</h6>
+                    <span class="badge bg-white text-dark border fw-bold mt-1">2 Pcs • ₹140</span>
+                  </a>
+                </div>
+                <div class="col-6 col-sm-3 reveal-on-scroll delay-250">
+                  <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
+                    <img src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?auto=format&fit=crop&w=300&q=80" alt="Microgreens" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Microgreens</h6>
+                    <span class="badge bg-white text-dark border fw-bold mt-1">100g • ₹140</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- NUTRITIONAL HIGHLIGHTS BAR -->
+              <div class="p-3 bg-emerald-50 rounded-3 border mb-3">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse text-danger fs-5"></i>
+                    <div>
+                      <strong class="d-block text-dark fw-bold">Recipe Nutrition Highlights</strong>
+                      <span class="text-slate-700 fw-semibold small">180 Calories • 120% Vit C • 8.5g Fiber</span>
+                    </div>
+                  </div>
+                  <span class="badge bg-success text-white fw-bold px-2 py-1"><i class="fa-solid fa-leaf me-1"></i> 100% Pesticide Free</span>
+                </div>
+              </div>
+
+              <!-- FARM ORIGIN & PREPARATION SPECS BAR (FILLS EMPTY SPACE BEAUTIFULLY) -->
+              <div class="p-2.5 bg-light rounded-3 border mb-3">
+                <div class="row g-2 text-center">
+                  <div class="col-4 border-end">
+                    <small class="text-slate-600 d-block fw-semibold" style="font-size: 0.72rem;">PREP TIME</small>
+                    <strong class="text-dark fw-bold" style="font-size: 0.85rem;"><i class="fa-solid fa-clock text-success me-1"></i> 10 Mins</strong>
+                  </div>
+                  <div class="col-4 border-end">
+                    <small class="text-slate-600 d-block fw-semibold" style="font-size: 0.72rem;">FARM SOURCE</small>
+                    <strong class="text-dark fw-bold" style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot text-success me-1"></i> Salem Farm</strong>
+                  </div>
+                  <div class="col-4">
+                    <small class="text-slate-600 d-block fw-semibold" style="font-size: 0.72rem;">INCLUDED EXTRA</small>
+                    <strong class="text-dark fw-bold" style="font-size: 0.85rem;"><i class="fa-solid fa-bottle-droplet text-success me-1"></i> Dressing Pack</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2 border-top d-flex align-items-center justify-content-between">
+              <span class="text-success fw-bold small"><i class="fa-solid fa-truck me-1"></i> Morning Drop: Every Tuesday 7 AM</span>
+              <a href="get-started.html" class="btn btn-get-started-shimmer btn-sm text-white">
+                <span>Add Recipe Box</span> <i class="fa-solid fa-plus ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENHANCED SALEM COMMUNITY IMPACT SECTION (FINE-GRAINED CARD SCROLL REVEALS) -->
+  <section class="community-impact-section p-4 p-md-5">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
+        <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill mb-2"><i class="fa-solid fa-earth-asia me-1"></i> SALEM COMMUNITY IMPACT</span>
+        <h2 class="fw-extrabold text-white mb-2">Real Impact Delivered Across Salem</h2>
+        <p class="text-white-50 small">Empowering local organic farmers while eliminating plastic waste across Salem city.</p>
+      </div>
+
+      <div class="row g-4 text-center">
+        <div class="col-6 col-lg-3 reveal-from-left">
+          <div class="community-impact-card">
+            <div class="community-icon-circle"><i class="fa-solid fa-people-roof"></i></div>
+            <div class="counter-value-display" id="counter-subscribers">0</div>
+            <p class="mb-0 text-white-80 fw-bold small mt-2">Active Salem Families</p>
+            <div class="community-progress-bar">
+              <div class="community-progress-fill" id="fill-subscribers"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 reveal-on-scroll delay-100">
+          <div class="community-impact-card">
+            <div class="community-icon-circle"><i class="fa-solid fa-wheat-awn"></i></div>
+            <div class="counter-value-display" id="counter-farms">0</div>
+            <p class="mb-0 text-white-80 fw-bold small mt-2">Local Partner Farms</p>
+            <div class="community-progress-bar">
+              <div class="community-progress-fill" id="fill-farms"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 reveal-on-scroll delay-200">
+          <div class="community-impact-card">
+            <div class="community-icon-circle"><i class="fa-solid fa-recycle"></i></div>
+            <div class="counter-value-display" id="counter-plastic">0</div>
+            <p class="mb-0 text-white-80 fw-bold small mt-2">Plastic Bags Eliminated</p>
+            <div class="community-progress-bar">
+              <div class="community-progress-fill" id="fill-plastic"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3 reveal-from-right delay-300">
+          <div class="community-impact-card">
+            <div class="community-icon-circle"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="counter-value-display" id="counter-delivery">0</div>
+            <p class="mb-0 text-white-80 fw-bold small mt-2">On-Time Morning Drops</p>
+            <div class="community-progress-bar">
+              <div class="community-progress-fill" id="fill-delivery"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Salem Farm Harvest Cam Preview -->
+  <section class="section-compact bg-white">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 reveal-from-left">
+          <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-2 shadow-sm">
+            <i class="fa-solid fa-satellite-dish me-1"></i> LIVE FARM TRANSPARENCY
+          </span>
+          <h3 class="fw-bold mb-3">Watch Your Vegetables Harvest Live in Salem</h3>
+          <p class="text-muted small mb-3">
+            We believe in 100% transparency. Watch real-time harvest status from our partner organic farms in Chinna Thirupathi and Yercaud Foothills.
+          </p>
+          <div class="d-flex align-items-center gap-3 p-3 bg-emerald-50 rounded-4 border mb-3">
+            <div class="spinner-grow text-success spinner-grow-sm" role="status"></div>
+            <div>
+              <h6 class="fw-bold mb-0 small">Live Status: Active Morning Harvest</h6>
+              <small class="text-muted">Chinna Thirupathi Farm #42 • Tomatoes & Greens Harvesting Now</small>
+            </div>
+          </div>
+          <a href="about.html" class="btn btn-outline-stackly btn-grow-shadow btn-bounce-right icon-wobble-hover btn-sm">
+            <span>Explore Partner Farms</span> <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="col-lg-6 reveal-from-right">
+          <div class="card-3d p-0 overflow-hidden zoom-img-container rounded-4">
+            <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold"><i class="fa-solid fa-circle me-1"></i> LIVE CAM FEED</span>
+            <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80" alt="Salem Organic Farm Harvest" class="img-fluid w-100" style="max-height: 280px; object-fit: cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid (STAGGERED CATEGORY CARD SCROLL ENTRANCES) -->
+  <section class="section-compact">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-3 reveal-on-scroll">
+        <div>
+          <span class="text-success fw-bold text-uppercase small">Categories</span>
+          <h3 class="fw-bold mb-0">Browse Fresh Subscription Baskets</h3>
+        </div>
+        <a href="shop.html" class="btn btn-outline-stackly btn-sm">Explore Shop</a>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-2 reveal-from-left">
+          <div class="category-card" onclick="window.location.href='shop.html?cat=veggies'">
+            <div class="category-icon-wrapper"><i class="fa-solid fa-carrot"></i></div>
+            <h6 class="fw-bold mb-0 small">Farm Veggies</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 reveal-on-scroll delay-100">
+          <div class="category-card" onclick="window.location.href='shop.html?cat=fruits'">
+            <div class="category-icon-wrapper"><i class="fa-solid fa-apple-whole"></i></div>
+            <h6 class="fw-bold mb-0 small">Organic Fruits</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 reveal-on-scroll delay-150">
+          <div class="category-card" onclick="window.location.href='shop.html?cat=dairy'">
+            <div class="category-icon-wrapper"><i class="fa-solid fa-cow"></i></div>
+            <h6 class="fw-bold mb-0 small">A2 Milk & Dairy</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 reveal-on-scroll delay-200">
+          <div class="category-card" onclick="window.location.href='shop.html?cat=bakery'">
+            <div class="category-icon-wrapper"><i class="fa-solid fa-wheat-awn"></i></div>
+            <h6 class="fw-bold mb-0 small">Bakery Breads</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 reveal-on-scroll delay-250">
+          <div class="category-card" onclick="window.location.href='shop.html?cat=juices'">
+            <div class="category-icon-wrapper"><i class="fa-solid fa-glass-water"></i></div>
+            <h6 class="fw-bold mb-0 small">Pure Juices</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 reveal-from-right delay-300">
+          <div class="category-card" onclick="window.location.href='shop.html?cat=pantry'">
+            <div class="category-icon-wrapper"><i class="fa-solid fa-jar"></i></div>
+            <h6 class="fw-bold mb-0 small">Organic Grains</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASH SALE BANNER -->
+  <section class="py-2">
+    <div class="container">
+      <div class="flash-sale-banner d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
+        <div class="reveal-from-left">
+          <span class="badge bg-warning text-dark fw-bold mb-1">WEEKLY SUBSCRIPTION SPECIAL</span>
+          <h4 class="fw-bold mb-1">Salem Family Box Flash Deal — Save 30% Today!</h4>
+          <p class="mb-0 text-white-50 small">Subscribe now and get 5kg exotic fruits free with your first weekly organic basket.</p>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 flex-wrap reveal-from-right">
+          <div class="countdown-timer">
+            <div class="countdown-box"><div class="countdown-val" id="cd-hours">22</div><div class="countdown-lbl">Hours</div></div>
+            <div class="countdown-box"><div class="countdown-val" id="cd-mins">48</div><div class="countdown-lbl">Mins</div></div>
+            <div class="countdown-box"><div class="countdown-val" id="cd-secs">35</div><div class="countdown-lbl">Secs</div></div>
+          </div>
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover text-nowrap">
+            <span>Claim Deal</span> <i class="fa-solid fa-bolt text-warning"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFINITE SLIDING REVIEWS CAROUSEL (SEAMLESS CONTINUOUS LOOP) -->
+  <section class="section-compact bg-white border-top">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-3 reveal-on-scroll">
+        <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill mb-2">SALEM SUBSCRIBER REVIEWS</span>
+        <h3 class="fw-bold">Loved by 10,000+ Families Across Salem</h3>
+        <p class="text-muted small">Real feedback from Salem families receiving fresh organic morning deliveries every week.</p>
+      </div>
+
+      <div class="reviews-carousel-wrapper reveal-on-scroll delay-150">
+        <div class="reviews-carousel-track">
+          <!-- Set 1: 4 Cards -->
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Native A2 milk delivered by 6:30 AM every morning. Glass bottle return is so clean!"</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_priya.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Priya Ramachandran</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Fairlands, Salem</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Saved ₹2,400 monthly on veggies. Quality harvested 5 AM is unmatched."</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_arjun.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Arjun K. Sundaram</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Chinna Thirupathi</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Exotic fruits like avocados and dragonfruit are crisp and delicious!"</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_sneha.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Sneha Rajan</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Hasthampatti, Salem</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Zero plastic packaging! Jute totes collected on delivery every week."</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_vignesh.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Vignesh Kumar</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Suramangalam, Salem</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Set 2: Duplicate 4 Cards for Seamless Infinite Loop -->
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Native A2 milk delivered by 6:30 AM every morning. Glass bottle return is so clean!"</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_priya.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Priya Ramachandran</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Fairlands, Salem</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Saved ₹2,400 monthly on veggies. Quality harvested 5 AM is unmatched."</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_arjun.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Arjun K. Sundaram</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Chinna Thirupathi</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Exotic fruits like avocados and dragonfruit are crisp and delicious!"</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_sneha.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Sneha Rajan</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Hasthampatti, Salem</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-box-card">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-warning fw-bold">★★★★★</span>
+                <small class="badge bg-success-subtle text-success">Verified Salem Subscriber</small>
+              </div>
+              <p class="small text-dark mb-0 fw-medium">"Zero plastic packaging! Jute totes collected on delivery every week."</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 pt-2 border-top">
+              <img src="assets/team_vignesh.webp" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover;">
+              <div>
+                <h6 class="mb-0 fw-bold small text-dark">Vignesh Kumar</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Suramangalam, Salem</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESTORED ORIGINAL DARK SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-newsletter-card mb-4">
+        <div class="row align-items-center g-3">
+          <div class="col-lg-6">
+            <h4 class="fw-bold mb-1 text-white">Signup our newsletter to get update information, news, insight or promotions.</h4>
+            <p class="text-slate-300 small mb-0">Get exclusive subscriber promo codes & Salem farm harvest news direct to your inbox.</p>
+          </div>
+          <div class="col-lg-6">
+            <form id="newsletter-form" class="newsletter-input-group" action="404.html">
+              <input type="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
+              <button type="submit" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover text-nowrap">
+                <span>Sign Up</span> <i class="fa-solid fa-envelope ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+            <div class="row g-4 pb-4">
+        <!-- Column 1: Brand & Socials -->
+        <div class="col-lg-4 col-md-6">
+          <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;" class="mb-3">
+          <p class="text-slate-300 small mb-3">
+            Stackly is Salem's premier organic grocery subscription platform connecting local organic farmers directly with families. Fresh, healthy, and delivered with love.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" class="footer-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation (All 6 Top Navbar Menu Items) -->
+        <div class="col-lg-2 col-6">
+          <h6 class="fw-bold mb-3 text-white">Quick Navigation</h6>
+          <ul class="list-unstyled small d-grid gap-2">
+            <li><a href="index.html" class="text-reset text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-reset text-decoration-none">About</a></li>
+            <li><a href="plans.html" class="text-reset text-decoration-none">Plans</a></li>
+            <li><a href="shop.html" class="text-reset text-decoration-none">Shop</a></li>
+            <li><a href="blog.html" class="text-reset text-decoration-none">Blog</a></li>
+            <li><a href="contact.html" class="text-reset text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Customer Care & Legal (All Links Redirect to 404.html) -->
+        <div class="col-lg-2 col-6">
+          <h6 class="fw-bold mb-3 text-white">Customer Care</h6>
+          <ul class="list-unstyled small d-grid gap-2">
+            <li><a href="404.html" class="text-reset text-decoration-none">Help Center</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Track Order</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Returns & Refund</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Terms of Service</a></li>
+            <li><a href="404.html" class="text-reset text-decoration-none">Legal Notice</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Get In Touch & Hours (Balanced Contact Card) -->
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold mb-3 text-white">Get In Touch</h6>
+          <ul class="list-unstyled small d-grid gap-2 text-slate-300 mb-3">
+            <li class="d-flex align-items-start gap-2">
+              <i class="fa-solid fa-location-dot text-success mt-1"></i>
+              <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-envelope text-success"></i>
+              <span>support@stacklygrocery.com</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-phone text-success"></i>
+              <span>+91 98765 43210 / 0427-2345678</span>
+            </li>
+          </ul>
+          <div class="p-2.5 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-10 d-flex align-items-center justify-content-between">
+            <span class="small text-white fw-bold"><i class="fa-solid fa-clock text-warning me-1"></i> Farm Dispatch Hours:</span>
+            <span class="badge bg-success text-white fw-bold">6:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-center small text-slate-300">
+        <p class="mb-2 mb-md-0">Copyright © 2026 Stackly. All rights reserved.</p>
+        <div class="d-flex gap-3">
+          <a href="404.html" class="text-reset text-decoration-none">Term of use</a>
+          <span>•</span>
+          <a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a>
+          <span>•</span>
+          <a href="404.html" class="text-reset text-decoration-none">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-0 bg-emerald-50">
+          <h5 class="modal-title fw-bold text-success"><i class="fa-solid fa-basket-shopping me-2"></i> Your Subscription Box</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body py-2" id="cart-modal-list"></div>
+        <div class="modal-footer border-0 d-flex justify-content-between align-items-center bg-light rounded-bottom-4">
+          <div>
+            <small class="text-muted">Subtotal Price:</small>
+            <h4 class="fw-bold text-success mb-0" id="cart-modal-total">₹0</h4>
+          </div>
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-grow-shadow btn-bounce-right icon-wobble-hover">
+            <span>Checkout Box</span> <i class="fa-solid fa-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

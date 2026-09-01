@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Partner Portal — Stackly Salem</title>
+  
+  <link rel="shortcut icon" href="assets/top-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <canvas id="three-canvas-bg"></canvas>
+  <div class="floating-leaves-container"></div>
+
+  <!-- Navbar -->
+    <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/logo.webp" alt="Stackly Logo">
+      </a>
+
+      <!-- Mobile Right Controls (Cart Button & Hamburger Toggle) -->
+      <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
+        <div class="btn-cart-wrapper">
+          <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+            <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+          </button>
+          <span class="badge-cart-count">0</span>
+        </div>
+      </div>
+
+      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="stacklyNav">
+        <!-- Mobile Full Screen Menu Header Bar -->
+        <div class="mobile-menu-header d-lg-none">
+          <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <img src="assets/logo.webp" alt="Stackly Logo" style="height: 38px;">
+          </a>
+          <button type="button" class="mobile-menu-close-btn" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="pill-nav-container mx-auto my-2 my-lg-0">
+          <div class="pill-nav-indicator"></div>
+          <ul class="pill-nav-list align-items-center">
+            <li><a class="pill-nav-link" href="index.html">Home</a></li>
+            <li><a class="pill-nav-link" href="about.html">About</a></li>
+            <li><a class="pill-nav-link" href="plans.html">Plans</a></li>
+            <li><a class="pill-nav-link" href="shop.html">Shop</a></li>
+            <li><a class="pill-nav-link" href="blog.html">Blog</a></li>
+            <li><a class="pill-nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ms-lg-2 mobile-menu-footer-actions">
+          <div class="btn-cart-wrapper d-none d-lg-block">
+            <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
+              <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
+            </button>
+            <span class="badge-cart-count">0</span>
+          </div>
+
+          <a href="get-started.html" class="btn btn-get-started-shimmer btn-bounce-right icon-wobble-hover btn-sm text-white w-100 w-lg-auto justify-content-center">
+            <span>Get Started</span> <i class="fa-solid fa-bolt text-warning"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-wrapper">
+    <div class="dashboard-sidebar">
+      <div class="p-3 text-center bg-emerald-50 rounded-4 mb-4">
+        <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=120&q=80" alt="Farmer" class="rounded-circle mb-2 shadow-sm" style="width: 70px; height: 70px; object-fit: cover;">
+        <h6 class="fw-bold mb-0">Kaliappan G.</h6>
+        <small class="text-muted">Organic Farmer • Salem</small>
+      </div>
+
+      <div class="dash-nav-list">
+        <a href="#" class="dash-nav-item active" onclick="switchFarmerTab('harvest', this)">
+          <i class="fa-solid fa-seedling"></i> Harvest & Supplies
+        </a>
+        <a href="#" class="dash-nav-item" onclick="switchFarmerTab('earnings', this)">
+          <i class="fa-solid fa-hand-holding-dollar"></i> Farm Earnings & Payouts
+        </a>
+        <a href="#" class="dash-nav-item" onclick="switchFarmerTab('quality', this)">
+          <i class="fa-solid fa-square-check"></i> Organic Quality Tests
+        </a>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <!-- TAB 1: HARVEST SUPPLIES -->
+      <div class="dash-tab-content" id="farmer-tab-harvest">
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="metric-card">
+              <div class="metric-icon bg-emerald-100 text-success">
+                <i class="fa-solid fa-wheat-awn"></i>
+              </div>
+              <div>
+                <small class="text-muted fw-bold">Harvest Supply Today</small>
+                <h4 class="fw-bold mb-0 text-success">1,850 kg</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="metric-card">
+              <div class="metric-icon bg-amber-100 text-warning">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+              </div>
+              <div>
+                <small class="text-muted fw-bold">Monthly Earnings</small>
+                <h4 class="fw-bold mb-0 text-dark">₹64,200</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="metric-card">
+              <div class="metric-icon bg-blue-100 text-primary">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <small class="text-muted fw-bold">Organic Rating</small>
+                <h4 class="fw-bold mb-0 text-primary">99.4% Pure</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-3d p-4 rounded-4 bg-white">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Daily Harvest Pickup Schedule (Salem Hub)</h5>
+            <button class="btn btn-primary-stackly btn-sm" onclick="showToast('New harvest batch logged successfully!', 'Batch Saved')"><i class="fa-solid fa-plus me-1"></i> Log Morning Harvest</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Crop Item</th>
+                  <th>Quantity</th>
+                  <th>Harvest Time</th>
+                  <th>Pickup Driver</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold text-success">Red Organic Tomatoes</td>
+                  <td>600 kg</td>
+                  <td>5:30 AM (Today)</td>
+                  <td>Driver Vignesh (#DRV-04)</td>
+                  <td><span class="badge bg-success">Picked Up</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-success">Yercaud Fresh Spinach</td>
+                  <td>350 kg</td>
+                  <td>5:45 AM (Today)</td>
+                  <td>Driver Vignesh (#DRV-04)</td>
+                  <td><span class="badge bg-success">Picked Up</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold text-success">Fresh A2 Cow Milk</td>
+                  <td>250 Litres</td>
+                  <td>5:00 AM (Today)</td>
+                  <td>Milk Route 2</td>
+                  <td><span class="badge bg-success">Delivered to Hub</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: EARNINGS -->
+      <div class="dash-tab-content d-none" id="farmer-tab-earnings">
+        <h4 class="fw-bold mb-4">Farm Settlement & Direct Bank Payouts</h4>
+        <div class="card-3d p-3 rounded-4 bg-white">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Settlement ID</th>
+                  <th>Date</th>
+                  <th>Supply Weight</th>
+                  <th>Payout Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-bold">#PAY-9811</td>
+                  <td>Aug 25, 2026</td>
+                  <td>4,200 kg</td>
+                  <td class="fw-bold text-success">₹32,100</td>
+                  <td><span class="badge bg-success">Transferred to Bank</span></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold">#PAY-9750</td>
+                  <td>Aug 18, 2026</td>
+                  <td>3,950 kg</td>
+                  <td class="fw-bold text-success">₹32,100</td>
+                  <td><span class="badge bg-success">Transferred to Bank</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: QUALITY -->
+      <div class="dash-tab-content d-none" id="farmer-tab-quality">
+        <h4 class="fw-bold mb-4">Salem Agricultural Organic Quality Certifications</h4>
+        <div class="card-3d p-4 rounded-4 bg-white max-w-lg">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <i class="fa-solid fa-award fs-1 text-success"></i>
+            <div>
+              <h5 class="fw-bold mb-0">Zero Pesticide Soil Certificate</h5>
+              <small class="text-muted">Issued by Salem Organic Agri Board • Valid till Dec 2026</small>
+            </div>
+          </div>
+          <p class="small text-muted mb-0">Lab test verified zero chemical residue, synthetic fertilizers, or heavy metals in farm soil sample #42.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/three-bg.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function switchFarmerTab(tabName, linkEl) {
+      document.querySelectorAll('.dash-nav-item').forEach(el => el.classList.remove('active'));
+      linkEl.classList.add('active');
+
+      document.querySelectorAll('.dash-tab-content').forEach(c => c.classList.add('d-none'));
+      document.getElementById(`farmer-tab-${tabName}`).classList.remove('d-none');
+    }
+  </script>
+</body>
+</html>
