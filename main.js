@@ -1,13 +1,4 @@
-/* 
-   Stackly - Grocery Subscription Platform
-   Main Interactive Script with Delayed High-Impact Scroll Entrance Animation Engine,
-   Rolling Count-Up Numbers, Progress Bar Fills, PillNav Indicator,
-   React Bits Infinite Looping CircularGallery Engine,
-   Form Submit Validation & Toast System
-*/
-
-// Product Catalog Default Assets Lookup
-const PRODUCT_CATALOG_IMAGES = {
+﻿const PRODUCT_CATALOG_IMAGES = {
   'native_heirloom_tomatoes': {
     image: 'assets/tomatoes.webp',
     unit: '1 kg'
@@ -74,7 +65,7 @@ const PRODUCT_CATALOG_IMAGES = {
   }
 };
 
-// Cart State Manager
+
 const StacklyCart = {
   items: JSON.parse(localStorage.getItem('stackly_cart')) || [],
   
@@ -93,7 +84,7 @@ const StacklyCart = {
         name: nameOrProduct,
         price: Number(priceVal) || 45,
         qty: 1,
-        image: imgVal || catalogInfo.image || 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=200&q=80',
+        image: imgVal || catalogInfo.image || 'assets/ext_e6404db9.webp',
         unit: unitVal || catalogInfo.unit || '1 Pack'
       };
     } else {
@@ -177,7 +168,7 @@ const StacklyCart = {
   }
 };
 
-// Toast Notifications Helper
+
 function showToast(message, title = 'Stackly Update') {
   const existing = document.querySelector('.stackly-toast');
   if (existing) existing.remove();
@@ -203,17 +194,17 @@ function showToast(message, title = 'Stackly Update') {
   }, 3500);
 }
 
-// 1. HIGH-IMPACT SCROLL ENTRANCE ANIMATION OBSERVER
+
 function initScrollEntranceObserver() {
   const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-from-left, .reveal-from-right');
 
-  // IntersectionObserver for hardware acceleration
+  
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-          // Performance fix: stop observing once revealed
+          
           observer.unobserve(entry.target);
         }
       });
@@ -225,12 +216,12 @@ function initScrollEntranceObserver() {
 
     revealElements.forEach(el => observer.observe(el));
   } else {
-    // Fallback if not supported
+    
     revealElements.forEach(el => el.classList.add('revealed'));
   }
 }
 
-// 2. Count-Up Rolling Number & Progress Fill Engine
+
 function animateCountUp(targetEl, finalVal, suffix = '', duration = 2000) {
   let startTime = null;
   const startVal = 0;
@@ -279,7 +270,7 @@ function initRollingCounters() {
   if (communitySection) observer.observe(communitySection);
 }
 
-// 3. Sleek Laser Beam GlowCursor 2D Canvas Engine
+
 function initGlowCursor() {
   if (window.innerWidth < 768) return;
 
@@ -387,7 +378,7 @@ function initGlowCursor() {
   requestAnimationFrame(render);
 }
 
-// 4. PillNav Indicator Component Logic
+
 function initPillNav() {
   const container = document.querySelector('.pill-nav-container');
   if (!container) return;
@@ -438,21 +429,21 @@ function initPillNav() {
   window.addEventListener('resize', () => refreshIndicator());
 }
 
-// 5. React Bits Infinite Looping CircularGallery Engine
+
 function initCircularGallery() {
   const container = document.getElementById('circular-gallery');
   if (!container) return;
 
   const itemsData = [
-    { image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80', label: 'Organic Veggie Box' },
-    { image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=800&q=80', label: 'Salem Native A2 Milk' },
-    { image: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80', label: 'Exotic Fruit Basket' },
-    { image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80', label: 'Artisanal Sourdough' },
-    { image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=800&q=80', label: 'Cold Pressed Juice' },
+    { image: 'assets/ext_5bec0bac.webp', label: 'Organic Veggie Box' },
+    { image: 'assets/ext_e6404db9.webp', label: 'Salem Native A2 Milk' },
+    { image: 'assets/ext_aae5959f.webp', label: 'Exotic Fruit Basket' },
+    { image: 'assets/ext_4ef1001e.webp', label: 'Artisanal Sourdough' },
+    { image: 'assets/orange.webp', label: 'Cold Pressed Juice' },
     { image: 'assets/eggs.webp', label: 'Farm Fresh Eggs' },
     { image: 'assets/honey.webp', label: 'Organic Wild Honey' },
-    { image: 'https://images.unsplash.com/photo-1515023115689-589c33041d3c?auto=format&fit=crop&w=800&q=80', label: 'Microgreens & Herbs' },
-    { image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80', label: 'Cold Pressed Oil' },
+    { image: 'assets/ext_45c8fc8b.webp', label: 'Microgreens & Herbs' },
+    { image: 'assets/ext_956f28e9.webp', label: 'Cold Pressed Oil' },
     { image: 'assets/ghee.webp', label: 'Country Cow Ghee' }
   ];
 
@@ -481,7 +472,7 @@ function initCircularGallery() {
 
   const cards = viewport.querySelectorAll('.circular-card-wrapper');
   
-  // CACHE DOM queries to prevent layout thrashing inside animation loop
+ 
   const cachedCards = Array.from(cards).map(card => ({
     card: card,
     imgEl: card.querySelector('.circular-card-img'),
@@ -530,7 +521,7 @@ function initCircularGallery() {
   }
 
   function animate() {
-    // Only render and recalculate if actually moving
+    
     if (Math.abs(targetScroll - currentScroll) > 0.001) {
       currentScroll += (targetScroll - currentScroll) * 0.08;
       render3DArc();
@@ -541,7 +532,7 @@ function initCircularGallery() {
     requestAnimationFrame(animate);
   }
   
-  render3DArc(); // Fix: Initial render so it shows up correctly on refresh
+  render3DArc();
   animate();
 
   viewport.addEventListener('mousedown', (e) => {
@@ -599,7 +590,7 @@ function initCircularGallery() {
   });
 }
 
-// 6. Form Submit Validation & Newsletter 404 Redirect
+
 function initFormSubmitWobble() {
   const forms = document.querySelectorAll('form');
   forms.forEach(form => {
@@ -629,7 +620,7 @@ function initFormSubmitWobble() {
   });
 }
 
-// Countdown Timer Handler
+
 function initCountdownTimer() {
   const hoursEl = document.getElementById('cd-hours');
   const minsEl = document.getElementById('cd-mins');
@@ -655,7 +646,7 @@ function initCountdownTimer() {
   }, 1000);
 }
 
-// Mobile Full Screen Menu Auto Close Helper
+
 function initMobileMenuAutoClose() {
   const navCollapse = document.getElementById('stacklyNav');
   if (!navCollapse) return;
@@ -671,7 +662,7 @@ function initMobileMenuAutoClose() {
   });
 }
 
-// Scroll-Triggered Animated Timeline Line & Dots Engine
+
 function initScrollTimeline() {
   const section = document.querySelector('.scroll-timeline-section');
   if (!section) return;
@@ -692,10 +683,10 @@ function initScrollTimeline() {
     let progress = (scrollPos / (totalHeight + winHeight * 0.3)) * 100;
     progress = Math.max(0, Math.min(100, progress));
 
-    // Batch DOM Reads
+    
     const itemRects = Array.from(items).map(item => item.getBoundingClientRect().top);
 
-    // Batch DOM Writes
+    
     lineFill.style.height = `${progress}%`;
     items.forEach((item, index) => {
       if (itemRects[index] < winHeight * 0.75) {
@@ -720,9 +711,7 @@ function initScrollTimeline() {
   onScroll();
 }
 
-// =========================================================
-// SHOP REAL-TIME SEARCH & CATEGORY FILTERING ENGINE
-// =========================================================
+
 function initShopFilterAndSearch() {
   const searchInput = document.getElementById('shop-search-input');
   const clearBtn = document.getElementById('clear-search-btn');
@@ -747,14 +736,14 @@ function initShopFilterAndSearch() {
       const badgeText = (card.querySelector('.badge')?.textContent || '').toLowerCase();
       const descText = (card.querySelector('p')?.textContent || '').toLowerCase();
 
-      // Check category match
+      
       const catList = category.split(' ');
       const matchesCategory = (currentCategory === 'all') || 
                               catList.includes(currentCategory) ||
                               (currentCategory === 'veggies' && category.includes('vegetables')) ||
                               (currentCategory === 'veg' && category.includes('vegetables'));
 
-      // Check search query match
+      
       const matchesSearch = !query || 
                             title.includes(query) || 
                             tags.includes(query) || 
@@ -785,7 +774,7 @@ function initShopFilterAndSearch() {
     }
   }
 
-  // Live Real-Time Search
+  
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value;
@@ -801,7 +790,7 @@ function initShopFilterAndSearch() {
     });
   }
 
-  // Clear Search Input Button
+  
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       if (searchInput) {
@@ -835,7 +824,7 @@ function initShopFilterAndSearch() {
     });
   }
 
-  // Reset Filters from "No Products Found"
+  
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
       currentCategory = 'all';
@@ -846,7 +835,7 @@ function initShopFilterAndSearch() {
     });
   }
 
-  // Category Filter Pills
+  
   filterBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -856,7 +845,7 @@ function initShopFilterAndSearch() {
     });
   });
 
-  // Handle URL Query Params (e.g. shop.html?cat=veggies or shop.html?q=honey)
+  
   const urlParams = new URLSearchParams(window.location.search);
   const catParam = urlParams.get('cat') || urlParams.get('category');
   const searchParam = urlParams.get('search') || urlParams.get('q');
@@ -877,9 +866,7 @@ function initShopFilterAndSearch() {
   }
 }
 
-// =========================================================
-// CUSTOM SELECT DROPDOWN (Prevents overflow on mobile)
-// =========================================================
+
 function initStacklySelects() {
   const selects = document.querySelectorAll('.js-stackly-select');
   selects.forEach(select => {
@@ -935,7 +922,7 @@ function initStacklySelects() {
   });
 }
 
-// DOM Initialization
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.getItem('stackly_cart')) {
     StacklyCart.items = [];
@@ -966,7 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
 (function () {
   const TWO_PI = Math.PI * 2;
 
-  // DotField Config tailored for Light Organic Stackly Theme
+  
   const config = {
     dotRadius: 1.8,
     dotSpacing: 16,
@@ -977,13 +964,13 @@ document.addEventListener('DOMContentLoaded', () => {
     glowRadius: 180,
     sparkle: true,
     waveAmplitude: 1.8,
-    gradientFrom: 'rgba(34, 197, 94, 0.45)', // Fresh Organic Emerald Green
-    gradientTo: 'rgba(16, 185, 129, 0.22)',   // Soft Mint Green
-    glowColor: 'rgba(34, 197, 94, 0.20)'      // Soft Light Green Glow
+    gradientFrom: 'rgba(34, 197, 94, 0.45)', 
+    gradientTo: 'rgba(16, 185, 129, 0.22)',   
+    glowColor: 'rgba(34, 197, 94, 0.20)'      
   };
 
   function initDotField() {
-    // 1. Ensure Canvas Exists
+    
     let canvas = document.getElementById('three-canvas-bg');
     if (!canvas) {
       canvas = document.createElement('canvas');
@@ -991,7 +978,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.prepend(canvas);
     }
 
-    // 2. Ensure SVG Glow Element Exists
+    
     let svg = document.getElementById('dotfield-svg');
     if (!svg) {
       svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1193,18 +1180,81 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
-// --- PRELOADER LOGIC (MAX 2 SECONDS) ---
+
 document.addEventListener('DOMContentLoaded', () => {
   const preloader = document.getElementById('global-preloader');
   if (preloader) {
     const hideLoader = () => { preloader.classList.add('preloader-hidden'); };
-    // Fallback to hide after 2 seconds strictly
+    
     const timeout = setTimeout(hideLoader, 2000);
     
     window.addEventListener('load', () => {
-      // If loaded before 2 seconds, clear the strict timeout and hide smoothly
+      
       clearTimeout(timeout);
       setTimeout(hideLoader, 200); 
+    });
+  }
+});
+
+
+
+function toggleDashSidebar() {
+  const sidebar = document.querySelector('.dashboard-sidebar');
+  if (!sidebar) return;
+  if (sidebar.classList.contains('open')) {
+    closeDashSidebar();
+  } else {
+    openDashSidebar();
+  }
+}
+
+function openDashSidebar() {
+  const sidebar = document.querySelector('.dashboard-sidebar');
+  const overlay = document.getElementById('dashSidebarOverlay');
+  const toggleBtn = document.querySelector('.mobile-dash-toggle-btn');
+  if (sidebar) sidebar.classList.add('open');
+  if (overlay) overlay.classList.add('show');
+  if (toggleBtn) {
+    toggleBtn.innerHTML = '<i class="fa-solid fa-xmark text-danger fs-5"></i> <span class="small fw-bold text-danger">Close</span>';
+    toggleBtn.classList.add('border-danger');
+  }
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDashSidebar() {
+  const sidebar = document.querySelector('.dashboard-sidebar');
+  const overlay = document.getElementById('dashSidebarOverlay');
+  const toggleBtn = document.querySelector('.mobile-dash-toggle-btn');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('show');
+  if (toggleBtn) {
+    toggleBtn.innerHTML = '<i class="fa-solid fa-bars text-dark fs-5"></i> <span class="small fw-bold">Menu</span>';
+    toggleBtn.classList.remove('border-danger');
+  }
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('click', (e) => {
+  const navItem = e.target.closest('.dashboard-sidebar .dash-nav-item');
+  if (navItem && window.innerWidth < 992) {
+    closeDashSidebar();
+  }
+});
+
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 992) {
+    document.body.style.overflow = '';
+    document.body.style.touchAction = '';
+    document.body.style.height = '';
+    
+    
+    closeDashSidebar();
+
+    
+    document.querySelectorAll('.navbar-collapse.show').forEach(navCollapse => {
+      const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+      if (bsCollapse) bsCollapse.hide();
     });
   }
 });

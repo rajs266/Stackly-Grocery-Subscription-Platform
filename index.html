@@ -1,29 +1,29 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stackly — Organic Grocery Subscription Platform (Salem)</title>
   
-  <!-- Favicon -->
+  
   <link rel="icon" href="assets/top-logo.webp" type="image/webp">
   
-  <!-- Google Fonts: Space Grotesk + Outfit (Headings) + Plus Jakarta Sans (Body) -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   
-  <!-- Bootstrap 5 CDN -->
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   
-  <!-- Font Awesome 6 CDN -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Custom CSS -->
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Preloader -->
+  
   <div id="global-preloader">
     <div class="loader-box">
       <div class="loader-box-face front"></div>
@@ -36,12 +36,12 @@
     <div class="loader-text">STACKLY</div>
   </div>
 
-  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  
   <canvas id="glow-cursor-canvas"></canvas>
   <canvas id="three-canvas-bg"></canvas>
   <div class="floating-leaves-container"></div>
 
-  <!-- Top Announcement Bar -->
+  
   <div class="top-bar text-center">
     <div class="container d-flex justify-content-between align-items-center">
       <span><i class="fa-solid fa-truck-fast me-2"></i> Free Doorstep Express Delivery in Salem on all Weekly Subscriptions!</span>
@@ -53,15 +53,15 @@
     </div>
   </div>
 
-  <!-- Main Navigation Bar -->
-    <!-- Main Navigation Bar -->
+  
+    
   <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
         <img src="assets/logo.webp" alt="Stackly Logo">
       </a>
 
-      <!-- Mobile Right Controls (Cart Button & Hamburger Toggle) -->
+      
       <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
         <div class="btn-cart-wrapper">
           <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
@@ -72,11 +72,11 @@
       </div>
 
       <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa-solid fa-bars text-dark fs-3"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="stacklyNav">
-        <!-- Mobile Full Screen Menu Header Bar -->
+        
         <div class="mobile-menu-header d-lg-none">
           <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
             <img src="assets/logo.webp" alt="Stackly Logo" style="height: 38px;">
@@ -114,7 +114,7 @@
     </div>
   </nav>
 
-  <!-- REDUCED HERO BANNER (WITHOUT INTERNAL DIVIDING LINE) -->
+  
   <section class="hero-section-fullbg">
     <div class="container position-relative" style="z-index: 3;">
       <div class="max-w-3xl mx-auto text-center">
@@ -136,7 +136,7 @@
           </a>
         </div>
 
-        <!-- STATS BAR (NO HORIZONTAL LINE) -->
+        
         <div class="d-flex align-items-center justify-content-center gap-4 gap-md-5 pt-3 text-white">
           <div>
             <h4 class="fw-extrabold text-warning mb-0 fs-3">10,000+</h4>
@@ -156,7 +156,7 @@
       </div>
     </div>
 
-    <!-- SINGLE CLEAN SVG WAVE BOTTOM DIVIDER -->
+    
     <div class="hero-wave-bottom">
       <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,64C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" fill="#fafdfb"></path>
@@ -164,7 +164,7 @@
     </div>
   </section>
 
-  <!-- REDESIGNED ABOUT STACKLY SECTION (FINE-GRAINED INNER CONTENT SCROLL ENTRANCE) -->
+  
   <section class="section-compact bg-white border-bottom">
     <div class="container py-3">
       <div class="row align-items-center g-5">
@@ -177,7 +177,7 @@
             Founded at <strong>MMR Complex, Chinna Thirupathi in Salem</strong>, Stackly connects local organic farmers directly with Salem families. We eliminate middleman delays to bring you food harvested at 5 AM straight to your doorstep before breakfast.
           </p>
 
-          <!-- 3 Pillar Highlights Grid -->
+          
           <div class="row g-3 my-2">
             <div class="col-12 reveal-on-scroll delay-100">
               <div class="d-flex align-items-center gap-3 p-3 bg-emerald-50 rounded-4 border border-success-subtle">
@@ -214,12 +214,12 @@
           </div>
         </div>
 
-        <!-- Right Side: Dual Visual Image Stack (Slides in from Right) -->
+        
         <div class="col-lg-6 reveal-from-right">
           <div class="about-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80" alt="Salem Organic Harvest Farm" class="about-img-main">
+            <img src="assets/ext_d787a8dc.webp" alt="Salem Organic Harvest Farm" class="about-img-main">
 
-            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Pure Salem A2 Milk Drop" class="about-img-overlay">
+            <img src="assets/ext_fe6a6c40.webp" alt="Pure Salem A2 Milk Drop" class="about-img-overlay">
 
             <div class="about-floating-badge">
               <i class="fa-solid fa-award text-success fs-4"></i>
@@ -234,7 +234,7 @@
     </div>
   </section>
 
-  <!-- Key Advantages Bar (Fine-Grained Item Animations) -->
+  
   <section class="py-3 bg-white border-bottom">
     <div class="container">
       <div class="row g-3 text-center">
@@ -278,7 +278,7 @@
     </div>
   </section>
 
-  <!-- RESTORED ORIGINAL CLEAN FRESHNESS COMPARISON SECTION (INDIVIDUAL FLIP CARD SCROLL ENTRANCES) -->
+  
   <section class="section-compact">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
@@ -348,7 +348,7 @@
     </div>
   </section>
 
-  <!-- HARVEST GALLERY SECTION (FINE-GRAINED COLLAGE ITEM SCROLL ENTRANCES) -->
+  
   <section class="section-compact">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-3 reveal-on-scroll">
@@ -359,7 +359,7 @@
 
       <div class="collage-grid">
         <div class="collage-card collage-item-1 reveal-from-left">
-          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Salem Organic Veggie Basket">
+          <img src="assets/ext_5bec0bac.webp" alt="Salem Organic Veggie Basket">
           <div class="collage-card-overlay">
             <span class="badge bg-success w-max-content mb-1 text-white fw-bold"><i class="fa-solid fa-carrot me-1"></i> TOP SUBSCRIBED</span>
             <h5 class="fw-bold text-white mb-0">Weekly Organic Veggie Box</h5>
@@ -376,7 +376,7 @@
         </div>
 
         <div class="collage-card collage-item-3 reveal-from-left delay-100">
-          <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=800&q=80" alt="Exotic Fruit Basket">
+          <img src="assets/ext_aae5959f.webp" alt="Exotic Fruit Basket">
           <div class="collage-card-overlay">
             <h6 class="fw-bold text-white mb-0">Exotic Fruit Basket</h6>
             <small class="text-white fw-semibold">Naturally Ripened</small>
@@ -384,7 +384,7 @@
         </div>
 
         <div class="collage-card collage-item-4 reveal-on-scroll delay-200">
-          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Artisanal Sourdough">
+          <img src="assets/ext_4ef1001e.webp" alt="Artisanal Sourdough">
           <div class="collage-card-overlay">
             <h6 class="fw-bold text-white mb-0">Artisanal Bakery</h6>
             <small class="text-white fw-semibold">Sourdough & Whole Wheat</small>
@@ -402,7 +402,7 @@
     </div>
   </section>
 
-  <!-- REACT BITS <CIRCULARGALLERY /> PRODUCE SHOWCASE SECTION -->
+  
   <section class="section-compact">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-3 reveal-on-scroll">
@@ -417,11 +417,11 @@
     </div>
   </section>
 
-  <!-- MEAL PREP SIMULATOR (FINE-GRAINED LEFT & RIGHT CARD SCROLL ENTRANCES) -->
+  
   <section class="section-compact bg-emerald-50">
     <div class="container">
       <div class="row align-items-stretch g-4">
-        <!-- Left Simulator Card (Slides from Left) -->
+        
         <div class="col-lg-5 reveal-from-left">
           <div class="card-3d p-4 bg-white meal-prep-card-equal">
             <div>
@@ -468,7 +468,7 @@
           </div>
         </div>
 
-        <!-- Right Recipe Box Ingredients Card (Slides from Right) -->
+        
         <div class="col-lg-7 reveal-from-right">
           <div class="card-3d p-4 bg-white meal-prep-card-equal">
             <div>
@@ -480,39 +480,39 @@
                 <span class="badge bg-success text-white fw-bold px-3 py-2 fs-6">₹340 / Box</span>
               </div>
 
-              <!-- INGREDIENT SMALL CARDS WITH CLICKABLE REDIRECTS & HOVER EFFECTS -->
+              
               <div class="row g-3 mb-3">
                 <div class="col-6 col-sm-3 reveal-on-scroll delay-100">
                   <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
-                    <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=300&q=80" alt="Organic Tomatoes" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <img src="assets/ext_aeb7c70a.webp" alt="Organic Tomatoes" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
                     <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Organic Tomatoes</h6>
                     <span class="badge bg-white text-dark border fw-bold mt-1">500g • ₹35</span>
                   </a>
                 </div>
                 <div class="col-6 col-sm-3 reveal-on-scroll delay-150">
                   <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
-                    <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=300&q=80" alt="Fresh Spinach" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <img src="assets/ext_9154e255.webp" alt="Fresh Spinach" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
                     <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Fresh Spinach</h6>
                     <span class="badge bg-white text-dark border fw-bold mt-1">1 Bunch • ₹25</span>
                   </a>
                 </div>
                 <div class="col-6 col-sm-3 reveal-on-scroll delay-200">
                   <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
-                    <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=300&q=80" alt="Farm Avocados" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <img src="assets/ext_89caf15e.webp" alt="Farm Avocados" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
                     <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Farm Avocados</h6>
                     <span class="badge bg-white text-dark border fw-bold mt-1">2 Pcs • ₹140</span>
                   </a>
                 </div>
                 <div class="col-6 col-sm-3 reveal-on-scroll delay-250">
                   <a href="shop.html" class="ingredient-thumb-card border rounded-3 p-2 text-center bg-light text-decoration-none d-block">
-                    <img src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?auto=format&fit=crop&w=300&q=80" alt="Microgreens" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
+                    <img src="assets/ext_45c8fc8b.webp" alt="Microgreens" class="img-fluid rounded mb-2" style="height: 75px; width: 100%; object-fit: cover;">
                     <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.88rem;">Microgreens</h6>
                     <span class="badge bg-white text-dark border fw-bold mt-1">100g • ₹140</span>
                   </a>
                 </div>
               </div>
 
-              <!-- NUTRITIONAL HIGHLIGHTS BAR -->
+              
               <div class="p-3 bg-emerald-50 rounded-3 border mb-3">
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
                   <div class="d-flex align-items-center gap-2">
@@ -526,7 +526,7 @@
                 </div>
               </div>
 
-              <!-- FARM ORIGIN & PREPARATION SPECS BAR (FILLS EMPTY SPACE BEAUTIFULLY) -->
+              
               <div class="p-2.5 bg-light rounded-3 border mb-3">
                 <div class="row g-2 text-center">
                   <div class="col-4 border-end">
@@ -557,7 +557,7 @@
     </div>
   </section>
 
-  <!-- ENHANCED SALEM COMMUNITY IMPACT SECTION (FINE-GRAINED CARD SCROLL REVEALS) -->
+  
   <section class="community-impact-section p-4 p-md-5">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
@@ -614,7 +614,7 @@
     </div>
   </section>
 
-  <!-- Live Salem Farm Harvest Cam Preview -->
+  
   <section class="section-compact bg-white">
     <div class="container">
       <div class="row align-items-center g-4">
@@ -641,14 +641,14 @@
         <div class="col-lg-6 reveal-from-right">
           <div class="card-3d p-0 overflow-hidden zoom-img-container rounded-4">
             <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold"><i class="fa-solid fa-circle me-1"></i> LIVE CAM FEED</span>
-            <img src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80" alt="Salem Organic Farm Harvest" class="img-fluid w-100" style="max-height: 280px; object-fit: cover;">
+            <img src="assets/ext_d787a8dc.webp" alt="Salem Organic Farm Harvest" class="img-fluid w-100" style="max-height: 280px; object-fit: cover;">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Categories Grid (STAGGERED CATEGORY CARD SCROLL ENTRANCES) -->
+  
   <section class="section-compact">
     <div class="container">
       <div class="d-flex justify-content-between align-items-end mb-3 reveal-on-scroll">
@@ -700,7 +700,7 @@
     </div>
   </section>
 
-  <!-- FLASH SALE BANNER -->
+  
   <section class="py-2">
     <div class="container">
       <div class="flash-sale-banner d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
@@ -724,7 +724,7 @@
     </div>
   </section>
 
-  <!-- INFINITE SLIDING REVIEWS CAROUSEL (SEAMLESS CONTINUOUS LOOP) -->
+  
   <section class="section-compact bg-white border-top">
     <div class="container">
       <div class="text-center max-w-2xl mx-auto mb-3 reveal-on-scroll">
@@ -735,7 +735,7 @@
 
       <div class="reviews-carousel-wrapper reveal-on-scroll delay-150">
         <div class="reviews-carousel-track">
-          <!-- Set 1: 4 Cards -->
+          
           <div class="review-box-card">
             <div>
               <div class="d-flex align-items-center justify-content-between mb-2">
@@ -804,7 +804,7 @@
             </div>
           </div>
 
-          <!-- Set 2: Duplicate 4 Cards for Seamless Infinite Loop -->
+          
           <div class="review-box-card">
             <div>
               <div class="d-flex align-items-center justify-content-between mb-2">
@@ -877,7 +877,7 @@
     </div>
   </section>
 
-  <!-- RESTORED ORIGINAL DARK SITE FOOTER -->
+  
   <footer class="site-footer">
     <div class="container">
       <div class="footer-newsletter-card mb-4">
@@ -898,7 +898,7 @@
       </div>
 
             <div class="row g-4 pb-4">
-        <!-- Column 1: Brand & Socials -->
+        
         <div class="col-lg-4 col-md-6">
           <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;" class="mb-3">
           <p class="text-slate-300 small mb-3">
@@ -912,7 +912,7 @@
           </div>
         </div>
 
-        <!-- Column 2: Navigation (All 6 Top Navbar Menu Items) -->
+        
         <div class="col-lg-2 col-6">
           <h6 class="fw-bold mb-3 text-white">Quick Navigation</h6>
           <ul class="list-unstyled small d-grid gap-2">
@@ -925,7 +925,7 @@
           </ul>
         </div>
 
-        <!-- Column 3: Customer Care & Legal (All Links Redirect to 404.html) -->
+        
         <div class="col-lg-2 col-6">
           <h6 class="fw-bold mb-3 text-white">Customer Care</h6>
           <ul class="list-unstyled small d-grid gap-2">
@@ -938,7 +938,7 @@
           </ul>
         </div>
 
-        <!-- Column 4: Get In Touch & Hours (Balanced Contact Card) -->
+        
         <div class="col-lg-4 col-md-6">
           <h6 class="fw-bold mb-3 text-white">Get In Touch</h6>
           <ul class="list-unstyled small d-grid gap-2 text-slate-300 mb-3">
@@ -975,7 +975,7 @@
     </div>
   </footer>
 
-  <!-- Shopping Cart Modal -->
+  
   <div class="modal fade" id="cartModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -1002,3 +1002,4 @@
   <script src="main.js"></script>
 </body>
 </html>
+

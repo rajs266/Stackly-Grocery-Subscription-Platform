@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Preloader -->
+  
   <div id="global-preloader">
     <div class="loader-box">
       <div class="loader-box-face front"></div>
@@ -28,12 +28,12 @@
     <div class="loader-text">STACKLY</div>
   </div>
 
-  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  
   <canvas id="glow-cursor-canvas"></canvas>
   <canvas id="three-canvas-bg"></canvas>
   <div class="floating-leaves-container"></div>
 
-  <!-- Top Announcement Bar -->
+  
   <div class="top-bar text-center">
     <div class="container d-flex justify-content-between align-items-center">
       <span><i class="fa-solid fa-truck-fast me-2"></i> Free Doorstep Express Delivery in Salem on all Weekly Subscriptions!</span>
@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-  <!-- Main Navigation Bar -->
+  
   <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
@@ -61,7 +61,7 @@
       </div>
 
       <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa-solid fa-bars text-dark fs-3"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="stacklyNav">
@@ -102,8 +102,8 @@
     </div>
   </nav>
 
-  <!-- PAGE HERO SECTION WITH FULL-WIDTH BACKGROUND IMAGE -->
-  <section class="page-hero-fullbg" style="background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1600&q=80');">
+  
+  <section class="page-hero-fullbg" style="background-image: url('assets/ext_c8589d81.webp');">
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
       <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-3">
@@ -129,13 +129,13 @@
     </div>
   </section>
 
-  <!-- SECTION 1: CATEGORY FILTER PILLS & LIVE SEARCH BAR -->
+  
   <section class="section-compact bg-white" id="market-catalog">
     <div class="container py-3">
-      <!-- SECTION 1: SINGLE-LINE SEARCH & CATEGORY FILTER TOOLBAR -->
+      
       <div class="shop-toolbar-card p-2.5 p-md-3 bg-light rounded-pill border shadow-sm mb-4">
         <div class="d-flex align-items-center justify-content-between gap-3 flex-nowrap">
-          <!-- Search Bar -->
+          
           <div class="shop-search-wrapper flex-grow-1" style="min-width: 220px; max-width: 420px;">
             <div class="input-group bg-white rounded-pill overflow-hidden border shadow-sm">
               <span class="input-group-text bg-white border-0 ps-3 text-success"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <!-- Single-Line Category Filter Buttons -->
+          
           <div class="shop-filter-pills-container d-flex align-items-center gap-2 overflow-x-auto flex-nowrap py-1 flex-shrink-0" style="scrollbar-width: none; -ms-overflow-style: none;">
             <button class="shop-filter-btn btn btn-success rounded-pill px-3 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm text-nowrap" data-filter="all">
               <i class="fa-solid fa-layer-group small"></i> <span>All Harvest</span> <span class="badge bg-white text-success rounded-pill ms-1" id="count-all">12</span>
@@ -164,9 +164,9 @@
         </div>
       </div>
 
-      <!-- SECTION 2: 12 PRODUCE PRODUCTS GRID -->
+      
       <div class="row g-4 mb-4" id="shop-products-grid">
-        <!-- Product Item 1: Tomatoes -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Native Heirloom Tomatoes" data-tags="tomatoes veg vegetable red farm harvest chinna thirupathi pesticide-free 1kg">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -183,7 +183,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 2: Milk -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="dairy" data-title="Native A2 Country Milk" data-tags="milk dairy a2 cow glass bottle native fresh salem morning 1l">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -200,7 +200,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 3: Ghee -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="dairy staples" data-title="A2 Country Cow Ghee" data-tags="ghee bilona churned a2 cow dairy staples traditional butter glass jar 500g">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -217,7 +217,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 4: Honey -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="staples" data-title="Yercaud Raw Wild Honey" data-tags="honey wild raw yercaud foothills unfiltered pure forest apiary 500g">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -234,7 +234,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 5: Spinach -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Organic Farm Spinach" data-tags="spinach greens leafy omalur agro farm fresh plucked keerai vegetable 250g">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -251,7 +251,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 6: Bell Peppers -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Organic Bell Peppers" data-tags="bell peppers capsicum yellow red mix yercaud foothills organic veggies 500g">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -268,7 +268,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 7: Sesame Oil -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="staples" data-title="Cold-Pressed Sesame Oil" data-tags="sesame oil marachekku wood pressed oil gingelly nallennai traditional staples 1l">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -285,7 +285,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 8: Carrots -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Soil-Plucked Farm Carrots" data-tags="carrots vegetable veg orange fresh soil plucked santhiyur farm 1kg">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -302,7 +302,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 9: Shallots -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Native Salem Shallots" data-tags="shallots small onions chinna vengayam veg vegetable salem harvest organic 1kg">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -319,7 +319,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 10: Cucumber -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="vegetables" data-title="Organic Farm Cucumber" data-tags="cucumber vellarikkai salad crisp garden mettur green agro vegetable 1kg">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -336,7 +336,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 11: Rice -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="staples" data-title="Seeraga Samba Rice" data-tags="seeraga samba rice grain unpolished organic traditional staples biryani rice 5kg">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -353,7 +353,7 @@
             </button>
           </div>
         </div>
-        <!-- Product Item 12: Eggs -->
+        
         <div class="col-md-3 shop-product-item reveal-on-scroll" data-category="dairy" data-title="Country Free-Range Eggs" data-tags="eggs country eggs nattu kozhi mutta hen free range organic dairy 6pcs">
           <div class="card-3d p-3 bg-light rounded-4 border text-center h-100 d-flex flex-column justify-content-between">
             <div class="zoom-img-container rounded-3 mb-2">
@@ -371,7 +371,7 @@
           </div>
         </div>
 
-        <!-- No Products Found Empty State -->
+        
         <div id="no-products-found" class="col-12 text-center py-5 d-none">
           <div class="p-5 bg-light rounded-4 border max-w-md mx-auto">
             <div class="mb-3 text-muted">
@@ -386,7 +386,7 @@
         </div>
       </div>
 
-      <!-- PAGINATION CONTROLS (CLICKING REDIRECTS TO 404.HTML) -->
+      
       <nav aria-label="Catalog Page Navigation" class="mt-4 pb-2">
         <ul class="pagination pagination-responsive justify-content-center align-items-center gap-1 gap-sm-2 mb-0">
           <li class="page-item disabled">
@@ -416,7 +416,7 @@
     </div>
   </section>
 
-  <!-- SECTION 3: HARVEST FLASH SALE BANNER WITH LIVE COUNTDOWN TIMER -->
+  
   <section class="section-compact bg-dark text-white position-relative overflow-hidden" id="flash-sale" style="background: linear-gradient(135deg, #0f172a 0%, #14532d 100%);">
     <div class="container py-4">
       <div class="row align-items-center g-4">
@@ -427,7 +427,7 @@
             Freshly plucked Yercaud avocados paired with traditional A2 cow ghee. Placed directly into your weekly morning drop basket.
           </p>
 
-          <!-- COUNTDOWN TIMER DISPLAY -->
+          
           <div class="d-flex gap-2 gap-sm-3 text-center mb-4 flex-wrap">
             <div class="bg-white bg-opacity-10 p-2.5 p-sm-3 rounded-3 border border-light border-opacity-10 flex-grow-1" style="min-width: 70px;">
               <h3 class="fw-extrabold text-warning mb-0" id="cd-hours">22</h3>
@@ -451,7 +451,7 @@
         </div>
 
         <div class="col-lg-5 reveal-from-right text-center">
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Farm Harvest Basket" class="img-fluid rounded-4 shadow-lg border border-light border-opacity-25" style="max-height: 280px; object-fit: cover;">
+          <img src="assets/ext_90ca0abb.webp" alt="Farm Harvest Basket" class="img-fluid rounded-4 shadow-lg border border-light border-opacity-25" style="max-height: 280px; object-fit: cover;">
         </div>
       </div>
     </div>
@@ -550,7 +550,7 @@
     </div>
   </footer>
 
-  <!-- Shopping Cart Modal -->
+  
   <div class="modal fade" id="cartModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4 border-0 shadow-lg">

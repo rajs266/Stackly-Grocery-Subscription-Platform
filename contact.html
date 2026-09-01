@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Preloader -->
+  
   <div id="global-preloader">
     <div class="loader-box">
       <div class="loader-box-face front"></div>
@@ -28,12 +28,12 @@
     <div class="loader-text">STACKLY</div>
   </div>
 
-  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  
   <canvas id="glow-cursor-canvas"></canvas>
   <canvas id="three-canvas-bg"></canvas>
   <div class="floating-leaves-container"></div>
 
-  <!-- Top Announcement Bar -->
+  
   <div class="top-bar text-center">
     <div class="container d-flex justify-content-between align-items-center">
       <span><i class="fa-solid fa-truck-fast me-2"></i> Free Doorstep Express Delivery in Salem on all Weekly Subscriptions!</span>
@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-  <!-- Main Navigation Bar -->
+  
   <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
@@ -61,7 +61,7 @@
       </div>
 
       <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa-solid fa-bars text-dark fs-3"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="stacklyNav">
@@ -102,8 +102,8 @@
     </div>
   </nav>
 
-  <!-- PAGE HERO SECTION WITH FULL-WIDTH BACKGROUND IMAGE -->
-  <section class="page-hero-fullbg" style="background-image: url('https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=1600&q=80');">
+  
+  <section class="page-hero-fullbg" style="background-image: url('assets/ext_6ff62820.webp');">
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
       <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-3">
@@ -129,11 +129,11 @@
     </div>
   </section>
 
-  <!-- SECTION 1: CONTACT FORM & HQ DETAILS -->
+  
   <section class="section-compact bg-white" id="contact-form">
     <div class="container py-3">
       <div class="row g-4">
-        <!-- HQ Details -->
+        
         <div class="col-lg-5 reveal-from-left">
           <div class="p-4 p-md-5 rounded-4 text-white h-100 shadow-lg d-flex flex-column justify-content-between" style="background: linear-gradient(160deg, #0f172a 0%, #14532d 100%);">
             <div>
@@ -175,7 +175,7 @@
                 </div>
               </div>
 
-              <!-- Social Media & WhatsApp Callout -->
+              
               <div class="mt-4 pt-4 border-top border-light border-opacity-10">
                 <p class="small text-white-50 fw-semibold mb-3">Connect with Stackly Community</p>
                 <div class="d-flex align-items-center justify-content-between">
@@ -198,7 +198,7 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
+        
         <div class="col-lg-7 reveal-from-right">
           <div class="card-3d p-4 p-md-5 bg-light rounded-4 border shadow-sm h-100">
             <h4 class="fw-bold text-dark mb-1">Send Us a Message</h4>
@@ -238,22 +238,22 @@
               </button>
             </form>
 
-            <!-- Custom Form Validation Logic -->
+            
             <script>
               document.addEventListener('DOMContentLoaded', () => {
                 const form = document.getElementById('contact-us-form');
                 
                 form.addEventListener('submit', (e) => {
-                  e.preventDefault(); // Stop default submission & global wobble
+                  e.preventDefault(); 
                   e.stopPropagation();
 
                   let isValid = true;
                   
-                  // Hide all errors initially
+                  
                   document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
                   form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
 
-                  // Helper function to show error
+                  
                   function showError(inputId, errorId) {
                     document.getElementById(inputId).classList.add('is-invalid');
                     document.getElementById(errorId).style.display = 'block';
@@ -264,41 +264,41 @@
                     document.getElementById(errorId).style.display = 'none';
                   }
 
-                  // Validate Name (Alphabets and spaces only)
+                  
                   const nameVal = document.getElementById('contact-name').value.trim();
                   if (!/^[A-Za-z\s]+$/.test(nameVal) || nameVal === '') {
                     showError('contact-name', 'error-name');
                   } else hideError('contact-name', 'error-name');
 
-                  // Validate Email
+                  
                   const emailVal = document.getElementById('contact-email').value.trim();
                   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal) || emailVal === '') {
                     showError('contact-email', 'error-email');
                   } else hideError('contact-email', 'error-email');
 
-                  // Validate Phone (10 digits minimum, optional +91 or spaces)
+                  
                   const phoneVal = document.getElementById('contact-phone').value.replace(/[\s\-\+]/g, '');
                   if (!/^\d{10,12}$/.test(phoneVal) || phoneVal === '') {
                     showError('contact-phone', 'error-phone');
                   } else hideError('contact-phone', 'error-phone');
 
-                  // Validate Subject
+                  
                   const subjectVal = document.getElementById('contact-subject').value.trim();
                   if (subjectVal === '') {
                     showError('contact-subject', 'error-subject');
                   } else hideError('contact-subject', 'error-subject');
 
-                  // Validate Message
+                  
                   const msgVal = document.getElementById('contact-message').value.trim();
                   if (msgVal === '') {
                     showError('contact-message', 'error-message');
                   } else hideError('contact-message', 'error-message');
 
-                  // If valid, submit programmatically
+                  
                   if (isValid) {
                     form.submit();
                   }
-                }, true); // Use capture to intercept before main.js
+                }, true); 
               });
             </script>
           </div>
@@ -307,7 +307,7 @@
     </div>
   </section>
 
-  <!-- NEW SECTION 2: SALEM DELIVERY HUBS & FARM MAP CARDS -->
+  
   <section class="section-compact bg-emerald-50" id="salem-hubs">
     <div class="container py-3">
       <div class="text-center max-w-2xl mx-auto mb-4 reveal-on-scroll">
@@ -449,7 +449,7 @@
     </div>
   </footer>
 
-  <!-- Shopping Cart Modal -->
+  
   <div class="modal fade" id="cartModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4 border-0 shadow-lg">

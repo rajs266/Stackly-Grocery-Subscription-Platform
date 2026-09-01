@@ -1,23 +1,41 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard Ã¢â‚¬â€ Stackly Operations Control</title>
+
+  <title>Admin Dashboard — Stackly Operations Control</title>
+
   
+
   <link rel="icon" href="assets/top-logo.webp" type="image/webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
+
   
-  <!-- ApexCharts for Admin Analytics -->
+
+  
+
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
+
 <body>
-  <!-- Preloader -->
+  
   <div id="global-preloader">
     <div class="loader-box">
       <div class="loader-box-face front"></div>
@@ -30,139 +48,296 @@
     <div class="loader-text">STACKLY</div>
   </div>
 
+
+
   <canvas id="three-canvas-bg"></canvas>
+
   <div class="floating-leaves-container"></div>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2 border-bottom">
-    <div class="container-fluid px-lg-5">
+
+
+  
+
+  <nav class="navbar sticky-top bg-white shadow-sm py-2 border-bottom">
+    <div class="container-fluid px-lg-5 d-flex align-items-center justify-content-between">
       <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
         <img src="assets/logo.webp" alt="Stackly Logo">
       </a>
 
-      <!-- Mobile Right Controls -->
-      <div class="d-flex align-items-center gap-3 ms-auto me-2 d-lg-none">
-        <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative">
-          <i class="fa-solid fa-bell text-dark"></i>
+      
+      <div class="d-flex align-items-center gap-3 ms-auto">
+        
+        <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative hover-lift" title="Notifications">
+          <i class="fa-solid fa-bell text-dark px-1"></i>
           <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
         </button>
-      </div>
 
-      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        
+        <a href="signin.html" class="btn btn-outline-danger fw-bold rounded-pill px-4 hover-lift d-none d-lg-inline-flex align-items-center">
+          <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout
+        </a>
 
-      <div class="collapse navbar-collapse" id="dashboardNav">
-        <div class="ms-auto d-flex align-items-center gap-3 mt-3 mt-lg-0">
-          
-          <button class="btn btn-light rounded-circle p-2 border shadow-sm position-relative d-none d-lg-block hover-lift">
-            <i class="fa-solid fa-bell text-dark px-1"></i>
-            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-          </button>
-          
-          <a href="signin.html" class="btn btn-outline-danger fw-bold rounded-pill px-4 hover-lift ms-lg-3">
-            <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout
-          </a>
-        </div>
+        
+        <button type="button" class="btn btn-light border rounded-pill px-3 py-1.5 fw-bold d-flex align-items-center gap-2 shadow-sm d-lg-none mobile-dash-toggle-btn" onclick="toggleDashSidebar()" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars text-dark fs-5"></i>
+          <span class="small fw-bold">Menu</span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- Admin Dashboard Layout -->
+
+
+  
+
+  <div id="dashSidebarOverlay" class="dashboard-sidebar-overlay" onclick="closeDashSidebar()"></div>
+
   <div class="dashboard-wrapper">
-    <!-- Sidebar -->
+
+    
+
     <div class="dashboard-sidebar">
-      <div class="p-3 text-center bg-emerald-50 rounded-4 mb-4 shadow-sm border border-success border-opacity-10 overflow-hidden">
-        <img src="assets/team_arjun.webp" alt="Admin" class="rounded-circle mb-2 shadow-sm border border-2 border-white" style="width: 70px; height: 70px; object-fit: cover;">
-        <h6 class="fw-bold mb-0 text-truncate" id="adminDashProfileNameSidebar">Arjun Kumar</h6>
-        <div class="text-muted fw-bold mt-1" id="adminDashProfileSidebarEmail" style="font-size: 0.65rem !important; line-height: 1.4; word-break: break-all; white-space: normal; opacity: 0.85; max-width: 100%;">admin@stackly.com</div>
+      <div class="d-flex justify-content-between align-items-center mb-3 d-lg-none pb-2 border-bottom">
+        <span class="fw-bold text-muted small">DASHBOARD MENU</span>
+        <button type="button" class="btn btn-sm btn-light rounded-circle shadow-sm p-1 border" onclick="closeDashSidebar()" style="width: 32px; height: 32px;" aria-label="Close menu">
+          <i class="fa-solid fa-xmark text-dark"></i>
+        </button>
       </div>
+
+      <div class="p-3 text-center bg-success bg-opacity-10 rounded-4 mb-4 border border-success border-opacity-20 shadow-sm">
+        <img src="assets/team_arjun.webp" alt="Admin Profile" class="rounded-circle mb-2 shadow-sm border border-2 border-white" style="width: 65px; height: 65px; object-fit: cover;">
+        <h6 class="fw-bold mb-1 text-dark fs-6" id="adminDashProfileNameSidebar">Arjun Kumar</h6>
+        <div class="text-muted fw-semibold text-break" style="font-size: 0.78rem; opacity: 0.85;" id="adminDashProfileSidebarEmail">admin@stackly.com</div>
+        <span class="badge bg-danger text-white fw-bold px-3 py-1 rounded-pill mt-2" style="font-size: 0.72rem;"><i class="fa-solid fa-crown me-1"></i> SYSTEM ADMIN</span>
+      </div>
+
+
 
       <div class="dash-nav-list">
+
         <a href="#" class="dash-nav-item active" onclick="switchAdminTab('overview', this)">
+
           <i class="fa-solid fa-chart-line"></i> Operations Overview
+
         </a>
+
         <a href="#" class="dash-nav-item" onclick="switchAdminTab('deliveries', this)">
+
           <i class="fa-solid fa-truck-ramp-box"></i> Delivery Dispatch Queue
+
         </a>
+
         <a href="#" class="dash-nav-item" onclick="switchAdminTab('inventory', this)">
+
           <i class="fa-solid fa-warehouse"></i> Inventory & Farms
+
         </a>
+
         <a href="#" class="dash-nav-item" onclick="switchAdminTab('subscribers', this)">
+
           <i class="fa-solid fa-users"></i> Subscriber Manager
+
         </a>
+
         <div class="dash-nav-divider my-2 border-top border-light-subtle"></div>
+
         <a href="#" class="dash-nav-item" onclick="switchAdminTab('settings', this)">
+
           <i class="fa-solid fa-gear"></i> Portal Settings
+
         </a>
+
         <a href="#" class="dash-nav-item text-danger" onclick="window.location.href='signin.html'">
+
           <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+
         </a>
+
       </div>
+
     </div>
 
-    <!-- Content Area -->
+
+
+    
     <div class="dashboard-content">
       
-      <!-- TAB 1: OVERVIEW -->
+      
       <div class="dash-tab-content" id="admin-tab-overview">
         <h4 class="fw-bold mb-4">Operations Control Center</h4>
         <div class="row g-4 mb-4">
-          <div class="col-md-3">
-            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 position-relative overflow-hidden shadow-sm">
-              <div class="position-absolute top-0 end-0 opacity-10 p-3"><i class="fa-solid fa-users fa-4x text-primary"></i></div>
-              <p class="text-muted small fw-bold mb-1">Active Subscribers</p>
-              <h3 class="fw-extrabold mb-0 text-primary">1,405</h3>
-              <p class="small text-success mt-2 mb-0"><i class="fa-solid fa-arrow-trend-up"></i> +12% this week</p>
+          <div class="col-md-6 col-xl-3">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted small fw-bold mb-1">Active Subscribers</p>
+                  <h3 class="fw-extrabold mb-0 text-primary">1,405</h3>
+                </div>
+                <div class="bg-primary bg-opacity-10 p-3 rounded-circle text-primary">
+                  <i class="fa-solid fa-users fs-3"></i>
+                </div>
+              </div>
+              <p class="small text-success mb-0"><i class="fa-solid fa-arrow-trend-up"></i> +12% this week</p>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 position-relative overflow-hidden shadow-sm">
-              <div class="position-absolute top-0 end-0 opacity-10 p-3"><i class="fa-solid fa-truck-fast fa-4x text-success"></i></div>
-              <p class="text-muted small fw-bold mb-1">Today's Deliveries</p>
-              <h3 class="fw-extrabold mb-0 text-success">420</h3>
-              <p class="small text-muted mt-2 mb-0">85% completed</p>
+          <div class="col-md-6 col-xl-3">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted small fw-bold mb-1">Today's Deliveries</p>
+                  <h3 class="fw-extrabold mb-0 text-success">420</h3>
+                </div>
+                <div class="bg-success bg-opacity-10 p-3 rounded-circle text-success">
+                  <i class="fa-solid fa-truck-fast fs-3"></i>
+                </div>
+              </div>
+              <p class="small text-muted mb-0">85% completed</p>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 position-relative overflow-hidden shadow-sm">
-              <div class="position-absolute top-0 end-0 opacity-10 p-3"><i class="fa-solid fa-leaf fa-4x text-warning"></i></div>
-              <p class="text-muted small fw-bold mb-1">Total Harvest Volume</p>
-              <h3 class="fw-extrabold mb-0 text-warning">2.4 Tons</h3>
-              <p class="small text-muted mt-2 mb-0">Across 3 Salem Zones</p>
+          <div class="col-md-6 col-xl-3">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted small fw-bold mb-1">Total Harvest Volume</p>
+                  <h3 class="fw-extrabold mb-0 text-warning">2.4 Tons</h3>
+                </div>
+                <div class="bg-warning bg-opacity-10 p-3 rounded-circle text-warning">
+                  <i class="fa-solid fa-leaf fs-3"></i>
+                </div>
+              </div>
+              <p class="small text-muted mb-0">Across 3 Salem Zones</p>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 position-relative overflow-hidden shadow-sm">
-              <div class="position-absolute top-0 end-0 opacity-10 p-3"><i class="fa-solid fa-indian-rupee-sign fa-4x text-danger"></i></div>
-              <p class="text-muted small fw-bold mb-1">Weekly Revenue</p>
-              <h3 class="fw-extrabold mb-0 text-danger">?2.8L</h3>
-              <p class="small text-success mt-2 mb-0"><i class="fa-solid fa-arrow-trend-up"></i> +4% growth</p>
+          <div class="col-md-6 col-xl-3">
+            <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover h-100 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <p class="text-muted small fw-bold mb-1">Weekly Revenue</p>
+                  <h3 class="fw-extrabold mb-0 text-danger">₹2.8L</h3>
+                </div>
+                <div class="bg-danger bg-opacity-10 p-3 rounded-circle text-danger">
+                  <i class="fa-solid fa-indian-rupee-sign fs-3"></i>
+                </div>
+              </div>
+              <p class="small text-success mb-0"><i class="fa-solid fa-arrow-trend-up"></i> +4% growth</p>
             </div>
           </div>
         </div>
-        <h5 class="fw-bold mb-3 mt-5">Revenue Analytics (MTD)</h5>
-        <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover">
-          <div class="d-flex align-items-end gap-2" style="height: 150px;">
-            <div class="bg-success rounded-top w-100" style="height: 40%;"></div>
-            <div class="bg-success rounded-top w-100 opacity-75" style="height: 60%;"></div>
-            <div class="bg-success rounded-top w-100 opacity-50" style="height: 45%;"></div>
-            <div class="bg-success rounded-top w-100 opacity-75" style="height: 80%;"></div>
-            <div class="bg-success rounded-top w-100" style="height: 100%;"></div>
-            <div class="bg-success rounded-top w-100 opacity-50" style="height: 50%;"></div>
-            <div class="bg-success rounded-top w-100 opacity-25" style="height: 70%;"></div>
-          </div>
-          <div class="d-flex justify-content-between mt-2 small text-muted fw-bold"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        
+        <div class="d-flex align-items-center justify-content-between mb-3 mt-5">
+          <h5 class="fw-bold mb-0"><i class="fa-solid fa-seedling text-success me-2"></i> Live Harvest & Farm Highlights</h5>
+          <span class="badge bg-success-subtle text-success fw-bold px-3 py-1.5 rounded-pill"><i class="fa-solid fa-circle-dot me-1 text-success pulse-animation"></i> 5 AM Daily Harvest</span>
         </div>
-        <h5 class="fw-bold mb-3 mt-5">System Health</h5>
-        <div class="row g-3"><div class="col-md-6"><div class="card-3d p-3 rounded-4 bg-success text-white border-0 glass-card-hover d-flex align-items-center gap-3"><i class="fa-solid fa-server fa-2x"></i><div><h6 class="fw-bold mb-0">API Servers</h6><p class="small mb-0">100% Uptime</p></div></div></div><div class="col-md-6"><div class="card-3d p-3 rounded-4 bg-success text-white border-0 glass-card-hover d-flex align-items-center gap-3"><i class="fa-solid fa-database fa-2x"></i><div><h6 class="fw-bold mb-0">Database Sync</h6><p class="small mb-0">Real-time Active</p></div></div></div></div>
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm h-100">
+              <div class="position-relative" style="height: 160px; overflow: hidden;">
+                <img src="assets/tomatoes.webp" alt="Fresh Harvest" class="w-100 h-100" style="object-fit: cover; transition: transform 0.4s ease;">
+                <span class="position-absolute top-0 start-0 m-3 badge bg-success fw-bold rounded-pill shadow-sm"><i class="fa-solid fa-truck-ramp-box me-1"></i> DISPATCHING NOW</span>
+              </div>
+              <div class="p-4">
+                <h6 class="fw-bold mb-1">Shevaroy Foothills Harvest</h6>
+                <p class="small text-muted mb-3">Vine-ripened Tomatoes & Organic Greens plucked at 5:00 AM.</p>
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top border-light-subtle">
+                  <small class="text-muted fw-semibold"><i class="fa-solid fa-user-gear me-1"></i> Kaliappan G.</small>
+                  <span class="badge bg-success bg-opacity-10 text-success fw-bold">850 kg Yield</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm h-100">
+              <div class="position-relative" style="height: 160px; overflow: hidden;">
+                <img src="assets/milk.webp" alt="Pure Milk" class="w-100 h-100" style="object-fit: cover; transition: transform 0.4s ease;">
+                <span class="position-absolute top-0 start-0 m-3 badge bg-primary fw-bold rounded-pill shadow-sm"><i class="fa-solid fa-snowflake me-1"></i> COLD CHAIN ACTIVE</span>
+              </div>
+              <div class="p-4">
+                <h6 class="fw-bold mb-1">Yercaud Altitude Dairy Drop</h6>
+                <p class="small text-muted mb-3">Pure A2 Native Cow Milk chilled to 4°C for morning deliveries.</p>
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top border-light-subtle">
+                  <small class="text-muted fw-semibold"><i class="fa-solid fa-user-gear me-1"></i> Selvi M.</small>
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-bold">600 L Volume</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-3d rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm h-100">
+              <div class="position-relative" style="height: 160px; overflow: hidden;">
+                <img src="assets/honey.webp" alt="Wild Honey" class="w-100 h-100" style="object-fit: cover; transition: transform 0.4s ease;">
+                <span class="position-absolute top-0 start-0 m-3 badge bg-warning text-dark fw-bold rounded-pill shadow-sm"><i class="fa-solid fa-crown me-1"></i> PREMIUM BATCH</span>
+              </div>
+              <div class="p-4">
+                <h6 class="fw-bold mb-1">Omalur Raw Wild Apiary</h6>
+                <p class="small text-muted mb-3">100% Raw Unprocessed Forest Honey bottled in glass jars.</p>
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top border-light-subtle">
+                  <small class="text-muted fw-semibold"><i class="fa-solid fa-user-gear me-1"></i> Murugan R.</small>
+                  <span class="badge bg-warning bg-opacity-10 text-warning fw-bold">Batch #AY-942</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <h5 class="fw-bold mb-3 mt-5"><i class="fa-solid fa-map-location-dot text-primary me-2"></i> Salem Zone Delivery Fleet Radar</h5>
+        <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover shadow-sm mb-4">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded-4 border h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold mb-0">Zone 1: Hasthampatti</h6>
+                  <span class="badge bg-success-subtle text-success fw-bold">92% Done</span>
+                </div>
+                <div class="progress mb-3" style="height: 8px;">
+                  <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 92%"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                  <span>380 / 413 Drops</span>
+                  <span class="fw-bold text-dark">Driver: Vignesh</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded-4 border h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold mb-0">Zone 2: Omalur Road</h6>
+                  <span class="badge bg-primary-subtle text-primary fw-bold">84% Done</span>
+                </div>
+                <div class="progress mb-3" style="height: 8px;">
+                  <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width: 84%"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                  <span>310 / 368 Drops</span>
+                  <span class="fw-bold text-dark">Driver: Suresh</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded-4 border h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold mb-0">Zone 3: Fairlands</h6>
+                  <span class="badge bg-warning-subtle text-warning-emphasis fw-bold">78% Done</span>
+                </div>
+                <div class="progress mb-3" style="height: 8px;">
+                  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 78%"></div>
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                  <span>280 / 358 Drops</span>
+                  <span class="fw-bold text-dark">Driver: Arjun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <h5 class="fw-bold mb-3 mt-5">Recent Customer Feedback</h5>
         <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover border-start border-4 border-warning"><h6 class="fw-bold">"Best organic veggies in Salem!"</h6><p class="small text-muted mb-0">- Priya N. (Aug 30)</p></div>
         <h5 class="fw-bold mb-3 mt-5">Top Performing Farms</h5>
         <div class="card-3d p-0 rounded-4 bg-white border-0 glass-card-hover overflow-hidden shadow-sm"><ul class="list-group list-group-flush"><li class="list-group-item p-3 fw-bold"><i class="fa-solid fa-medal text-warning me-2"></i> Yercaud Hillside <span class="badge bg-success float-end">99% Quality Score</span></li><li class="list-group-item p-3 fw-bold"><i class="fa-solid fa-medal text-secondary me-2"></i> Omalur Dairy <span class="badge bg-success float-end">97% Quality Score</span></li></ul></div>
       </div>
 
-      <!-- TAB 2: DELIVERIES QUEUE -->
+      
       <div class="dash-tab-content d-none" id="admin-tab-deliveries">
         <h4 class="fw-bold mb-4">Live Dispatch Queue</h4>
         <div class="row g-4 mb-4">
@@ -175,7 +350,7 @@
               <div class="progress mb-2" style="height: 8px;">
                 <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 75%"></div>
               </div>
-              <small class="text-muted fw-bold">Driver: Muthu (TN 30 AA 1234) � 32/45 Drops Completed</small>
+              <small class="text-muted fw-bold">Driver: Muthu (TN 30 AA 1234) • 32/45 Drops Completed</small>
             </div>
           </div>
           <div class="col-md-4">
@@ -194,7 +369,7 @@
         <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover d-flex align-items-center gap-4"><i class="fa-solid fa-map-location-dot fa-4x text-primary pulse-animation"></i><div><h6 class="fw-bold">High Density Areas Today</h6><p class="small text-muted mb-0">Hasthampatti, Alagapuram, Fairlands</p></div></div>
       </div>
 
-      <!-- TAB 3: INVENTORY & FARMS -->
+      
       <div class="dash-tab-content d-none" id="admin-tab-inventory">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h4 class="fw-bold mb-0">Farm Inventory Hub</h4>
@@ -232,22 +407,22 @@
         <div class="card-3d p-4 rounded-4 bg-danger bg-opacity-10 border-0 glass-card-hover"><div class="d-flex justify-content-between align-items-center"><h6 class="text-danger fw-bold mb-0"><i class="fa-solid fa-triangle-exclamation me-2"></i> Tomatoes (Overripe)</h6><span class="badge bg-danger fs-6">12 kg loss</span></div></div>
       </div>
 
-      <!-- TAB 4: SUBSCRIBERS -->
+      
       <div class="dash-tab-content d-none" id="admin-tab-subscribers">
         <h4 class="fw-bold mb-4">Subscriber Management</h4>
-        <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover mb-4">
-          <div class="row align-items-center text-center">
-            <div class="col-4 border-end">
-              <h2 class="fw-extrabold text-dark mb-0">1,405</h2>
-              <small class="text-muted fw-bold">Total Users</small>
+        <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover mb-4 shadow-sm">
+          <div class="row text-center align-items-center">
+            <div class="col-12 col-sm-4 border-sm-end pb-3 pb-sm-0">
+              <h2 class="fw-extrabold text-dark mb-1">1,405</h2>
+              <span class="text-muted small fw-bold">Total Users</span>
             </div>
-            <div class="col-4 border-end">
-              <h2 class="fw-extrabold text-success mb-0">1,250</h2>
-              <small class="text-muted fw-bold">Active Subscriptions</small>
+            <div class="col-12 col-sm-4 border-sm-end pb-3 pb-sm-0 border-top border-top-sm-0 pt-3 pt-sm-0">
+              <h2 class="fw-extrabold text-success mb-1">1,250</h2>
+              <span class="text-muted small fw-bold">Active Subscriptions</span>
             </div>
-            <div class="col-4">
-              <h2 class="fw-extrabold text-warning mb-0">45</h2>
-              <small class="text-muted fw-bold">Paused/Vacation</small>
+            <div class="col-12 col-sm-4 border-top border-top-sm-0 pt-3 pt-sm-0">
+              <h2 class="fw-extrabold text-warning mb-1">45</h2>
+              <span class="text-muted small fw-bold">Paused / Vacation</span>
             </div>
           </div>
         </div>
@@ -257,7 +432,7 @@
         <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover border-start border-4 border-danger"><div class="d-flex flex-column flex-md-row align-items-md-center gap-3"><i class="fa-solid fa-triangle-exclamation fa-2x text-danger pulse-animation"></i><div><h6 class="fw-bold mb-0">23 Accounts skipped > 3 weeks</h6></div><button class="btn btn-sm btn-outline-danger ms-md-auto rounded-pill fw-bold" onclick="window.location.href='404.html'">Send Reactivation Offer</button></div></div>
       </div>
 
-      <!-- TAB 5: SETTINGS -->
+      
       <div class="dash-tab-content d-none" id="admin-tab-settings">
         <h4 class="fw-bold mb-4">Portal Settings</h4>
         <div class="row g-4">
@@ -289,7 +464,7 @@
           </div>
         </div>
         <h5 class="fw-bold mb-3 mt-5">API Keys & Integrations</h5>
-        <div class="card-3d p-4 rounded-4 bg-dark text-white border-0 glass-card-hover"><div class="d-flex justify-content-between mb-2"><h6 class="fw-bold"><i class="fa-solid fa-credit-card me-2"></i> Payment Gateway (Razorpay)</h6><span class="badge bg-success">Connected</span></div><code class="text-warning bg-black p-2 rounded d-block mt-3">rzp_live_83749283749283</code></div>
+        <div class="card-3d p-4 rounded-4 bg-dark text-white border-0 glass-card-hover"><div class="d-flex justify-content-between mb-2"><h6 class="fw-bold text-white"><i class="fa-solid fa-credit-card me-2"></i> Payment Gateway (Razorpay)</h6><span class="badge bg-success">Connected</span></div><code class="text-warning bg-black p-2 rounded d-block mt-3">rzp_live_83749283749283</code></div>
         <h5 class="fw-bold mb-3 mt-5">Admin Activity Log</h5>
         <div class="card-3d p-4 rounded-4 bg-white border-0 glass-card-hover"><p class="small text-muted mb-2"><strong>Arjun Kumar</strong> updated Inventory for Tomatoes <span class="float-end">10 mins ago</span></p><p class="small text-muted mb-0"><strong>Arjun Kumar</strong> added new Farm Partner <span class="float-end">2 hours ago</span></p></div>
       </div>
@@ -297,38 +472,76 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="main.js"></script>
+
   <script>
+
     function switchAdminTab(tabName, linkEl) {
+      const navCollapse = document.getElementById('dashboardNav');
+      if(navCollapse && navCollapse.classList.contains('show')) {
+        const bsCollapse = bootstrap.Collapse.getInstance(navCollapse) || new bootstrap.Collapse(navCollapse);
+        bsCollapse.hide(); document.body.style.overflow = ''; document.body.style.touchAction = '';
+      }
+
       document.querySelectorAll('.dash-nav-item').forEach(el => el.classList.remove('active'));
+
       linkEl.classList.add('active');
 
+
+
       document.querySelectorAll('.dash-tab-content').forEach(c => c.classList.add('d-none'));
+
       document.getElementById(`admin-tab-${tabName}`).classList.remove('d-none');
+
     }
 
-    // Initialize ApexCharts
+
+
+    
+
     document.addEventListener('DOMContentLoaded', () => {
-      // Area Chart
+
+      
+
       const revOptions = {
-        series: [{ name: 'MRR Revenue (Ã¢â€šÂ¹)', data: [22, 28, 34, 40, 42, 48.5] }],
+
+        series: [{ name: 'MRR Revenue (₹)', data: [22, 28, 34, 40, 42, 48.5] }],
+
         chart: { type: 'area', height: 280, toolbar: { show: false } },
+
         colors: ['#16a34a'],
+
         xaxis: { categories: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'] }
+
       };
+
       new ApexCharts(document.querySelector("#chart-revenue"), revOptions).render();
 
-      // Pie Chart
+
+
+      
+
       const pieOptions = {
+
         series: [45, 25, 20, 10],
+
         chart: { type: 'donut', height: 280 },
+
         labels: ['Family Harvest', 'Essential Veggie', 'Daily A2 Milk', 'Gourmet Kit'],
+
         colors: ['#16a34a', '#f97316', '#0284c7', '#8b5cf6']
+
       };
+
       new ApexCharts(document.querySelector("#chart-pie"), pieOptions).render();
+
     });
+
   </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const savedName = localStorage.getItem('stacklyUserName');
@@ -342,7 +555,36 @@
     });
   </script>
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

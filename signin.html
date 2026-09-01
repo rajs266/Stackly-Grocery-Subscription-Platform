@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-emerald-50">
-  <!-- Preloader -->
+  
   <div id="global-preloader">
     <div class="loader-box">
       <div class="loader-box-face front"></div>
@@ -31,11 +31,11 @@
   <canvas id="three-canvas-bg"></canvas>
   <div class="floating-leaves-container"></div>
 
-  <!-- SPLIT SCREEN SIGN IN CONTAINER -->
+  
   <div class="min-vh-100 py-4 d-flex align-items-center">
     <div class="container my-auto">
       
-      <!-- Top Brand Header Bar -->
+      
       <div class="d-flex align-items-center justify-content-between mb-4">
         <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
           <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;">
@@ -47,11 +47,11 @@
 
       <div class="row g-4 align-items-stretch">
         
-        <!-- LEFT SIDE: IMAGE CARD -->
+        
         <div class="col-lg-5 reveal-from-left d-none d-lg-block">
           <div class="p-4 p-md-5 rounded-4 text-white h-100 d-flex flex-column justify-content-between shadow-lg position-relative overflow-hidden" style="background: linear-gradient(160deg, rgba(15, 23, 42, 0.88) 0%, rgba(20, 83, 45, 0.94) 100%), url('assets/pexels-yankrukov-7793098.webp') center/cover no-repeat;">
             
-            <!-- Top Section -->
+            
             <div>
               <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill bg-white bg-opacity-10 border border-white border-opacity-25 mb-4 backdrop-blur">
                 <span class="d-flex align-items-center justify-content-center bg-success rounded-circle" style="width:24px; height:24px;">
@@ -68,13 +68,13 @@
               </p>
             </div>
 
-            <!-- Bottom Glass Card Testimonial -->
+            
             <div class="mt-4 p-4 rounded-4 border border-white border-opacity-25 bg-white bg-opacity-10 backdrop-blur shadow-lg position-relative overflow-hidden">
               <div class="position-absolute top-0 end-0 p-3 opacity-25">
                 <i class="fa-solid fa-quote-right fa-3x text-white"></i>
               </div>
               <div class="d-flex align-items-center gap-3 mb-3 position-relative z-1">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Customer" class="rounded-circle border border-2 border-white shadow-sm" style="width: 48px; height: 48px; object-fit: cover;">
+                <img src="assets/ext_44d22305.webp" alt="Customer" class="rounded-circle border border-2 border-white shadow-sm" style="width: 48px; height: 48px; object-fit: cover;">
                 <div>
                   <h6 class="text-white fw-bold mb-0">Priya Natarajan</h6>
                   <div class="text-warning small" style="font-size: 0.75rem;">
@@ -90,7 +90,7 @@
           </div>
         </div>
 
-        <!-- RIGHT SIDE: SIGN IN FORM CARD -->
+        
         <div class="col-lg-7 reveal-from-right">
           <div class="card-3d p-4 p-md-5 bg-white rounded-4 shadow-lg border-0 h-100">
             
@@ -104,7 +104,7 @@
 
             <form id="signin-form" novalidate>
               
-              <!-- Role Selector Grid -->
+              
               <div class="mb-4">
                 <label class="form-label fw-bold small text-dark">Select Your Role</label>
                 <input type="hidden" id="loginRole" value="customer">
@@ -207,19 +207,19 @@
   </div>
 
   <style>
-    /* Premium Glassmorphism Utility */
+    
     .backdrop-blur {
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
     
-    /* Remove default Bootstrap exclamation mark for invalid fields */
+    
     .form-control.is-invalid, .was-validated .form-control:invalid {
         background-image: none !important;
         padding-right: 0.75rem !important;
     }
     
-    /* Make the entire input group red when there's an error */
+    
     .input-group:has(.is-invalid) .input-group-text,
     .input-group:has(.is-invalid) .form-control {
         border-color: #dc3545 !important;
@@ -300,7 +300,7 @@
       const password = document.getElementById('loginPassword');
       let isValid = true;
 
-      // Reset errors
+      
       [name, email, password].forEach(el => el.classList.remove('is-invalid'));
       document.querySelectorAll('#signin-form .err-msg').forEach(el => {
         el.style.display = 'none';
@@ -339,7 +339,7 @@
         const role = document.getElementById('loginRole').value;
         const targetPage = role + '-dashboard.html';
 
-        // Store user details for dashboard display
+        
         localStorage.setItem('stacklyUserName', name.value.trim());
         localStorage.setItem('stacklyUserEmail', email.value.trim());
 

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-emerald-50">
-  <!-- Preloader -->
+  
   <div id="global-preloader">
     <div class="loader-box">
       <div class="loader-box-face front"></div>
@@ -28,16 +28,16 @@
     <div class="loader-text">STACKLY</div>
   </div>
 
-  <!-- GlowCursor 2D Canvas & Three.js Canvas -->
+  
   <canvas id="glow-cursor-canvas"></canvas>
   <canvas id="three-canvas-bg"></canvas>
   <div class="floating-leaves-container"></div>
 
-  <!-- SPLIT SCREEN GET STARTED / SIGN UP CONTAINER -->
+  
   <div class="min-vh-100 py-4 d-flex align-items-center">
     <div class="container my-auto">
       
-      <!-- Top Brand Header Bar (No Navbar / No Footer) -->
+      
       <div class="d-flex align-items-center justify-content-between mb-4">
         <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
           <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;">
@@ -49,9 +49,9 @@
 
       <div class="row g-4 align-items-stretch">
         
-        <!-- LEFT SIDE: HIGH-IMPACT INTERESTING CONTENT CARD -->
+        
         <div class="col-lg-5 reveal-from-left">
-          <div class="p-4 p-md-5 rounded-4 text-white h-100 d-flex flex-column justify-content-between shadow-lg position-relative overflow-hidden" style="background: linear-gradient(160deg, rgba(15, 23, 42, 0.88) 0%, rgba(20, 83, 45, 0.94) 100%), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;">
+          <div class="p-4 p-md-5 rounded-4 text-white h-100 d-flex flex-column justify-content-between shadow-lg position-relative overflow-hidden" style="background: linear-gradient(160deg, rgba(15, 23, 42, 0.88) 0%, rgba(20, 83, 45, 0.94) 100%), url('assets/ext_195f5a53.webp') center/cover no-repeat;">
             
             <div>
               <span class="badge bg-success text-white fw-bold px-3 py-1.5 rounded-pill mb-3">
@@ -62,7 +62,7 @@
                 Join 10,000+ Salem households enjoying chemical-free vegetables, native A2 milk, and fresh fruits directly from local farms.
               </p>
 
-              <!-- INTERESTING FEATURE HIGHLIGHTS -->
+              
               <div class="d-grid gap-3 mb-4">
                 <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
                   <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 38px; height: 38px;">
@@ -96,7 +96,7 @@
               </div>
             </div>
 
-            <!-- SUBSCRIBER TRUST BADGE -->
+            
             <div class="pt-3 border-top border-white border-opacity-25 d-flex align-items-center justify-content-between">
               <div class="d-flex align-items-center gap-2">
                 <span class="text-warning fw-bold fs-5">★★★★★</span>
@@ -108,7 +108,7 @@
           </div>
         </div>
 
-        <!-- RIGHT SIDE: SIGN UP & ONBOARDING FORM CARD -->
+        
         <div class="col-lg-7 reveal-from-right">
           <div class="card-3d p-4 p-md-5 bg-white rounded-4 shadow-lg border-0 h-100">
             
@@ -121,7 +121,7 @@
             </div>
             <form id="signup-form" novalidate>
               
-              <!-- Role Selector Grid -->
+              
               <div class="mb-4">
                 <label class="form-label fw-bold small text-dark">Join as a</label>
                 <input type="hidden" id="regRole" value="customer">
@@ -153,7 +153,7 @@
                 </div>
               </div>
 
-              <!-- Input Fields -->
+              
               <div class="mb-3 position-relative pb-4">
                 <label class="form-label fw-bold small">Full Name</label>
                 <div class="input-group">
@@ -237,13 +237,13 @@
   </div>
 
   <style>
-    /* Remove default Bootstrap exclamation mark for invalid fields */
+    
     .form-control.is-invalid, .was-validated .form-control:invalid {
         background-image: none !important;
         padding-right: 0.75rem !important;
     }
 
-    /* Make the entire input group red when there's an error */
+    
     .input-group:has(.is-invalid) .input-group-text,
     .input-group:has(.is-invalid) .form-control {
         border-color: #dc3545 !important;
