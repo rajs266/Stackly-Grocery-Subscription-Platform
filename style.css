@@ -31,17 +31,18 @@
 }
 
 html {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
   margin: 0;
   padding: 0;
 }
 
 body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  position: relative;
   margin: 0;
   padding: 0;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -66,7 +67,7 @@ nav.navbar {
 }
 
 section, main, header, footer, .section-compact, .hero-section-fullbg, .community-impact-section, .site-footer {
-  max-width: 100%;
+  max-width: 100% !important;
 }
 
 h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
@@ -79,8 +80,8 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 
 .page-hero-fullbg {
   position: relative;
-  min-height: 440px;
-  padding: 85px 0 100px 0;
+  min-height: 460px;
+  padding: 110px 0 95px 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -122,7 +123,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 .hero-section-fullbg {
   position: relative;
   min-height: 580px;
-  padding: 95px 0 110px 0;
+  padding: 115px 0 105px 0;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.62) 0%, rgba(15, 23, 42, 0.92) 100%), url('assets/ext_199d8bb9.webp') center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -145,7 +146,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 .hero-wave-bottom svg {
   position: relative;
   display: block;
-  width: calc(100% + 1.3px);
+  width: 100% !important;
   height: 80px;
 }
 
@@ -219,12 +220,22 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 .delay-300 { transition-delay: 0.40s !important; }
 
 
+#about-story,
 .about-image-wrapper {
   position: relative;
   min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#about-story::-webkit-scrollbar,
+.about-image-wrapper::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .about-img-main {
@@ -819,9 +830,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
   flex-shrink: 0;
 }
 
-/* =========================================================
-   PROPER CIRCULAR FOOTER SOCIAL ICONS WITH HOVER EFFECT
-   ========================================================= */
+
 .footer-social-btn,
 .site-footer .btn.rounded-circle,
 .site-footer a.rounded-circle {
@@ -1066,9 +1075,6 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
   background-color: #ffffff !important;
 }
 
-/* =========================================================
-   UNIVERSAL 3D INTERACTIVE CARDS & HOVER EFFECTS
-   ========================================================= */
 .card-3d {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
@@ -1077,7 +1083,14 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
   box-shadow: var(--shadow-3d);
   transition: all 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   position: relative;
-  overflow: hidden;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.card-3d::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .card-3d:hover {
@@ -1270,9 +1283,7 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 }
 
 
-/* =========================================================
-   FULL-PAGE OVERLAY MOBILE HAMBURGER MENU & MOBILE ALIGNMENT FIXES
-   ========================================================= */
+
 
 @media (max-width: 991px) {
   
@@ -1302,7 +1313,9 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 100vw !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     height: 100vh !important;
     background: #091322 !important; 
     z-index: 999999 !important;
@@ -1513,14 +1526,12 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
   }
 }
 
-/* =========================================================
-   SCROLL-TRIGGERED ANIMATED LINE & DOTS TIMELINE SECTION
-   ========================================================= */
+
 
 .scroll-timeline-section {
   background: #f0fdf4 !important; 
   position: relative;
-  padding: 95px 0 !important;
+  padding: 110px 0 !important;
   overflow: hidden;
 }
 
@@ -1657,9 +1668,6 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 }
 
 
-/* =========================================================
-   STACKLY GUARANTEE CARDS HOVER EFFECTS (PLANS PAGE)
-   ========================================================= */
 
 .guarantee-card {
   position: relative;
@@ -1709,9 +1717,6 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
 }
 
 
-/* =========================================================
-   RESPONSIVE HERO CTA BUTTONS STYLING
-   ========================================================= */
 
 .hero-cta-group {
   margin: 0 auto;
@@ -1735,9 +1740,6 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
   }
 }
 
-/* =========================================================
-   DASHBOARD LAYOUT & RESPONSIVE DASHBOARD STYLES
-   ========================================================= */
 .dashboard-wrapper {
   display: flex;
   min-height: calc(100vh - 120px);
@@ -1773,8 +1775,8 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
     height: calc(100dvh - 62px) !important;
     overflow-y: auto !important;
     overscroll-behavior: contain !important;
-    scrollbar-width: thin !important;
-    scrollbar-color: #16a34a #f1f5f9 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
@@ -1786,7 +1788,9 @@ h1, h2, h3, h4, h5, h6, .hero-title, .modal-title, .section-title {
   }
 
   .dashboard-sidebar::-webkit-scrollbar {
-    width: 6px !important;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
   .dashboard-sidebar::-webkit-scrollbar-track {
     background: #f1f5f9 !important;
@@ -1944,9 +1948,6 @@ html {
   scroll-margin-top: 85px;
 }
 
-/* =========================================================
-   BLOG PAGE: PURITY COMPARISON & 30-DAY WELLNESS ROADMAP
-   ========================================================= */
 
 
 .comparison-card {
@@ -2098,10 +2099,7 @@ html {
   pointer-events: none;
 }
 
-/* =========================================================
-   CUSTOM SELECT BOX TO PREVENT OVERFLOW ON MOBILE
-   (Based on reference stackly-select but in light theme)
-   ========================================================= */
+
 .stackly-select {
   position: relative;
   width: 100%;
@@ -2219,15 +2217,13 @@ html {
 }
 
 
-
-/* =========================================================
-   HIGH ANIMATION PRELOADER (Max 2 Sec)
-   ========================================================= */
 #global-preloader {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
   height: 100vh;
   background: #0f172a;
   z-index: 9999999;
@@ -2371,7 +2367,9 @@ nav.navbar.sticky-top {
     position: fixed !important;
     top: 60px !important;
     left: 0 !important;
-    width: 100vw !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     height: calc(100vh - 60px) !important;
     background: rgba(9, 19, 34, 0.65) !important;
     backdrop-filter: blur(4px) !important;
@@ -2410,4 +2408,54 @@ nav.navbar.sticky-top {
     height: auto !important;
   }
 }
+
+
+*:not(html):not(body) {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*:not(html):not(body)::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+
+
+@keyframes float404 {
+  0% { transform: translateY(0) scale(1) rotate(0deg); text-shadow: 0 5px 15px rgba(22,163,74,0.3); }
+  33% { transform: translateY(-15px) scale(1.05) rotate(-3deg); text-shadow: 0 20px 35px rgba(22,163,74,0.6); }
+  66% { transform: translateY(-10px) scale(1.02) rotate(2deg); text-shadow: 0 15px 25px rgba(22,163,74,0.4); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); text-shadow: 0 5px 15px rgba(22,163,74,0.3); }
+}
+.animated-404-text {
+  animation: float404 1.8s ease-in-out infinite;
+  display: inline-block;
+  background: linear-gradient(135deg, #16a34a, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+@keyframes float404Card {
+  0% { transform: translateY(0); box-shadow: 0 20px 40px -10px rgba(22, 163, 74, 0.18); }
+  50% { transform: translateY(-12px); box-shadow: 0 30px 50px -5px rgba(22, 163, 74, 0.35); }
+  100% { transform: translateY(0); box-shadow: 0 20px 40px -10px rgba(22, 163, 74, 0.18); }
+}
+.animated-404-card {
+  animation: float404Card 3.5s ease-in-out infinite;
+}
+
+
+
+
+.glitch-wrapper { position: relative; display: inline-block; }
+.glitch-text { position: relative; color: #16a34a; animation: glitch-skew 2s infinite linear alternate-reverse; }
+.glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8; }
+.glitch-text::before { color: #059669; z-index: -1; animation: glitch-anim-1 2.5s infinite linear alternate-reverse; }
+.glitch-text::after { color: #f97316; z-index: -2; animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+@keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } 40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); } 60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); } 80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); } 100% { clip-path: inset(30% 0 50% 0); transform: translate(1px, -1px); } }
+@keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); } 20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 1px); } 40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); } 60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); } 80% { clip-path: inset(50% 0 30% 0); transform: translate(1px, -1px); } 100% { clip-path: inset(5% 0 80% 0); transform: translate(-1px, 1px); } }
+@keyframes glitch-skew { 0% { transform: skew(0deg); } 10% { transform: skew(-2deg); } 20% { transform: skew(2deg); } 30% { transform: skew(0deg); } 100% { transform: skew(0deg); } }
 

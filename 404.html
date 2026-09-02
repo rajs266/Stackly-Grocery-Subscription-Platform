@@ -27,185 +27,36 @@
     <div class="loader-text">STACKLY</div>
   </div>
 
-  
   <canvas id="three-canvas-bg"></canvas>
-  <div class="floating-leaves-container"></div>
 
-  
-    
-  <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-        <img src="assets/logo.webp" alt="Stackly Logo">
-      </a>
+  <main class="d-flex align-items-center justify-content-center py-3 position-relative z-2" style="min-height: 100vh; box-sizing: border-box;">
 
-      
-      <div class="d-flex align-items-center gap-2 ms-auto me-2 d-lg-none">
-        <div class="btn-cart-wrapper">
-          <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
-            <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
-          </button>
-          <span class="badge-cart-count">0</span>
-        </div>
-      </div>
-
-      <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Toggle navigation">
-        <i class="fa-solid fa-bars text-dark fs-3"></i>
-      </button>
-
-      <div class="collapse navbar-collapse" id="stacklyNav">
+    <div class="container" style="max-width: 700px;">
+      <div class="card-3d p-4 p-md-5 text-center shadow-lg border-0 rounded-4 d-flex flex-column align-items-center justify-content-center" style="min-height: 520px; padding: 4rem 2rem !important;">
         
-        <div class="mobile-menu-header d-lg-none">
-          <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-            <img src="assets/logo.webp" alt="Stackly Logo" style="height: 38px;">
-          </a>
-          <button type="button" class="mobile-menu-close-btn" data-bs-toggle="collapse" data-bs-target="#stacklyNav" aria-label="Close menu">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <div class="pill-nav-container mx-auto my-2 my-lg-0">
-          <div class="pill-nav-indicator"></div>
-          <ul class="pill-nav-list align-items-center">
-            <li><a class="pill-nav-link" href="index.html">Home</a></li>
-            <li><a class="pill-nav-link" href="about.html">About</a></li>
-            <li><a class="pill-nav-link" href="plans.html">Plans</a></li>
-            <li><a class="pill-nav-link" href="shop.html">Shop</a></li>
-            <li><a class="pill-nav-link" href="blog.html">Blog</a></li>
-            <li><a class="pill-nav-link" href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="d-flex align-items-center gap-3 ms-lg-2 mobile-menu-footer-actions">
-          <div class="btn-cart-wrapper d-none d-lg-block">
-            <button class="btn btn-light rounded-circle p-2 border shadow-sm" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Basket">
-              <i class="fa-solid fa-basket-shopping text-success fs-5"></i>
-            </button>
-            <span class="badge-cart-count">0</span>
-          </div>
-
-          <a href="get-started.html" class="btn btn-get-started-shimmer btn-bounce-right icon-wobble-hover btn-sm text-white w-100 w-lg-auto justify-content-center">
-            <span>Get Started</span> <i class="fa-solid fa-bolt text-warning"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  
-  <section class="section-compact position-relative">
-    <div class="container">
-      <div class="page-404-card card-3d">
-        <h1 class="page-404-title">404</h1>
-        <h3 class="fw-bold mb-3 text-dark">Page not found</h3>
-        <p class="text-muted small mb-4">
-          The page you are looking for no longer exists. Perhaps you can return back to the site's homepage and see if you can find what you are looking for.
-        </p>
-        <a href="index.html" class="btn btn-accent-stackly px-4 py-2">
-          Back Home
+        <a href="index.html" class="d-inline-block mb-4" style="z-index: 5;">
+          <img src="assets/logo.webp" alt="Stackly Logo" style="height: 65px; filter: drop-shadow(0 4px 10px rgba(255,255,255,0.6));">
         </a>
-      </div>
-    </div>
-  </section>
 
-  
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-newsletter-card mb-4">
-        <div class="row align-items-center g-3">
-          <div class="col-lg-6">
-            <h4 class="fw-bold text-dark mb-1">Signup our newsletter to get update information, news, insight or promotions.</h4>
-            <p class="text-muted small mb-0">Get exclusive subscriber promo codes & Salem farm harvest news direct to your inbox.</p>
-          </div>
-          <div class="col-lg-6">
-            <form id="newsletter-form" class="d-flex gap-2" action="404.html">
-              <input type="email" class="form-control form-control-lg bg-white border-1" placeholder="Enter your email address" required style="border-radius: 30px;">
-              <button type="submit" class="btn btn-accent-stackly btn-lg text-nowrap" style="border-radius: 30px;">
-                <i class="fa-solid fa-envelope me-1"></i> Sign Up
-              </button>
-            </form>
-          </div>
+        <div class="glitch-wrapper mb-4" style="min-height: 150px; display: flex; align-items: center; justify-content: center;">
+          <h1 class="fw-extrabold glitch-text m-0" data-text="404" style="font-size: 9rem; line-height: 1;">404</h1>
         </div>
-      </div>
-
-            <div class="row g-4 pb-4">
         
-        <div class="col-lg-4 col-md-6">
-          <img src="assets/logo.webp" alt="Stackly Logo" style="height: 44px;" class="mb-3">
-          <p class="text-slate-300 small mb-3">
-            Stackly is Salem's premier organic grocery subscription platform connecting local organic farmers directly with families. Fresh, healthy, and delivered with love.
-          </p>
-          <div class="d-flex gap-2">
-            <a href="404.html" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="404.html" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="404.html" class="footer-social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="404.html" class="footer-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          </div>
-        </div>
-
-        
-        <div class="col-lg-2 col-6">
-          <h6 class="fw-bold mb-3 text-white">Quick Navigation</h6>
-          <ul class="list-unstyled small d-grid gap-2">
-            <li><a href="index.html" class="text-reset text-decoration-none">Home</a></li>
-            <li><a href="about.html" class="text-reset text-decoration-none">About</a></li>
-            <li><a href="plans.html" class="text-reset text-decoration-none">Plans</a></li>
-            <li><a href="shop.html" class="text-reset text-decoration-none">Shop</a></li>
-            <li><a href="blog.html" class="text-reset text-decoration-none">Blog</a></li>
-            <li><a href="contact.html" class="text-reset text-decoration-none">Contact</a></li>
-          </ul>
-        </div>
-
-        
-        <div class="col-lg-2 col-6">
-          <h6 class="fw-bold mb-3 text-white">Customer Care</h6>
-          <ul class="list-unstyled small d-grid gap-2">
-            <li><a href="404.html" class="text-reset text-decoration-none">Help Center</a></li>
-            <li><a href="404.html" class="text-reset text-decoration-none">Track Order</a></li>
-            <li><a href="404.html" class="text-reset text-decoration-none">Returns & Refund</a></li>
-            <li><a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a></li>
-            <li><a href="404.html" class="text-reset text-decoration-none">Terms of Service</a></li>
-            <li><a href="404.html" class="text-reset text-decoration-none">Legal Notice</a></li>
-          </ul>
-        </div>
-
-        
-        <div class="col-lg-4 col-md-6">
-          <h6 class="fw-bold mb-3 text-white">Get In Touch</h6>
-          <ul class="list-unstyled small d-grid gap-2 text-slate-300 mb-3">
-            <li class="d-flex align-items-start gap-2">
-              <i class="fa-solid fa-location-dot text-success mt-1"></i>
-              <span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span>
-            </li>
-            <li class="d-flex align-items-center gap-2">
-              <i class="fa-solid fa-envelope text-success"></i>
-              <span>support@stacklygrocery.com</span>
-            </li>
-            <li class="d-flex align-items-center gap-2">
-              <i class="fa-solid fa-phone text-success"></i>
-              <span>+91 98765 43210 / 0427-2345678</span>
-            </li>
-          </ul>
-          <div class="p-2.5 bg-white bg-opacity-10 rounded-3 border border-light border-opacity-10 d-flex align-items-center justify-content-between">
-            <span class="small text-white fw-bold"><i class="fa-solid fa-clock text-warning me-1"></i> Farm Dispatch Hours:</span>
-            <span class="badge bg-success text-white fw-bold">6:00 AM – 8:00 PM</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-3 border-top d-flex flex-column flex-md-row justify-content-between align-items-center small text-muted">
-        <p class="mb-2 mb-md-0">Copyright © 2026 Stackly. All rights reserved.</p>
-        <div class="d-flex gap-3">
-          <a href="404.html" class="text-reset text-decoration-none">Term of use</a>
-          <span>•</span>
-          <a href="404.html" class="text-reset text-decoration-none">Privacy Policy</a>
-          <span>•</span>
-          <a href="404.html" class="text-reset text-decoration-none">Cookie Policy</a>
+        <h3 class="fw-bold mb-3 text-dark">Oops! Page Not Found</h3>
+        <p class="text-muted small mb-4">
+          The page you are looking for no longer exists or might have been moved. You can return back to the site's homepage or go back to your previous page.
+        </p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+          <a href="index.html" class="btn btn-get-started-shimmer btn-grow-shadow px-4 py-2.5 rounded-pill fw-bold text-decoration-none">
+            <i class="fa-solid fa-house me-2"></i> Back to Home
+          </a>
+          <button onclick="window.history.back()" class="btn btn-outline-success px-4 py-2.5 rounded-pill fw-bold">
+            <i class="fa-solid fa-arrow-left me-2"></i> Go Back
+          </button>
         </div>
       </div>
     </div>
-    <img src="https://images.unsplash.com/photo-1598170845058-12ef4a45753b?auto=format&fit=crop&w=250&q=80" alt="Cabbage Decor" class="footer-cabbage-decor">
-  </footer>
+  </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

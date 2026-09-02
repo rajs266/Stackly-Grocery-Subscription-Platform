@@ -1,4 +1,4 @@
-﻿const PRODUCT_CATALOG_IMAGES = {
+const PRODUCT_CATALOG_IMAGES = {
   'native_heirloom_tomatoes': {
     image: 'assets/tomatoes.webp',
     unit: '1 kg'
@@ -291,12 +291,12 @@ function initGlowCursor() {
   });
 
   const config = {
-    colorHead: '#67e8f9',
-    colorCore: '#22c55e',
-    colorTail: '#16a34a',
-    trailLength: 32,
-    maxWidth: 5.5,
-    minWidth: 0.4,
+    colorHead: 'rgba(103, 232, 249, 0.45)',
+    colorCore: 'rgba(34, 197, 94, 0.40)',
+    colorTail: 'rgba(22, 163, 74, 0.25)',
+    trailLength: 26,
+    maxWidth: 4.0,
+    minWidth: 0.3,
     followSpeed: 0.28,
     idleTimeout: 600,
     fadeDuration: 800
@@ -337,7 +337,6 @@ function initGlowCursor() {
     if (opacity > 0 && trail.length > 2) {
       ctx.save();
       ctx.globalCompositeOperation = 'screen';
-      ctx.globalAlpha = opacity;
 
       for (let i = 0; i < trail.length - 1; i++) {
         const p1 = trail[i];
@@ -356,17 +355,17 @@ function initGlowCursor() {
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.shadowColor = config.colorCore;
-        ctx.shadowBlur = (8 * (1 - progress)) + 2;
-        ctx.globalAlpha = opacity * segmentAlpha;
+        ctx.shadowBlur = (3 * (1 - progress)) + 1;
+        ctx.globalAlpha = opacity * segmentAlpha * 0.38;
         ctx.stroke();
       }
 
       ctx.beginPath();
-      ctx.arc(currentX, currentY, config.maxWidth * 0.7, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
+      ctx.arc(currentX, currentY, config.maxWidth * 0.6, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
       ctx.shadowColor = config.colorHead;
-      ctx.shadowBlur = 10;
-      ctx.globalAlpha = opacity;
+      ctx.shadowBlur = 4;
+      ctx.globalAlpha = opacity * 0.45;
       ctx.fill();
 
       ctx.restore();
