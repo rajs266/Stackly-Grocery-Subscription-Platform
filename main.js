@@ -291,13 +291,13 @@ function initGlowCursor() {
   });
 
   const config = {
-    colorHead: 'rgba(103, 232, 249, 0.45)',
-    colorCore: 'rgba(34, 197, 94, 0.40)',
+    colorHead: 'rgba(103, 232, 249, 1.0)',
+    colorCore: 'rgba(34, 197, 94, 0.95)',
     colorTail: 'rgba(22, 163, 74, 0.25)',
-    trailLength: 26,
-    maxWidth: 4.0,
-    minWidth: 0.3,
-    followSpeed: 0.28,
+    trailLength: 10,
+    maxWidth: 4.8,
+    minWidth: 0.5,
+    followSpeed: 0.70,
     idleTimeout: 600,
     fadeDuration: 800
   };
@@ -355,17 +355,17 @@ function initGlowCursor() {
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.shadowColor = config.colorCore;
-        ctx.shadowBlur = (3 * (1 - progress)) + 1;
-        ctx.globalAlpha = opacity * segmentAlpha * 0.38;
+        ctx.shadowBlur = (6 * (1 - progress)) + 2;
+        ctx.globalAlpha = opacity * segmentAlpha * 0.85;
         ctx.stroke();
       }
 
       ctx.beginPath();
       ctx.arc(currentX, currentY, config.maxWidth * 0.6, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 1.0)';
       ctx.shadowColor = config.colorHead;
-      ctx.shadowBlur = 4;
-      ctx.globalAlpha = opacity * 0.45;
+      ctx.shadowBlur = 8;
+      ctx.globalAlpha = opacity * 1.0;
       ctx.fill();
 
       ctx.restore();
